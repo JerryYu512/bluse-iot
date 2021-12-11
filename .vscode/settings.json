@@ -1,0 +1,22 @@
+{
+	"files.associations": {
+		"mqttclient.h": "c",
+		"chrono": "cpp",
+		"mutex": "cpp",
+		"shared_mutex": "cpp",
+		"*.tcc": "cpp",
+		"functional": "cpp",
+		"string": "cpp",
+		"cstring": "cpp",
+		"array": "cpp",
+		"deque": "cpp",
+		"forward_list": "cpp",
+		"list": "cpp",
+		"unordered_map": "cpp",
+		"vector": "cpp",
+		"string_view": "cpp",
+		"initializer_list": "cpp",
+		"regex": "cpp",
+		"valarray": "cpp"
+	}
+}

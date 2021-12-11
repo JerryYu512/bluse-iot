@@ -1,0 +1,4 @@
+{
+    "device_id": "20210827ARSIOT00000001_ars-iot-home-gateway-20210827-000000001",
+    "secret": "JerryYu-arsIOT-2021"
+}

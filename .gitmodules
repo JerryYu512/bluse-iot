@@ -1,0 +1,15 @@
+[submodule "thirdparty/arss"]
+	path = thirdparty/arss
+	url = https://github.com/JerryYu512/arss
+[submodule "thirdparty/paho.mqtt.c"]
+	path = thirdparty/paho.mqtt.c
+	url = https://github.com/eclipse/paho.mqtt.c
+[submodule "thirdparty/spdlog"]
+	path = thirdparty/spdlog
+	url = https://github.com/gabime/spdlog
+[submodule "thirdparty/huaweicloud-iot-device-sdk-c"]
+	path = thirdparty/huaweicloud-iot-device-sdk-c
+	url = https://github.com/huaweicloud/huaweicloud-iot-device-sdk-c
+[submodule "thirdparty/cJSON"]
+	path = thirdparty/cJSON
+	url = https://github.com/DaveGamble/cJSON
