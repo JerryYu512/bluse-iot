@@ -32,9 +32,7 @@
 #include <iostream>
 #include <stdexcept>
 
-namespace ars {
-
-namespace iot {
+namespace biot {
 
 Parameter::Parameter(const std::string &path) : path_(path) {
     try {
@@ -73,6 +71,4 @@ bool Parameter::dump(const param_json_t &param) {
     return dump();
 }
 
-} // namespace iot
-
-} // namespace ars
+} // namespace biot

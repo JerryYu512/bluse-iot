@@ -30,9 +30,7 @@
 #include <string.h>
 #include <unistd.h>
 
-namespace ars {
-
-namespace iot {
+namespace biot {
 
 ///< 信号映射
 typedef struct {
@@ -113,6 +111,4 @@ void Signal::signal_reg(int sig, signal_handler_t fun, void *arg) {
 	handle_[sig] = reg;
 }
 
-} // namespace iot
-
-} // namespace ars
+} // namespace biot

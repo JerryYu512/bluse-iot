@@ -29,9 +29,7 @@
 #include "capability.h"
 #include "config/default_parameter.h"
 
-namespace ars {
-
-namespace iot {
+namespace biot {
 
 static parameter_config_t def_capability_hw = {
 	"hardware capability",
@@ -202,6 +200,4 @@ parameter_config_t def_capability = {
 	}
 };
 
-} // namespace iot
-
-} // namespace ars
+} // namespace biot

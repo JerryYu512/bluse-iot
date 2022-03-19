@@ -55,7 +55,7 @@ LIBS_PATH := -L$(ROOT_DIR)/lib -L/usr/local/lib -L/usr/lib
 
 ST_LIBS_UT = -lgtest
 
-ST_LIBS = -larss -lhw-iot-dev-access -lspdlog -lpaho-mqtt3a -lpaho-mqtt3as -lpaho-mqtt3c -lpaho-mqtt3cs
+ST_LIBS = -lbrsdk -lhw-iot-dev-access -lspdlog -lpaho-mqtt3a -lpaho-mqtt3as -lpaho-mqtt3c -lpaho-mqtt3cs
 SO_LIBS = -lz -lssl -lcrypto -lpthread -ldl -lrt # -lresolv
 
 DMARCROS := -DLANGUAGE_ZH -DWITH_OPENSSL -DWITH_ZLIB -DSOFT_VERSION=\"$(RELEASE_VERSION)\" \
@@ -82,5 +82,5 @@ DMARCROS += -D__const__= -pipe -W -Wall -Wno-unused-parameter \
 			-Wno-unused-result -Wno-maybe-uninitialized
 
 # -ggdb
-CCFLAG += -c $(INC) -Wall -std=c++11 $(DMARCROS)
+CCFLAG += -c $(INC) -Wall -std=c++14 $(DMARCROS)
 OBJCCFLAG := $(CCFLAG)

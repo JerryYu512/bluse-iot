@@ -28,9 +28,7 @@
  */
 #include "version.h"
 
-namespace ars {
-
-namespace iot {
+namespace biot {
 
 /**
  * @brief 应用版本
@@ -86,6 +84,4 @@ const std::string app_edition(void) {
     return "release";
 }
 
-} // namespace iot
-
-} // namespace ars
+} // namespace biot

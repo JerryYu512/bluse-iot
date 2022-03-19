@@ -28,9 +28,7 @@
  */
 #include "boot.h"
 
-namespace ars {
-
-namespace iot {
+namespace biot {
 
 int boot_basic(void) {
 	return BOOT_OK;
@@ -40,6 +38,4 @@ void boot_un_basic(void) {
 
 }
 
-} // namespace iot
-
-} // namespace ars
+} // namespace biot

@@ -28,35 +28,35 @@
  */
 #pragma once
 
-namespace ars {
-
-namespace iot {
+namespace biot {
 
 // 运行时目录
-#ifndef IOT_RT_ROOT_PATH
-    #define IOT_RT_ROOT_PATH "ars-iot-rt"
-#endif // !IOT_RT_ROOT_PATH
+#ifndef BIOT_RT_ROOT_PATH
+    #define BIOT_RT_ROOT_PATH "bluse-iot-rt"
+#endif // !BIOT_RT_ROOT_PATH
 
 // 配置路径
-#define IOT_ETC_PATH IOT_RT_ROOT_PATH "/etc/"
+#define BIOT_ETC_PATH BIOT_RT_ROOT_PATH "/etc/"
 // 数据路径
-#define IOT_DATA_PATH IOT_RT_ROOT_PATH "/data/"
+#define BIOT_DATA_PATH BIOT_RT_ROOT_PATH "/data/"
 // 用户路径
-#define IOT_USR_PATH IOT_RT_ROOT_PATH "/usr/"
+#define BIOT_USR_PATH BIOT_RT_ROOT_PATH "/usr/"
 
 // 日志路径
-#define IOT_LOG_PATH IOT_RT_ROOT_PATH "/log/"
+#define BIOT_LOG_PATH BIOT_RT_ROOT_PATH "/log/"
+// 日志文件单个最大大小 20M
+#define BIOT_LOG_MAX_FILESIZE (20 * 1024 * 1024)
+// 日志文件循环个数
+#define BIOT_LOG_FILE_MAX_NUM 64
 // coredump生成路径
-#define IOT_COREDUMP_PATH IOT_RT_ROOT_PATH "/coredump/"
+#define BIOT_COREDUMP_PATH BIOT_RT_ROOT_PATH "/coredump/"
 
 // 能力集文件路径
-#define IOT_CAPABILITY_FILENAME IOT_RT_ROOT_PATH "/etc/iot_capability.json"
+#define BIOT_CAPABILITY_FILENAME BIOT_RT_ROOT_PATH "/etc/biot_capability.json"
 // 配置文件路径
-#define IOT_CONFIG_FILENAME IOT_RT_ROOT_PATH "/etc/iot_parameter.json"
-#define IOT_CONFIG_PATCH_FILENAME IOT_RT_ROOT_PATH "/etc/iot_parameter_patch.json"
+#define BIOT_CONFIG_FILENAME BIOT_RT_ROOT_PATH "/etc/biot_parameter.json"
+#define BIOT_CONFIG_PATCH_FILENAME BIOT_RT_ROOT_PATH "/etc/biot_parameter_patch.json"
 // pid路径
-#define IOT_PID_FILENAME "/var/run/ars-iot.pid"
+#define BIOT_PID_FILENAME "/var/run/bluse-iot.pid"
 
-} // namespace iot
-
-} // namespace ars
+} // namespace biot

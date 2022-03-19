@@ -29,9 +29,7 @@
 #include "network.h"
 #include "config/default_parameter.h"
 
-namespace ars {
-
-namespace iot {
+namespace biot {
 
 parameter_config_t def_network_param = {
 	"network",
@@ -49,5 +47,3 @@ parameter_config_t def_network_param = {
 };
 
 } // namespace iot
-
-} // namespace ars

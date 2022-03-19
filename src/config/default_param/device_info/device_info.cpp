@@ -29,9 +29,7 @@
 #include "device_info.h"
 #include "config/default_parameter.h"
 
-namespace ars {
-
-namespace iot {
+namespace biot {
 
 parameter_config_t def_device_info_param = {
 	"device info",
@@ -61,6 +59,4 @@ parameter_config_t def_device_info_param = {
 	{
 	}
 };
-} // namespace iot
-
-} // namespace ars
+} // namespace biot

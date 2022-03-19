@@ -32,24 +32,22 @@
 #include <execinfo.h>
 #include <iostream>
 #include <sstream>
-#include "arss/defs/defs.hpp"
-#include "arss/flag/flag.hpp"
-#include "arss/fs/file_util.hpp"
-#include "arss/fs/file.hpp"
-#include "arss/mix/singleton.hpp"
-#include "arss/str/pystring.hpp"
-#include "arss/os/coredump.hpp"
-#include "arss/time/timestamp.hpp"
-#include "arss/thread/current_thread.hpp"
-#include "log/ars_iot_log.h"
+#include "brsdk/defs/defs.hpp"
+#include "brsdk/flag/flag.hpp"
+#include "brsdk/fs/file_util.hpp"
+#include "brsdk/fs/file.hpp"
+#include "brsdk/mix/singleton.hpp"
+#include "brsdk/str/pystring.hpp"
+#include "brsdk/os/coredump.hpp"
+#include "brsdk/time/timestamp.hpp"
+#include "brsdk/thread/current_thread.hpp"
+#include "log/biot_log.h"
 #include "boot.h"
 #include "boot_signal.h"
 #include "config/args_dec.h"
 #include "config/configure.h"
 
-namespace ars {
-
-namespace iot {
+namespace biot {
 
 static bool create_runtime_dir(void);
 
@@ -110,16 +108,16 @@ public:
             if (errno == EACCES || errno == EAGAIN) {
                 close(fd_);
                 fd_ = -1;
-                iot_boot_printe("proccessing is running!\n");
+                biot_boot_printe("proccessing is running!\n");
                 return false;
             }
-			iot_boot_printe("can't lock \"%s\", reason : %s\n", pid_.c_str(), strerror(errno));
+			biot_boot_printe("can't lock \"%s\", reason : %s\n", pid_.c_str(), strerror(errno));
         }
 
         char buf[16] = {'\0'};
 
         if (ftruncate(fd_, 0) != 0) {
-			iot_boot_printe("ftruncate \"%s\", reason : %s\n", pid_.c_str(), strerror(errno));
+			biot_boot_printe("ftruncate \"%s\", reason : %s\n", pid_.c_str(), strerror(errno));
             return false;
         }
 
@@ -136,20 +134,20 @@ private:
 
 static bool create_runtime_dir(void) {
     const char *env_dirs[] = {
-        IOT_RT_ROOT_PATH,
-		IOT_ETC_PATH,
-		IOT_DATA_PATH,
-        IOT_USR_PATH,
-		IOT_LOG_PATH,
-		IOT_COREDUMP_PATH,
+        BIOT_RT_ROOT_PATH,
+		BIOT_ETC_PATH,
+		BIOT_DATA_PATH,
+        BIOT_USR_PATH,
+		BIOT_LOG_PATH,
+		BIOT_COREDUMP_PATH,
     };
 
     // 创建运行时目录
-    for (size_t i = 0; i < ARSS_ARRAY_SIZE(env_dirs); i++) {
+    for (size_t i = 0; i < BRSDK_ARRAY_SIZE(env_dirs); i++) {
         std::string path = pystring::os::path::join(FLG_abs_rt_path, env_dirs[i]);
-        iot_boot_printd("mkdir \"%s\"\n", path.c_str());
-        if (arss::fs::mkdir_p(path.c_str()) < 0) {
-            iot_boot_printe("mkdir \"%s\" failed\n", env_dirs[i]);
+        biot_boot_printd("mkdir \"%s\"\n", path.c_str());
+        if (brsdk::fs::mkdir_p(path.c_str()) < 0) {
+            biot_boot_printe("mkdir \"%s\" failed\n", env_dirs[i]);
             return false;
         }
     }
@@ -159,22 +157,22 @@ static bool create_runtime_dir(void) {
 
 static void set_coredump(void) {
 #ifdef DEBUG
-    std::string path = pystring::os::path::join(FLG_abs_rt_path, IOT_COREDUMP_PATH);
+    std::string path = pystring::os::path::join(FLG_abs_rt_path, BIOT_COREDUMP_PATH);
 
-	iot_boot_printi("setup coredump \"%s\"\n", path.c_str());
-	arss::os::setup_coredump(path.c_str(), 1024 * 1024 * 1024);
+	biot_boot_printi("setup coredump \"%s\"\n", path.c_str());
+	brsdk::os::setup_coredump(path.c_str(), 1024 * 1024 * 1024);
 #endif
 }
 
 static void save_core_trace(int sig, siginfo_t *info, void *arg) {
 	// addr2line -Cfe [exe] -a [addr]
-	arss::Timestamp t = arss::Timestamp::now();
+	brsdk::Timestamp t = brsdk::Timestamp::now();
 	std::string fname = FLG_abs_rt_path;
-	arss::fs::File f;
+	brsdk::fs::File f;
 	std::ostringstream ostr;
 
-	fname = pystring::os::path::join(fname, IOT_COREDUMP_PATH);
-	fname = pystring::os::path::join(fname, "crash-" + std::string(arss::thread::t_threadName) + "-" + t.toFormattedFileString(true) + ".dump");
+	fname = pystring::os::path::join(fname, BIOT_COREDUMP_PATH);
+	fname = pystring::os::path::join(fname, "crash-" + std::string(brsdk::thread::t_threadName) + "-" + t.toFormattedFileString(true) + ".dump");
 
 	if (f.open(fname.c_str(), "a") < 0) {
 		return ;
@@ -204,7 +202,7 @@ static void save_core_trace(int sig, siginfo_t *info, void *arg) {
 	ostr << "Dump Time : " << t.toFormattedString(true) << std::endl;
 
 	// 线程和信号
-	ostr << "Curr thread: " << arss::thread::t_cachedTid << " " << arss::thread::t_threadName << ", Catch signal: " << sig << std::endl;
+	ostr << "Curr thread: " << brsdk::thread::t_cachedTid << " " << brsdk::thread::t_threadName << ", Catch signal: " << sig << std::endl;
 
 	// 堆栈
 	void *dump[256] = {nullptr};
@@ -229,7 +227,7 @@ static void save_core_trace(int sig, siginfo_t *info, void *arg) {
 	fl.l_type = F_UNLCK;
 	fcntl(fd, F_SETLK, &fl);
 
-	ARSIOT_CRITICAL("\n{}", ostr.str());
+	BIOT_CRITICAL("\n{}", ostr.str());
 
     signal(sig, SIG_DFL);
     kill(getpid(), sig);
@@ -246,7 +244,7 @@ static void reg_signal(void) {
 }
 
 int boot_pre(void) {
-    if (!AloneProccess::check(IOT_PID_FILENAME)) {
+    if (!AloneProccess::check(BIOT_PID_FILENAME)) {
         return BOOT_REBOOT;
     }
 
@@ -263,6 +261,4 @@ int boot_pre(void) {
 
 void boot_un_pre(void) {}
 
-}  // namespace iot
-
-}  // namespace ars
+}  // namespace biot

@@ -28,40 +28,35 @@
  */
 #include "boot.h"
 
-#include "log/ars_iot_log.h"
+#include "log/biot_log.h"
 #include "core/version.h"
 
-namespace ars {
-
-namespace iot {
+namespace biot {
 
 int boot_log(void) {
 	// 日志初始化
 #ifdef DEBUG
-	ars::iot::set_logger(ARS_IOT_LOG_DEF_NAME, ars::iot::log_trace);
+	biot::set_log_level(BIOT_LOG_DEFAULT, biot::log_trace);
 #else
-	ars::iot::set_logger(ARS_IOT_LOG_DEF_NAME, ars::iot::log_info);
+	biot::set_log_level(BIOT_LOG_DEFAULT, biot::log_info);
 #endif
 
 #ifdef DEBUG
 	spdlog::flush_on(spdlog::level::trace);
 #endif
 
-	ARSIOT_INFO("{:<30}{}{}", "[application name", 			"] ==> ", 	"ars-iot[ars iot app]");
-	ARSIOT_INFO("{:<30}{}{}", "[compile time", 				"] ==> ", 	app_compile_time());
-	ARSIOT_INFO("{:<30}{}{}", "[application version", 		"] ==> ", 	app_version());
-	ARSIOT_INFO("{:<30}{}{}", "[application edition", 		"] ==> ", 	app_edition());
-	ARSIOT_INFO("{:<30}{}{}", "[application identifier", 	"] ==> ", 	app_identifier());
-	ARSIOT_INFO("{:<30}{}{}", "[aplication author", 		"] ==> ", 	"Jerry.Yu(astralrovers#outlook.com)");
-	ARSIOT_INFO("{:<30}{}{}", "[copyright", 				"] ==> ", 	"MIT");
+	BIOT_INFO("{:<30}{}{}", "[application name", 			"] ==> ", 	"bluse-iot[bluse iot app]");
+	BIOT_INFO("{:<30}{}{}", "[compile time", 				"] ==> ", 	app_compile_time());
+	BIOT_INFO("{:<30}{}{}", "[application version", 		"] ==> ", 	app_version());
+	BIOT_INFO("{:<30}{}{}", "[application edition", 		"] ==> ", 	app_edition());
+	BIOT_INFO("{:<30}{}{}", "[application identifier", 		"] ==> ", 	app_identifier());
+	BIOT_INFO("{:<30}{}{}", "[aplication author", 			"] ==> ", 	"Jerry.Yu(astralrovers#outlook.com)");
+	BIOT_INFO("{:<30}{}{}", "[copyright", 					"] ==> ", 	"MIT");
 
 	return BOOT_OK;
 }
 
 void boot_un_log(void) {
-	ars::iot::release_logger();
 }
 
-} // namespace iot
-
-} // namespace ars
+} // namespace biot

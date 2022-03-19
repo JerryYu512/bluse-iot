@@ -31,9 +31,7 @@
 #include <map>
 #include <signal.h>
 
-namespace ars {
-
-namespace iot {
+namespace biot {
 
 enum : int {
 	signal_abrt = SIGABRT,
@@ -77,6 +75,4 @@ public:
 	static std::map<int, sig_reg_t> handle_;	///< 信号处理
 };
 
-} // namespace iot
-
-} // namespace ars
+} // namespace biot

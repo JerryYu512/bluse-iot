@@ -27,6 +27,8 @@
  * 
  */
 #pragma once
-#include "arss/flag/flag.hpp"
+#include "brsdk/flag/flag.hpp"
 
 DEC_string(abs_rt_path);
+DEC_uint64(log_filesize);
+DEC_uint32(log_filenum);

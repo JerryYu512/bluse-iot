@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ROOT_DIR=$(pwd)
-ALL_MODULES=("arss" "mqtt" "spdlog" "cjson" "iot-access")
+ALL_MODULES=("brsdk" "mqtt" "spdlog" "cjson" "iot-access")
 SUBMODULE_NAME=""
 BUILD_ALL="false"
 
@@ -23,14 +23,14 @@ do
     esac
 done
 
-build_arss()
+build_brsdk()
 {
-	cd arss
+	cd brsdk
 	make ENABLE_STATIC_LIB=y MAKE_INSTALL_DIR=${ROOT_DIR}
 	make install ENABLE_STATIC_LIB=y MAKE_INSTALL_DIR=${ROOT_DIR}
 	make clean
 	cd ..
-	echo "build ######################### arss finish ##################################"
+	echo "build ######################### brsdk finish ##################################"
 }
 
 build_mqtt()
@@ -75,7 +75,7 @@ build_cjson()
 	cd ..
 	rm -rf build
 	cd ..
-	echo "build ######################### arss finish ##################################"
+	echo "build ######################### brsdk finish ##################################"
 }
 
 build_iot_access()
@@ -92,8 +92,8 @@ build_iot_access()
 build_one()
 {
 	echo "######################### build $1 begin ###################################"
-	if [ "$1" == "arss" ]; then
-		build_arss
+	if [ "$1" == "brsdk" ]; then
+		build_brsdk
 	elif [ "$1" == "mqtt" ]; then
 		build_mqtt
 	elif [ "$1" == "spdlog" ]; then

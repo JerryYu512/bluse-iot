@@ -31,9 +31,7 @@
 #include <vector>
 #include <stdint.h>
 
-namespace ars {
-
-namespace iot {
+namespace biot {
 
 #define PARAMETER_TYPE(XX) \
 XX(bool, "bool") \
@@ -117,6 +115,4 @@ const char* get_paramter_permission(parameter_permission_e permission);
  */
 std::string get_default_parameter(void);
 
-} // namespace iot
-
-} // namespace ars
+} // namespace biot

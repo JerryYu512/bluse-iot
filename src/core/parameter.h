@@ -27,12 +27,10 @@
  * 
  */
 #pragma once
-#include "arss/json/json.hpp"
-#include "arss/lock/rwlock.hpp"
+#include "brsdk/json/json.hpp"
+#include "brsdk/lock/rwlock.hpp"
 
-namespace ars {
-
-namespace iot {
+namespace biot {
 
 using param_json_t = nlohmann::json;
 
@@ -86,7 +84,7 @@ public:
      *
      * @return RwMutex&
      */
-    arss::RwMutex &lock() { return mtx_; }
+    brsdk::RwMutex &lock() { return mtx_; }
 
 private:
     Parameter(const std::string &path);
@@ -95,7 +93,7 @@ private:
     DISALLOW_COPY_AND_ASSIGN(Parameter);
 
 private:
-    arss::RwMutex mtx_;  ///< 读写锁
+    brsdk::RwMutex mtx_;  ///< 读写锁
     std::string path_;    ///< 配置路径
     param_json_t param_;        ///< 参数
 };
@@ -107,8 +105,8 @@ private:
 #define GET_PARAM_ONCE(key)                                           \
     ({                                                                \
         arss::RMutexGuard lck(                                 \
-            ars::iot::Parameter::get_instance().lock());        \
-        ars::iot::Parameter::get_instance().parameter_ref() key; \
+            biot::Parameter::get_instance().lock());        \
+        biot::Parameter::get_instance().parameter_ref() key; \
     })
 
 /**
@@ -118,14 +116,12 @@ private:
 #define SET_PARAM_ONCE(key, value)                                            \
     ({                                                                        \
         arss::WMutexGuard lck(                                         \
-            ars::iot::Parameter::get_instance().lock());                \
-        ars::iot::Parameter::get_instance().parameter_ref() key = value; \
-        ars::iot::Parameter::get_instance().dump();                     \
+            biot::Parameter::get_instance().lock());                \
+        biot::Parameter::get_instance().parameter_ref() key = value; \
+        biot::Parameter::get_instance().dump();                     \
     })
 
 // TODO
 #define PARAM_CONTAINS(one_key)
 
-} // namespace iot
-
-} // namespace ars
+} // namespace biot

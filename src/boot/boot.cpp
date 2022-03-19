@@ -27,31 +27,45 @@
  * 
  */
 #include "boot.h"
-#include <map>
-#include <string>
+#include "log/biot_log.h"
+#include <list>
 
-namespace ars {
+namespace biot {
 
-namespace iot {
+static std::list<boot_t> ready_boots;
 
-static std::map<std::string, boot_t> boots;
+int biot_boot(std::vector<boot_t>& boots) {
+	for (auto &b: boots) {
+		int ret = BOOT_NONE;
+        biot_boot_printi("booting [%s]\n", b.name.c_str());
+		if (b.boot) {
+			ret = b.boot();
+			if (BOOT_OK == ret) {
+        		biot_boot_printi("boot success [%s]\n", b.name.c_str());
+				ready_boots.push_front(b);
+			} else if (BOOT_FAILD == ret) {
+        		biot_boot_printe("boot failed [%s]\n", b.name.c_str());
+			} else if (BOOT_REBOOT == ret) {
+        		biot_boot_printe("boot fatal [%s]\n", b.name.c_str());
+        		biot_boot_printe("release all ready boot\n");
+				for (auto &r: ready_boots) {
+					if (r.release) {
+						r.release();
+					}
+				}
+				ready_boots.clear();
+        		biot_boot_printe("reboot by [%s]\n", b.name.c_str());
+				// 重启要求，直接返回
+				return ret;
+			} else {
+        		biot_boot_printi("boot not need [%s]\n", b.name.c_str());
+			}
+		}
 
-// boot入队
-void boot_push(const char *name, boot_t &boot) {
-	boots[name] = boot;
-}
-
-// boot出队
-bool boot_pop(const char *name, boot_t &boot) {
-	auto item = boots.find(name);
-	if (item != boots.end()) {
-		boot = item->second;
-		return true;
+		b.result = ret;
 	}
-
-	return false;
+	
+	return 0;
 }
 
-} // namespace iot
-
-} // namespace ars
+} // namespace biot

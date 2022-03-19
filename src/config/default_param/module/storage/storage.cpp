@@ -29,9 +29,7 @@
 #include "storage.h"
 #include "config/default_parameter.h"
 
-namespace ars {
-
-namespace iot {
+namespace biot {
 
 parameter_config_t def_storage_param = {
 	"storage",
@@ -48,6 +46,4 @@ parameter_config_t def_storage_param = {
 	}
 };
 
-} // namespace iot
-
-} // namespace ars
+} // namespace biot

@@ -27,13 +27,11 @@
  * 
  */
 #include "default_parameter.h"
-#include "arss/json/json.hpp"
-#include "arss/str/fmt.hpp"
-#include "log/ars_iot_log.h"
+#include "brsdk/json/json.hpp"
+#include "brsdk/str/fmt.hpp"
+#include "log/biot_log.h"
 
-namespace ars {
-
-namespace iot {
+namespace biot {
 
 using namespace nlohmann;
 
@@ -133,7 +131,7 @@ static void generate_def_json_obj(parameter_config_t *cfg, json &node) {
 					throw std::invalid_argument("not object: " + cfg->value);
 				}
 			} catch (const json::parse_error& e) {
-				iot_boot_printe("parser error(%s), name=\"%s\", value=\n%s\n", e.what(), cfg->name.c_str(), cfg->value.c_str());
+				biot_boot_printe("parser error(%s), name=\"%s\", value=\n%s\n", e.what(), cfg->name.c_str(), cfg->value.c_str());
 				throw std::invalid_argument(e.what());
 			}
 		}
@@ -144,7 +142,7 @@ static void generate_def_json_obj(parameter_config_t *cfg, json &node) {
 		try {
 			node["value"] = json::parse(cfg->value);
 		} catch (const json::parse_error& e) {
-			iot_boot_printe("parser error(%s), name=\"%s\", value=\n%s\n", e.what(), cfg->name.c_str(), cfg->value.c_str());
+			biot_boot_printe("parser error(%s), name=\"%s\", value=\n%s\n", e.what(), cfg->name.c_str(), cfg->value.c_str());
 			throw std::invalid_argument(e.what());
 		}
 	} else {
@@ -163,27 +161,27 @@ static void generate_def_json_obj(parameter_config_t *cfg, json &node) {
 		node["value"][item->name]["permission"] = get_paramter_permission(item->permission);
 		node["value"][item->name]["sub type"] = get_paramter_type(item->sub_type);
 		if (param_t_bool == item->type) {
-			node["value"][item->name]["value"] = arss::str::to_bool(item->value);
+			node["value"][item->name]["value"] = brsdk::str::to_bool(item->value);
 		} else if (param_t_int8 == item->type) {
-			node["value"][item->name]["value"] = arss::str::to_int32(item->value);
+			node["value"][item->name]["value"] = brsdk::str::to_int32(item->value);
 		} else if (param_t_uint8 == item->type) {
-			node["value"][item->name]["value"] = arss::str::to_uint32(item->value);
+			node["value"][item->name]["value"] = brsdk::str::to_uint32(item->value);
 		} else if (param_t_int16 == item->type) {
-			node["value"][item->name]["value"] = arss::str::to_int32(item->value);
+			node["value"][item->name]["value"] = brsdk::str::to_int32(item->value);
 		} else if (param_t_uint16 == item->type) {
-			node["value"][item->name]["value"] = arss::str::to_uint32(item->value);
+			node["value"][item->name]["value"] = brsdk::str::to_uint32(item->value);
 		} else if (param_t_int == item->type) {
-			node["value"][item->name]["value"] = arss::str::to_int32(item->value);
+			node["value"][item->name]["value"] = brsdk::str::to_int32(item->value);
 		} else if (param_t_uint == item->type) {
-			node["value"][item->name]["value"] = arss::str::to_uint32(item->value);
+			node["value"][item->name]["value"] = brsdk::str::to_uint32(item->value);
 		} else if (param_t_int64 == item->type) {
-			node["value"][item->name]["value"] = arss::str::to_int64(item->value);
+			node["value"][item->name]["value"] = brsdk::str::to_int64(item->value);
 		} else if (param_t_uint64 == item->type) {
-			node["value"][item->name]["value"] = arss::str::to_uint64(item->value);
+			node["value"][item->name]["value"] = brsdk::str::to_uint64(item->value);
 		} else if (param_t_float == item->type) {
-			node["value"][item->name]["value"] = arss::str::to_double(item->value);
+			node["value"][item->name]["value"] = brsdk::str::to_double(item->value);
 		} else if (param_t_double == item->type) {
-			node["value"][item->name]["value"] = arss::str::to_double(item->value);
+			node["value"][item->name]["value"] = brsdk::str::to_double(item->value);
 		} else if (param_t_string == item->type) {
 			node["value"][item->name]["value"] = item->value;
 		} else if (param_t_array == item->type) {
@@ -206,7 +204,7 @@ static void generate_def_json_array(parameter_config_t *cfg, json &node) {
 					throw std::invalid_argument("not array: " + cfg->value);
 				}
 			} catch (const json::parse_error& e) {
-				iot_boot_printe("parser error(%s), name=\"%s\", value=\n%s\n", e.what(), cfg->name.c_str(), cfg->value.c_str());
+				biot_boot_printe("parser error(%s), name=\"%s\", value=\n%s\n", e.what(), cfg->name.c_str(), cfg->value.c_str());
 				throw std::invalid_argument(e.what());
 			}
 		}
@@ -217,7 +215,7 @@ static void generate_def_json_array(parameter_config_t *cfg, json &node) {
 		try {
 			node["value"] = json::parse(cfg->value);
 		} catch (const json::parse_error& e) {
-			iot_boot_printe("parser error(%s), name=\"%s\", value=\n%s\n", e.what(), cfg->name.c_str(), cfg->value.c_str());
+			biot_boot_printe("parser error(%s), name=\"%s\", value=\n%s\n", e.what(), cfg->name.c_str(), cfg->value.c_str());
 			throw std::invalid_argument(e.what());
 		}
 	} else {
@@ -233,27 +231,27 @@ static void generate_def_json_array(parameter_config_t *cfg, json &node) {
 		json j;
 
 		if (param_t_bool == cfg->sub_type) {
-			node["value"].push_back(arss::str::to_bool(item->value));
+			node["value"].push_back(brsdk::str::to_bool(item->value));
 		} else if (param_t_int8 == cfg->sub_type) {
-			node["value"].push_back(arss::str::to_int32(item->value));
+			node["value"].push_back(brsdk::str::to_int32(item->value));
 		} else if (param_t_uint8 == cfg->sub_type) {
-			node["value"].push_back(arss::str::to_uint32(item->value));
+			node["value"].push_back(brsdk::str::to_uint32(item->value));
 		} else if (param_t_int16 == cfg->sub_type) {
-			node["value"].push_back(arss::str::to_int32(item->value));
+			node["value"].push_back(brsdk::str::to_int32(item->value));
 		} else if (param_t_uint16 == cfg->sub_type) {
-			node["value"].push_back(arss::str::to_uint32(item->value));
+			node["value"].push_back(brsdk::str::to_uint32(item->value));
 		} else if (param_t_int == cfg->sub_type) {
-			node["value"].push_back(arss::str::to_int32(item->value));
+			node["value"].push_back(brsdk::str::to_int32(item->value));
 		} else if (param_t_uint == cfg->sub_type) {
-			node["value"].push_back(arss::str::to_uint32(item->value));
+			node["value"].push_back(brsdk::str::to_uint32(item->value));
 		} else if (param_t_int64 == cfg->sub_type) {
-			node["value"].push_back(arss::str::to_int64(item->value));
+			node["value"].push_back(brsdk::str::to_int64(item->value));
 		} else if (param_t_uint64 == cfg->sub_type) {
-			node["value"].push_back(arss::str::to_uint64(item->value));
+			node["value"].push_back(brsdk::str::to_uint64(item->value));
 		} else if (param_t_float == cfg->sub_type) {
-			node["value"].push_back(arss::str::to_double(item->value));
+			node["value"].push_back(brsdk::str::to_double(item->value));
 		} else if (param_t_double == cfg->sub_type) {
-			node["value"].push_back(arss::str::to_double(item->value));
+			node["value"].push_back(brsdk::str::to_double(item->value));
 		} else if (param_t_string == cfg->sub_type) {
 			node["value"].push_back(item->value);
 		} else if (param_t_array == cfg->sub_type) {
@@ -265,27 +263,27 @@ static void generate_def_json_array(parameter_config_t *cfg, json &node) {
 			j[item->name]["range"] = item->range;
 			j[item->name]["permission"] = get_paramter_permission(item->permission);
 			if (param_t_bool == item->type) {
-				j[item->name]["value"] = arss::str::to_bool(item->value);
+				j[item->name]["value"] = brsdk::str::to_bool(item->value);
 			} else if (param_t_int8 == item->type) {
-				j[item->name]["value"] = arss::str::to_int32(item->value);
+				j[item->name]["value"] = brsdk::str::to_int32(item->value);
 			} else if (param_t_uint8 == item->type) {
-				j[item->name]["value"] = arss::str::to_uint32(item->value);
+				j[item->name]["value"] = brsdk::str::to_uint32(item->value);
 			} else if (param_t_int16 == item->type) {
-				j[item->name]["value"] = arss::str::to_int32(item->value);
+				j[item->name]["value"] = brsdk::str::to_int32(item->value);
 			} else if (param_t_uint16 == item->type) {
-				j[item->name]["value"] = arss::str::to_uint32(item->value);
+				j[item->name]["value"] = brsdk::str::to_uint32(item->value);
 			} else if (param_t_int == item->type) {
-				j[item->name]["value"] = arss::str::to_int32(item->value);
+				j[item->name]["value"] = brsdk::str::to_int32(item->value);
 			} else if (param_t_uint == item->type) {
-				j[item->name]["value"] = arss::str::to_uint32(item->value);
+				j[item->name]["value"] = brsdk::str::to_uint32(item->value);
 			} else if (param_t_int64 == item->type) {
-				j[item->name]["value"] = arss::str::to_int64(item->value);
+				j[item->name]["value"] = brsdk::str::to_int64(item->value);
 			} else if (param_t_uint64 == item->type) {
-				j[item->name]["value"] = arss::str::to_uint64(item->value);
+				j[item->name]["value"] = brsdk::str::to_uint64(item->value);
 			} else if (param_t_float == item->type) {
-				j[item->name]["value"] = arss::str::to_double(item->value);
+				j[item->name]["value"] = brsdk::str::to_double(item->value);
 			} else if (param_t_double == item->type) {
-				j[item->name]["value"] = arss::str::to_double(item->value);
+				j[item->name]["value"] = brsdk::str::to_double(item->value);
 			} else if (param_t_string == item->type) {
 				j[item->name]["value"] = item->value;
 			} else if (param_t_array == item->type) {
@@ -308,27 +306,27 @@ std::string get_default_parameter(void) {
 		root[item->name]["permission"] = get_paramter_permission(item->permission);
 		root[item->name]["sub type"] = get_paramter_type(item->sub_type);
 		if (param_t_bool == item->type) {
-			root[item->name]["value"] = arss::str::to_bool(item->value);
+			root[item->name]["value"] = brsdk::str::to_bool(item->value);
 		} else if (param_t_int8 == item->type) {
-			root[item->name]["value"] = arss::str::to_int32(item->value);
+			root[item->name]["value"] = brsdk::str::to_int32(item->value);
 		} else if (param_t_uint8 == item->type) {
-			root[item->name]["value"] = arss::str::to_uint32(item->value);
+			root[item->name]["value"] = brsdk::str::to_uint32(item->value);
 		} else if (param_t_int16 == item->type) {
-			root[item->name]["value"] = arss::str::to_int32(item->value);
+			root[item->name]["value"] = brsdk::str::to_int32(item->value);
 		} else if (param_t_uint16 == item->type) {
-			root[item->name]["value"] = arss::str::to_uint32(item->value);
+			root[item->name]["value"] = brsdk::str::to_uint32(item->value);
 		} else if (param_t_int == item->type) {
-			root[item->name]["value"] = arss::str::to_int32(item->value);
+			root[item->name]["value"] = brsdk::str::to_int32(item->value);
 		} else if (param_t_uint == item->type) {
-			root[item->name]["value"] = arss::str::to_uint32(item->value);
+			root[item->name]["value"] = brsdk::str::to_uint32(item->value);
 		} else if (param_t_int64 == item->type) {
-			root[item->name]["value"] = arss::str::to_int64(item->value);
+			root[item->name]["value"] = brsdk::str::to_int64(item->value);
 		} else if (param_t_uint64 == item->type) {
-			root[item->name]["value"] = arss::str::to_uint64(item->value);
+			root[item->name]["value"] = brsdk::str::to_uint64(item->value);
 		} else if (param_t_float == item->type) {
-			root[item->name]["value"] = arss::str::to_double(item->value);
+			root[item->name]["value"] = brsdk::str::to_double(item->value);
 		} else if (param_t_double == item->type) {
-			root[item->name]["value"] = arss::str::to_double(item->value);
+			root[item->name]["value"] = brsdk::str::to_double(item->value);
 		} else if (param_t_string == item->type) {
 			root[item->name]["value"] = item->value;
 		} else if (param_t_array == item->type) {
@@ -341,6 +339,4 @@ std::string get_default_parameter(void) {
 	return root.dump();
 }
 
-} // namespace iot
-
-} // namespace ars
+} // namespace biot

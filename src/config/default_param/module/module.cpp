@@ -29,9 +29,7 @@
 #include "module.h"
 #include "config/default_parameter.h"
 
-namespace ars {
-
-namespace iot {
+namespace biot {
 
 /*---------------------system---------------------*/
 extern parameter_config_t def_system_param;
@@ -68,6 +66,4 @@ parameter_config_t def_module_param = {
 	}
 };
 
-} // namespace iot
-
-} // namespace ars
+} // namespace biot

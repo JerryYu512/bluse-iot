@@ -29,10 +29,6 @@
 #pragma once
 #include <string>
 
-namespace ars {
+namespace biot {
 
-namespace iot {
-
-} // namespace iot
-
-} // namespace ars
+} // namespace biot

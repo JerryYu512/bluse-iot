@@ -32,9 +32,7 @@
 #include <memory>
 #include <functional>
 
-namespace ars {
-
-namespace iot {
+namespace biot {
 
 // 模块状态
 typedef enum {
@@ -250,10 +248,8 @@ public:
 };
 
 // 定义模块引用接口
-#define DEFINE_IOT_MODULE_REF(name) std::shared_ptr<ars::iot::IModule> _arsiot_##name##_module_object_ref(void)
+#define DEFINE_IOT_MODULE_REF(name) std::shared_ptr<biot::IModule> _arsiot_##name##_module_object_ref(void)
 // 模块引用
-#define IOT_MODULE_REF(name) ars::iot::_arsiot_##name##_module_object_ref()
+#define IOT_MODULE_REF(name) biot::_arsiot_##name##_module_object_ref()
 
-} // namespace iot
-
-} // namespace ars
+} // namespace biot

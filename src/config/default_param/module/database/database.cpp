@@ -29,9 +29,7 @@
 #include "database.h"
 #include "config/default_parameter.h"
 
-namespace ars {
-
-namespace iot {
+namespace biot {
 
 parameter_config_t def_database_param = {
 	"database",
@@ -48,6 +46,4 @@ parameter_config_t def_database_param = {
 	}
 };
 
-} // namespace iot
-
-} // namespace ars
+} // namespace biot

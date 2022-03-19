@@ -28,9 +28,7 @@
  */
 #include "boot.h"
 
-namespace ars {
-
-namespace iot {
+namespace biot {
 
 int boot_env(void) {
 	return BOOT_OK;
@@ -40,5 +38,4 @@ void boot_un_env(void) {
 
 }
 
-} // namespace iot
-} // namespace ars
+} // namespace biot

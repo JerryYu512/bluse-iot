@@ -27,15 +27,13 @@
  * 
  */
 #include "boot.h"
-#include "log/ars_iot_log.h"
+#include "log/biot_log.h"
 #include <chrono>
 #include <thread>
 #include <mutex>
 #include <condition_variable>
 
-namespace ars {
-
-namespace iot {
+namespace biot {
 
 /**
  * @brief 启动循环
@@ -78,12 +76,12 @@ int boot_loop(void) {
 
 		// 退出
 		if (bloop.st_ == boot_state_exit) {
-			ARSIOT_INFO("ars-iot loop exit.");
+			BIOT_INFO("biot loop exit.");
 		}
 
 		// 正常心跳
 		std::this_thread::sleep_for(std::chrono::seconds(5));
-		ARSIOT_INFO("ars-iot loop heartbeat.");
+		BIOT_INFO("biot loop heartbeat.");
 	}
 
 	return BOOT_OK;
@@ -93,6 +91,5 @@ void boot_un_loop(void) {
 
 }
 
-} // namespace iot
+} // namespace biot
 
-} // namespace ars

@@ -27,20 +27,20 @@
  * 
  */
 #pragma once
-#include "log/ars_iot_log.h"
+#include <string>
+#include <vector>
 
-namespace ars {
-
-namespace iot {
+namespace biot {
 
 /**
  * @brief 启动结果
  * 
  */
 enum : int {
-	BOOT_OK,
-	BOOT_FAILD,
-	BOOT_REBOOT,
+	BOOT_OK,        ///< 启动成功
+	BOOT_FAILD,     ///< 启动失败
+	BOOT_REBOOT,    ///< 需要重启程序
+    BOOT_NONE,      ///< 无操作
 };
 
 /**
@@ -58,42 +58,22 @@ typedef enum {
  * 
  */
 typedef struct boot_s {
-	int (*boot)(void);
-	void (*boot_un)(void);
+    std::string name;       ///< 启动项
+    std::string desc;       ///< 描述
+	int (*boot)(void);      ///< 启动接口
+	void (*release)(void);  ///< 释放接口
+    int result;             ///< 启动结果
+    boot_s(const char* name, const char* desc, int(*boot)(void), void(*release)(void))
+    : name(name), desc(desc), boot(boot), release(release), result(BOOT_NONE) {}
 } boot_t;
 
-#define ARS_IOT_BOOT(name)                                  \
-    {                                                       \
-        int ret = ars::iot::boot_##name();                  \
-        if (ars::iot::BOOT_OK == ret) {                     \
-            ars::iot::boot_t boot = {nullptr, nullptr};     \
-            boot.boot = ars::iot::boot_##name;              \
-            boot.boot_un = ars::iot::boot_un_##name;        \
-            boot_push(#name, boot);                         \
-            iot_boot_printi("boot success [%s]\n", #name);  \
-        } else if (ars::iot::BOOT_REBOOT == ret) {          \
-            while (true) {                                  \
-                ars::iot::boot_t boot = {nullptr, nullptr}; \
-                if (!boot_pop(#name, boot)) {               \
-                    break;                                  \
-                } else {                                    \
-                    if (boot.boot_un) {                     \
-                        boot.boot_un();                     \
-                    }                                       \
-                }                                           \
-            }                                               \
-            iot_boot_printe("reboot by [%s]\n", #name);     \
-            exit(ret);                                      \
-        } else if (ars::iot::BOOT_FAILD == ret) {           \
-            iot_boot_printe("boot faild [%s]\n", #name);    \
-        } else {                                            \
-        }                                                   \
-    }
-
-// boot入队
-void boot_push(const char *name, boot_t &boot);
-// boot出队
-bool boot_pop(const char *name, boot_t &boot);
+/**
+ * @brief 启动
+ * 
+ * @param boots 
+ * @return int 
+ */
+int biot_boot(std::vector<boot_t>& boots);
 
 // 主线程循环状态
 boot_loop_state_t boot_loop_state(void);
@@ -139,6 +119,4 @@ void boot_un_loop(void);
 /// boot end
 //////////////////////////////////////////////////////////////////////
 
-} // namespace iot
-
-} // namespace ars
+} // namespace biot

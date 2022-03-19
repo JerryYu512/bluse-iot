@@ -28,10 +28,6 @@
  */
 #pragma once
 
-namespace ars {
+namespace biot {
 
-namespace iot {
-
-} // namespace iot
-
-} // namespace ars
+} // namespace biot
