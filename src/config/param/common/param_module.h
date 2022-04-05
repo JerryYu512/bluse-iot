@@ -36,3 +36,23 @@
 #include "param_module/param_network.h"
 #include "param_module/param_storage.h"
 #include "param_module/param_subsys.h"
+
+namespace biot {
+
+#include OATPP_CODEGEN_BEGIN(DTO)
+
+class CfgParamModule : public oatpp::DTO {
+	DTO_INIT(CfgParamModule, DTO)
+
+	DTO_FIELD(Object<CfgParamDb>, db);
+	DTO_FIELD(Object<CfgParamDevice>, device);
+	DTO_FIELD(Object<CfgParamHw>, hardware);
+	DTO_FIELD(Object<CfgParamMedia>, media);
+	DTO_FIELD(Object<CfgParamNetwork>, network);
+	DTO_FIELD(Object<CfgParamStorage>, storage);
+	DTO_FIELD(Object<CfgParamSubsys>, subsys);
+};
+
+#include OATPP_CODEGEN_END(DTO)
+
+} // namespace biot

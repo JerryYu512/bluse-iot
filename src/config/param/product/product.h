@@ -17,7 +17,7 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * 
- * @file param_storage.h
+ * @file product.h
  * @brief 
  * @author Jerry.Yu (jerry.yu512@outlook.com)
  * @version 1.0.0
@@ -33,8 +33,8 @@ namespace biot {
 
 #include OATPP_CODEGEN_BEGIN(DTO)
 
-class CfgParamStorage : public oatpp::DTO {
-	DTO_INIT(CfgParamStorage, DTO)
+class CfgParamProduct : public oatpp::DTO {
+	DTO_INIT(CfgParamProduct, DTO)
 };
 
 #include OATPP_CODEGEN_END(DTO)

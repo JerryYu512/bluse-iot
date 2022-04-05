@@ -53,26 +53,4 @@ typedef struct bin_data_header_s {
 	uint32_t length;		///< 长度，该参数之后开始计算
 } bin_data_header_t;
 
-/**
- * @brief 返回值
- * 
- */
-class Result {
-public:
-	Result() : sys_errno(errno), code(0) {}
-	Result(int err, uint64_t code, const char* msg) : sys_errno(err), code(code), msg(msg) {}
-
-	int sys_errno;			///< 系统错误码
-	uint64_t code;		///< 软件错误码
-	std::string msg;	///< 短语
-
-	std::string what(void) {
-		return msg;
-	}
-
-	std::string strerr(void) {
-		return ::strerror(this->sys_errno);
-	}
-};
-
 } // namespace biot

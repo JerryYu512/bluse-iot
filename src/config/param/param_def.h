@@ -32,47 +32,11 @@
 #include "common/param_basic.h"
 #include "common/param_module.h"
 #include "common/param_sys.h"
+#include "product/product.h"
 
 namespace biot {
 
 #include OATPP_CODEGEN_BEGIN(DTO)
-
-// NTP
-// Storage
-// db
-// hw-iot
-
-class CfgWebService : public oatpp::DTO {
-	DTO_INIT(CfgWebService, DTO)
-
-	// http配置
-	DTO_FIELD(Boolean, http_port) = 80;
-	DTO_FIELD(Boolean, https) = false;
-	DTO_FIELD(Boolean, https_port) = 443;
-};
-
-class CfgLan : public oatpp:: DTO {
-	DTO_INIT(CfgLan, DTO)
-
-	DTO_FIELD(String, type, "10M-half, 10M-full, ...");
-	// 自动获取/手动配置
-	DTO_FIELD(UInt8, cfg_type);
-	DTO_FIELD(String, if_name);
-	DTO_FIELD(String, mac);
-	DTO_FIELD(String, ipv4);
-	DTO_FIELD(String, ipv6);
-	DTO_FIELD(String, submask);
-	DTO_FIELD(String, gateway);
-	DTO_FIELD(UInt32, mtu);
-	DTO_FIELD(String, dns);
-};
-
-// 基本网络参数
-class CfgNetworkParam : public oatpp::DTO {
-	DTO_INIT(CfgNetworkParam, DTO)
-
-	DTO_FIELD(Object<CfgWebService>, web_service);
-};
 
 class DeviceParameter : public oatpp::DTO {
 	DTO_INIT(DeviceParameter, DTO)
@@ -85,6 +49,14 @@ class DeviceParameter : public oatpp::DTO {
 	// 设备可配置信息
 	DTO_FIELD(String, device_name) = "biot 01";
 	DTO_FIELD(String, device_id) = "1";
+
+	// 分模块
+	DTO_FIELD(Object<CfgParamBasic>, basic);
+	DTO_FIELD(Object<CfgParamSys>, sys);
+	DTO_FIELD(Object<CfgParamModule>, module);
+	
+	// 产品参数
+	DTO_FIELD(Object<CfgParamProduct>, product);
 };
 
 #include OATPP_CODEGEN_END(DTO)

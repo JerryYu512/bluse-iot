@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ROOT_DIR=$(pwd)
-ALL_MODULES=("brsdk" "mqtt" "spdlog" "cjson" "iot-access" "simdjson" "oatpp")
+ALL_MODULES=("brsdk" "mqtt" "spdlog" "cjson" "iot-access" "simdjson" "oatpp" "hedley")
 SUBMODULE_NAME=""
 BUILD_ALL="false"
 
@@ -136,6 +136,9 @@ build_one()
 		build_simdjson
 	elif [ "$1" == "oatpp" ]; then
 		build_oatpp
+	elif [ "$1" == "oatpp" ]; then
+		mkdir -p ${ROOT_DIR}/include/hedley
+		cp hedley/hedley.h ${ROOT_DIR}/include/hedley/
 	else
 		echo "######################### build $1 failed ###################################"
 		return -1
