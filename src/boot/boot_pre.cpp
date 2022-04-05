@@ -41,7 +41,7 @@
 #include "brsdk/os/coredump.hpp"
 #include "brsdk/time/timestamp.hpp"
 #include "brsdk/thread/current_thread.hpp"
-#include "log/biot_log.h"
+#include "basic/log/biot_log.h"
 #include "boot.h"
 #include "boot_signal.h"
 #include "config/args_dec.h"

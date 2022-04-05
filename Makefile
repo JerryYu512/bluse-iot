@@ -1,5 +1,5 @@
 # 目标
-TARGET := ars-iot
+TARGET := biot
 # 单元测试目标
 UNIT_TEST_TARGET := $(TARGET)_ut
 ROOT_DIR := $(shell pwd)
@@ -41,7 +41,7 @@ $(TARGET): $(OBJECTS)
 # 示例代码编译
 .PHONY: demo
 demo: $(TARGET)
-	@make -C samples ARS_INC_DIR=$(ROOT_DIR)/include ARS_LIB_DIR=$(ROOT_DIR)/build OUTPUT_DIR=$(ROOT_DIR)/build/samples
+	@make -C samples DEMO_INC_DIR=$(ROOT_DIR)/include DEMO_LIB_DIR=$(ROOT_DIR)/build OUTPUT_DIR=$(ROOT_DIR)/build/samples
 
 # 单元测试
 ut: $(TARGET) $(UT_OBJECTS)

@@ -26,15 +26,15 @@
  * @copyright MIT License
  * 
  */
-#include "log/biot_log.h"
+#include "basic/log/biot_log.h"
 #include <iostream>
 #include <iomanip>
 #include <string>
 #include "config/configure.h"
+#include "config/version.h"
 #include "brsdk/time/timestamp.hpp"
 #include "brsdk/fs/file_util.hpp"
 #include "brsdk/flag/flag.hpp"
-#include "core/version.h"
 #include "boot/boot.h"
 
 static std::string get_pwd(void);
@@ -67,8 +67,8 @@ static std::string get_pwd(void) {
 int main(int argc, char **argv) {
 	brsdk::flag::init(argc, argv);
 
-	std::cout << "-- Boot Application BIOT -- " << brsdk::Timestamp::now().toFormattedString() << std::endl;
-	std::cout << "-- Version -- " << biot::app_edition() << " [" << biot::app_version() << "] " << biot::app_compile_time() << std::endl << std::endl;
+	std::cout << "-- Boot Application [BIOT] -- " << brsdk::Timestamp::now().toFormattedString() << std::endl;
+	std::cout << "-- Version                 -- " << biot::app_edition() << " (" << biot::app_base_version() << " - " << biot::app_std_version() << ") " << biot::app_compile_time() << std::endl << std::endl;
 
 	if (biot::BOOT_REBOOT == biot::biot_boot(boots)) {
 		exit(biot::BOOT_REBOOT);

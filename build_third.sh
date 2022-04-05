@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ROOT_DIR=$(pwd)
-ALL_MODULES=("brsdk" "mqtt" "spdlog" "cjson" "iot-access")
+ALL_MODULES=("brsdk" "mqtt" "spdlog" "cjson" "iot-access" "simdjson" "oatpp")
 SUBMODULE_NAME=""
 BUILD_ALL="false"
 
@@ -89,6 +89,36 @@ build_iot_access()
 	cd ..
 }
 
+build_oatpp()
+{
+	cd oatpp
+	rm -rf build
+	mkdir -p build
+	cd build
+	cmake .. -DCMAKE_INSTALL_PREFIX=${ROOT_DIR}
+	make
+	make install
+	make clean
+	cd ..
+	rm -rf build
+	cd ..
+}
+
+build_simdjson()
+{
+	cd simdjson
+	rm -rf build
+	mkdir -p build
+	cd build
+	cmake .. -DCMAKE_INSTALL_PREFIX=${ROOT_DIR}
+	make
+	make install
+	make clean
+	cd ..
+	rm -rf build
+	cd ..
+}
+
 build_one()
 {
 	echo "######################### build $1 begin ###################################"
@@ -102,6 +132,10 @@ build_one()
 		build_cjson
 	elif [ "$1" == "iot-access" ]; then
 		build_iot_access
+	elif [ "$1" == "simdjson" ]; then
+		build_simdjson
+	elif [ "$1" == "oatpp" ]; then
+		build_oatpp
 	else
 		echo "######################### build $1 failed ###################################"
 		return -1

@@ -38,9 +38,14 @@ APP_UUID := $(shell uuid)
 endif
 
 # compile flags
-INC := -I/usr/include -I/usr/local/include -I$(ROOT_DIR)/include -I$(ROOT_DIR)/src -I$(ROOT_DIR) -Ibuild
+INC := -I/usr/include -I/usr/local/include \
+	-I$(ROOT_DIR)/include \
+	-I$(ROOT_DIR)/include/oatpp-1.3.0/oatpp \
+	-I$(ROOT_DIR)/src -I$(ROOT_DIR) \
+	-Ibuild
 
-LIBS_PATH := -L$(ROOT_DIR)/lib -L/usr/local/lib -L/usr/lib
+LIBS_PATH := -L$(ROOT_DIR)/lib -L/usr/local/lib -L/usr/lib \
+			-L$(ROOT_DIR)/lib/oatpp-1.3.0
 
 # ifeq ($(OS_NAME), Darwin)
 # INC += -I/usr/local/opt/openssl@1.1/include
@@ -55,7 +60,7 @@ LIBS_PATH := -L$(ROOT_DIR)/lib -L/usr/local/lib -L/usr/lib
 
 ST_LIBS_UT = -lgtest
 
-ST_LIBS = -lbrsdk -lhw-iot-dev-access -lspdlog -lpaho-mqtt3a -lpaho-mqtt3as -lpaho-mqtt3c -lpaho-mqtt3cs
+ST_LIBS = -lbrsdk -lhw-iot-dev-access -lspdlog -lpaho-mqtt3a -lpaho-mqtt3as -lpaho-mqtt3c -lpaho-mqtt3cs -loatpp
 SO_LIBS = -lz -lssl -lcrypto -lpthread -ldl -lrt # -lresolv
 
 DMARCROS := -DLANGUAGE_ZH -DWITH_OPENSSL -DWITH_ZLIB -DSOFT_VERSION=\"$(RELEASE_VERSION)\" \

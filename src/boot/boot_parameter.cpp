@@ -32,18 +32,19 @@
 #include "brsdk/json/json.hpp"
 #include "brsdk/str/pystring.hpp"
 #include "brsdk/time/timestamp.hpp"
-#include "config/default_parameter.h"
+// #include "config/default_parameter.h"
 #include "config/args_dec.h"
 #include "config/configure.h"
-#include "log/biot_log.h"
-#include "core/version.h"
-#include "core/parameter.h"
+#include "basic/log/biot_log.h"
+#include "config/version.h"
+#include "config/parameter.h"
 
 namespace biot {
 
 using namespace nlohmann;
 
 int boot_parameter(void) {
+#if 0
 	// 获取默认参数
 	json def_param = json::parse(get_default_parameter());
 	std::string param_path = pystring::os::path::join(FLG_abs_rt_path, BIOT_CONFIG_FILENAME);
@@ -93,7 +94,7 @@ int boot_parameter(void) {
 
 	biot_boot_printi("update param version and value\n");
 	// 更新时间和版本
-	def_param["param header"]["version"]["value"] = "v" + app_version() + " " + app_build_version();
+	def_param["param header"]["version"]["value"] = "v" + app_version() + " " + app_build_date();
 	def_param["param header"]["save date"]["value"] = brsdk::Timestamp::now().toFormattedString();
 
 	biot_boot_printi("save new param : %s\n", param_path.c_str());
@@ -117,6 +118,7 @@ int boot_parameter(void) {
 	Parameter::get_instance(param_path);
 
 	return BOOT_OK;
+#endif
 }
 
 void boot_un_parameter(void) {

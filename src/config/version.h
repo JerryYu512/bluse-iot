@@ -17,7 +17,7 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * 
- * @file boo_loop.cpp
+ * @file version.h
  * @brief 
  * @author wotsen (astralrovers@outlook.com)
  * @version 1.0.0
@@ -26,70 +26,68 @@
  * @copyright MIT License
  * 
  */
-#include "boot.h"
-#include "basic/log/biot_log.h"
-#include <chrono>
-#include <thread>
-#include <mutex>
-#include <condition_variable>
+#pragma once
+
+#include <stdint.h>
+#include <string>
 
 namespace biot {
 
 /**
- * @brief 启动循环
+ * @brief 应用大版本
  * 
+ * @return const std::string& 
  */
-class BootLoop {
-public:
-	BootLoop() : st_(boot_state_run) {}
+const std::string app_version(void);
 
-public:
-	boot_loop_state_t st_;				///< 状态
-	std::mutex mtx_;					///< 锁
-	std::condition_variable cond_;		///< 条件
-};
+/**
+ * @brief 应用大版本变更日期
+ * 
+ * @return uint32_t 
+ */
+uint32_t app_base_version_date(void);
 
-// 循环示例
-static BootLoop bloop;
+/**
+ * @brief 构建日期版本
+ * 
+ * @return const std::string 
+ */
+const std::string app_build_date(void);
 
-boot_loop_state_t boot_loop_state(void) {
-	return bloop.st_;
-}
+/**
+ * @brief 基准版本
+ * 
+ * @return std::string 
+ */
+std::string app_base_version(void);
 
-void boot_loop_state_change(boot_loop_state_t state) {
-	{
-		std::unique_lock<std::mutex> lck(bloop.mtx_);
-		bloop.st_ = state;
-	}
-	bloop.cond_.notify_one();
-}
+/**
+ * @brief 标准版本
+ * 
+ * @return std::string 
+ */
+std::string app_std_version(void);
 
-int boot_loop(void) {
-	while (bloop.st_ != boot_state_exit) {
-		{
-			std::unique_lock<std::mutex> lck(bloop.mtx_);
-			// 停止时就一直休眠
-			while (bloop.st_ == boot_state_stop) {
-				bloop.cond_.wait(lck);
-			}
-		}
+/**
+ * @brief 应用编译时间
+ * 
+ * @return const std::string& 
+ */
+const std::string app_compile_time(void);
 
-		// 退出
-		if (bloop.st_ == boot_state_exit) {
-			BIOT_INFO("biot loop exit.");
-		}
+/**
+ * @brief app识别码，该程序从编译好后的唯一性
+ * @details uuid-v4
+ * 
+ * @return const std::string& 
+ */
+const std::string app_identifier(void);
 
-		// 正常心跳
-		std::this_thread::sleep_for(std::chrono::seconds(5));
-		BIOT_INFO("biot loop heartbeat.");
-	}
-
-	return BOOT_OK;
-}
-
-void boot_un_loop(void) {
-
-}
+/**
+ * @brief 发布类型
+ * 
+ * @return const std::string 
+ */
+const std::string app_edition(void);
 
 } // namespace biot
-

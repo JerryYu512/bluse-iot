@@ -28,13 +28,14 @@
  */
 #include "boot.h"
 
-#include "log/biot_log.h"
-#include "core/version.h"
+#include "basic/log/biot_log.h"
+#include "config/version.h"
 
 namespace biot {
 
 int boot_log(void) {
 	// 日志初始化
+	biot::init_log();
 #ifdef DEBUG
 	biot::set_log_level(BIOT_LOG_DEFAULT, biot::log_trace);
 #else
@@ -42,7 +43,7 @@ int boot_log(void) {
 #endif
 
 #ifdef DEBUG
-	spdlog::flush_on(spdlog::level::trace);
+	// spdlog::flush_on(spdlog::level::trace);
 #endif
 
 	BIOT_INFO("{:<30}{}{}", "[application name", 			"] ==> ", 	"bluse-iot[bluse iot app]");
@@ -50,7 +51,7 @@ int boot_log(void) {
 	BIOT_INFO("{:<30}{}{}", "[application version", 		"] ==> ", 	app_version());
 	BIOT_INFO("{:<30}{}{}", "[application edition", 		"] ==> ", 	app_edition());
 	BIOT_INFO("{:<30}{}{}", "[application identifier", 		"] ==> ", 	app_identifier());
-	BIOT_INFO("{:<30}{}{}", "[aplication author", 			"] ==> ", 	"Jerry.Yu(astralrovers#outlook.com)");
+	BIOT_INFO("{:<30}{}{}", "[aplication author", 			"] ==> ", 	"Jerry.Yu(astralrovers@outlook.com)");
 	BIOT_INFO("{:<30}{}{}", "[copyright", 					"] ==> ", 	"MIT");
 
 	return BOOT_OK;
