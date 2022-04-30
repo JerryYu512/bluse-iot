@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ROOT_DIR=$(pwd)
-ALL_MODULES=("brsdk" "mqtt" "spdlog" "cjson" "iot-access" "simdjson" "oatpp" "hedley")
+ALL_MODULES=("libhv" "mqtt" "spdlog" "cjson" "iot-access" "simdjson" "oatpp" "hedley")
 SUBMODULE_NAME=""
 BUILD_ALL="false"
 
@@ -23,14 +23,19 @@ do
     esac
 done
 
-build_brsdk()
+build_libhv()
 {
-	cd brsdk
-	make ENABLE_STATIC_LIB=y MAKE_INSTALL_DIR=${ROOT_DIR}
-	make install ENABLE_STATIC_LIB=y MAKE_INSTALL_DIR=${ROOT_DIR}
+	cd libhv
+	rm -rf build
+	mkdir -p build
+	cd build
+	cmake .. -DBUILD_SHARED=OFF -DBUILD_EXAMPLES=OFF -DWITH_PROTOCOL=ON -DWITH_OPENSSL=ON -DCMAKE_INSTALL_PREFIX=${ROOT_DIR}
+	make
+	make install
 	make clean
 	cd ..
-	echo "build ######################### brsdk finish ##################################"
+	rm -rf build
+	cd ..
 }
 
 build_mqtt()
@@ -75,7 +80,7 @@ build_cjson()
 	cd ..
 	rm -rf build
 	cd ..
-	echo "build ######################### brsdk finish ##################################"
+	echo "build ######################### cjson finish ##################################"
 }
 
 build_iot_access()
@@ -122,8 +127,8 @@ build_simdjson()
 build_one()
 {
 	echo "######################### build $1 begin ###################################"
-	if [ "$1" == "brsdk" ]; then
-		build_brsdk
+	if [ "$1" == "libhv" ]; then
+		build_libhv
 	elif [ "$1" == "mqtt" ]; then
 		build_mqtt
 	elif [ "$1" == "spdlog" ]; then
