@@ -19,3 +19,6 @@
 [submodule "thirdparty/libhv"]
 	path = thirdparty/libhv
 	url = https://github.com/JerryYu512/libhv
+[submodule "thirdparty/cJSON"]
+	path = thirdparty/cJSON
+	url = https://github.com/DaveGamble/cJSON
