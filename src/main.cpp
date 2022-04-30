@@ -27,14 +27,15 @@
  * 
  */
 #include "basic/log/biot_log.h"
+#include "basic/base/biot_time.h"
 #include <iostream>
 #include <iomanip>
 #include <string>
 #include "config/configure.h"
 #include "config/version.h"
-#include "brsdk/time/timestamp.hpp"
-#include "brsdk/fs/file_util.hpp"
-#include "brsdk/flag/flag.hpp"
+#include "hv/hbase.h"
+#include "hv/htime.h"
+#include "hv/hflag.h"
 #include "boot/boot.h"
 
 static std::string get_pwd(void);
@@ -61,13 +62,13 @@ static std::vector<biot::boot_t> boots = {
 // 获取当前路径
 static std::string get_pwd(void) {
 	char buf[256] = "";
-	return brsdk::fs::run_dir(buf, (int)sizeof(buf));
+	return get_run_dir(buf, (int)sizeof(buf));
 }
 
 int main(int argc, char **argv) {
-	brsdk::flag::init(argc, argv);
+	hv::flag::init(argc, argv);
 
-	std::cout << "-- Boot Application [BIOT] -- " << brsdk::Timestamp::now().toFormattedString() << std::endl;
+	std::cout << "-- Boot Application [BIOT] -- " << biot::time_now_str() << std::endl;
 	std::cout << "-- Version                 -- " << biot::app_edition() << " (" << biot::app_base_version() << " - " << biot::app_std_version() << ") " << biot::app_compile_time() << std::endl << std::endl;
 
 	if (biot::BOOT_REBOOT == biot::biot_boot(boots)) {

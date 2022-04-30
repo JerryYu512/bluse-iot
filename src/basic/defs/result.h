@@ -30,7 +30,6 @@
 #include <stdint.h>
 #include <string>
 #include <string.h>
-#include "brsdk/err/err.hpp"
 
 namespace biot {
 
@@ -38,7 +37,8 @@ namespace biot {
 
 #define BIOT_ERR_PRE BEC_ADD_ID_CODE(BIOT_ID_CODE, BEC_ADD_CLASS_CODE(BEC_COMMON_APPLICATION, BEC_ADD_IDENTIFICATION_CODE(BEC_IDENTI_APPLICATION, 0)))
 
-typedef brsdk::berror_t biot_err_t;
+typedef uint64_t biot_err_t;
+extern __thread biot_err_t berrno;
 
 /**
  * @brief 操作结果
@@ -55,7 +55,7 @@ public:
 
 	// 应用错误码
 	virtual biot_err_t app_errno(void) {
-		return brsdk::berrno;
+		return berrno;
 	}
 
 	// 系统错误短语

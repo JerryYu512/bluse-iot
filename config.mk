@@ -60,7 +60,7 @@ LIBS_PATH := -L$(ROOT_DIR)/lib -L/usr/local/lib -L/usr/lib \
 
 ST_LIBS_UT = -lgtest
 
-ST_LIBS = -lbrsdk -lhw-iot-dev-access -lspdlog -lpaho-mqtt3a -lpaho-mqtt3as -lpaho-mqtt3c -lpaho-mqtt3cs -loatpp
+ST_LIBS = -lhv_static -lhw-iot-dev-access -lspdlog -lpaho-mqtt3a -lpaho-mqtt3as -lpaho-mqtt3c -lpaho-mqtt3cs -loatpp
 SO_LIBS = -lz -lssl -lcrypto -lpthread -ldl -lrt # -lresolv
 
 DMARCROS := -DLANGUAGE_ZH -DWITH_OPENSSL -DWITH_ZLIB -DSOFT_VERSION=\"$(RELEASE_VERSION)\" \
@@ -79,7 +79,7 @@ CCFLAG = -g -rdynamic
 MODE = debug
 endif
 
-DMARCROS += -D__const__= -pipe -W -Wall -Wno-unused-parameter \
+DMARCROS += -D__const__=__unused__ -pipe -W -Wall -Wno-unused-parameter \
 			-fPIC -fno-omit-frame-pointer -Wno-implicit-fallthrough \
 			-fstack-protector-all -Wno-deprecated-declarations \
 			-Wno-class-memaccess -Wno-unknown-warning-option \

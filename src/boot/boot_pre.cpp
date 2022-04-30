@@ -32,15 +32,14 @@
 #include <execinfo.h>
 #include <iostream>
 #include <sstream>
-#include "brsdk/defs/defs.hpp"
-#include "brsdk/flag/flag.hpp"
-#include "brsdk/fs/file_util.hpp"
-#include "brsdk/fs/file.hpp"
-#include "brsdk/mix/singleton.hpp"
-#include "brsdk/str/pystring.hpp"
-#include "brsdk/os/coredump.hpp"
-#include "brsdk/time/timestamp.hpp"
-#include "brsdk/thread/current_thread.hpp"
+#include "hv/singleton.h"
+#include "hv/hbase.h"
+#include "hv/pystring.h"
+#include "hv/hfile.h"
+#include "hv/hthread.h"
+#include "hv/htime.h"
+#include "hv/coredump.h"
+#include "basic/base/biot_time.h"
 #include "basic/log/biot_log.h"
 #include "boot.h"
 #include "boot_signal.h"
@@ -125,7 +124,7 @@ public:
         return write(fd_, buf, strlen(buf) + 1) > 0;
     }
 
-    DISALLOW_COPY_AND_ASSIGN(AloneProccess);
+    DISABLE_COPY(AloneProccess);
 
 private:
     std::string pid_;
@@ -143,10 +142,10 @@ static bool create_runtime_dir(void) {
     };
 
     // 创建运行时目录
-    for (size_t i = 0; i < BRSDK_ARRAY_SIZE(env_dirs); i++) {
+    for (size_t i = 0; i < ARRAY_SIZE(env_dirs); i++) {
         std::string path = pystring::os::path::join(FLG_abs_rt_path, env_dirs[i]);
         biot_boot_printd("mkdir \"%s\"\n", path.c_str());
-        if (brsdk::fs::mkdir_p(path.c_str()) < 0) {
+        if (hv_mkdir_p(path.c_str()) < 0) {
             biot_boot_printe("mkdir \"%s\" failed\n", env_dirs[i]);
             return false;
         }
@@ -160,25 +159,24 @@ static void set_coredump(void) {
     std::string path = pystring::os::path::join(FLG_abs_rt_path, BIOT_COREDUMP_PATH);
 
 	biot_boot_printi("setup coredump \"%s\"\n", path.c_str());
-	brsdk::os::setup_coredump(path.c_str(), 1024 * 1024 * 1024);
+	hv_setup_coredump(path.c_str(), 1024 * 1024 * 1024);
 #endif
 }
 
 static void save_core_trace(int sig, siginfo_t *info, void *arg) {
 	// addr2line -Cfe [exe] -a [addr]
-	brsdk::Timestamp t = brsdk::Timestamp::now();
 	std::string fname = FLG_abs_rt_path;
-	brsdk::fs::File f;
+	HFile f;
 	std::ostringstream ostr;
 
 	fname = pystring::os::path::join(fname, BIOT_COREDUMP_PATH);
-	fname = pystring::os::path::join(fname, "crash-" + std::string(brsdk::thread::t_threadName) + "-" + t.toFormattedFileString(true) + ".dump");
+	fname = pystring::os::path::join(fname, "crash-" + std::string(hthread_tname()) + "-" + biot::time_now_strfile() + ".dump");
 
 	if (f.open(fname.c_str(), "a") < 0) {
 		return ;
 	}
 
-	int fd = f.get_fd()->fd.fd;
+	int fd = f.fp->_fileno;
 
 	// 文件锁定
 	struct flock fl;
@@ -199,10 +197,10 @@ static void save_core_trace(int sig, siginfo_t *info, void *arg) {
 	}
 
 	// 时间戳
-	ostr << "Dump Time : " << t.toFormattedString(true) << std::endl;
+	ostr << "Dump Time : " << time_now_str() << std::endl;
 
 	// 线程和信号
-	ostr << "Curr thread: " << brsdk::thread::t_cachedTid << " " << brsdk::thread::t_threadName << ", Catch signal: " << sig << std::endl;
+	ostr << "Curr thread: " << hthread_cacheid() << " " << hthread_tname() << ", Catch signal: " << sig << std::endl;
 
 	// 堆栈
 	void *dump[256] = {nullptr};

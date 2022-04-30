@@ -29,6 +29,7 @@
 #include "boot_signal.h"
 #include <string.h>
 #include <unistd.h>
+#include <stdio.h>
 
 namespace biot {
 

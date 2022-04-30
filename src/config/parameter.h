@@ -27,8 +27,9 @@
  * 
  */
 #pragma once
-#include "brsdk/json/json.hpp"
-#include "brsdk/lock/rwlock.hpp"
+#include "hv/json.hpp"
+#include "hv/hmutex.h"
+#include "hv/singleton.h"
 
 namespace biot {
 
@@ -84,16 +85,16 @@ public:
      *
      * @return RwMutex&
      */
-    brsdk::RwMutex &lock() { return mtx_; }
+    hv::RWLock &lock() { return mtx_; }
 
 private:
     Parameter(const std::string &path);
     ~Parameter();
 
-    DISALLOW_COPY_AND_ASSIGN(Parameter);
+    DISABLE_COPY(Parameter);
 
 private:
-    brsdk::RwMutex mtx_;  ///< 读写锁
+    hv::RWLock mtx_;  ///< 读写锁
     std::string path_;    ///< 配置路径
     param_json_t param_;        ///< 参数
 };

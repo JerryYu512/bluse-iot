@@ -27,15 +27,15 @@
  * 
  */
 #include "boot.h"
-#include "brsdk/fs/file.hpp"
-#include "brsdk/fs/file_util.hpp"
-#include "brsdk/json/json.hpp"
-#include "brsdk/str/pystring.hpp"
-#include "brsdk/time/timestamp.hpp"
+#include "hv/pystring.h"
+#include "hv/json.hpp"
+#include "hv/hfile.h"
+#include "hv/hbase.h"
 // #include "config/default_parameter.h"
 #include "config/args_dec.h"
 #include "config/configure.h"
 #include "basic/log/biot_log.h"
+#include "basic/base/biot_time.h"
 #include "config/version.h"
 #include "config/parameter.h"
 
@@ -49,10 +49,10 @@ int boot_parameter(void) {
 	json def_param = json::parse(get_default_parameter());
 	std::string param_path = pystring::os::path::join(FLG_abs_rt_path, BIOT_CONFIG_FILENAME);
 	std::string param_patch_path = pystring::os::path::join(FLG_abs_rt_path, BIOT_CONFIG_PATCH_FILENAME);
-	brsdk::fs::File fd;
+	hv::HFile fd;
 
 	// 历史参数
-	if (brsdk::fs::exists(param_path.c_str()) && brsdk::fs::filesize(param_path.c_str()) > 0) {
+	if (hv_exists(param_path.c_str()) && hv_filesize(param_path.c_str()) > 0) {
 		biot_boot_printi("merge old param\n");
 		json param;
 		std::string str;
@@ -72,7 +72,7 @@ int boot_parameter(void) {
 	}
 
 	// 补丁文件
-	if (brsdk::fs::exists(param_patch_path.c_str()) && brsdk::fs::filesize(param_patch_path.c_str()) > 0) {
+	if (hv_exists(param_patch_path.c_str()) && hv_filesize(param_patch_path.c_str()) > 0) {
 		biot_boot_printi("patch param\n");
 		std::string str;
 		json param;
@@ -89,13 +89,13 @@ int boot_parameter(void) {
 			def_param.patch(param);
 		}
 		fd.close();
-		brsdk::fs::remove_file(param_patch_path.c_str());
+		hv_remove_file(param_patch_path.c_str());
 	}
 
 	biot_boot_printi("update param version and value\n");
 	// 更新时间和版本
 	def_param["param header"]["version"]["value"] = "v" + app_version() + " " + app_build_date();
-	def_param["param header"]["save date"]["value"] = brsdk::Timestamp::now().toFormattedString();
+	def_param["param header"]["save date"]["value"] = time_now_str();
 
 	biot_boot_printi("save new param : %s\n", param_path.c_str());
 	// 保存最新的参数
@@ -119,6 +119,7 @@ int boot_parameter(void) {
 
 	return BOOT_OK;
 #endif
+	return 0;
 }
 
 void boot_un_parameter(void) {
