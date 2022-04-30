@@ -16,9 +16,6 @@
 [submodule "thirdparty/oatpp"]
 	path = thirdparty/oatpp
 	url = https://github.com/oatpp/oatpp
-[submodule "thirdparty/brsdk"]
-	path = thirdparty/brsdk
-	url = https://github.com/JerryYu512/brsdk
 [submodule "thirdparty/hedley"]
 	path = thirdparty/hedley
 	url = https://github.com/nemequ/hedley
