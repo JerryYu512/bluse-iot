@@ -1,24 +1,3 @@
-[submodule "thirdparty/paho.mqtt.c"]
-	path = thirdparty/paho.mqtt.c
-	url = https://github.com/eclipse/paho.mqtt.c
-[submodule "thirdparty/spdlog"]
-	path = thirdparty/spdlog
-	url = https://github.com/gabime/spdlog
-[submodule "thirdparty/huaweicloud-iot-device-sdk-c"]
-	path = thirdparty/huaweicloud-iot-device-sdk-c
-	url = https://github.com/huaweicloud/huaweicloud-iot-device-sdk-c
-[submodule "thirdparty/simdjson"]
-	path = thirdparty/simdjson
-	url = https://github.com/simdjson/simdjson
-[submodule "thirdparty/oatpp"]
-	path = thirdparty/oatpp
-	url = https://github.com/oatpp/oatpp
-[submodule "thirdparty/hedley"]
-	path = thirdparty/hedley
-	url = https://github.com/nemequ/hedley
 [submodule "thirdparty/libhv"]
 	path = thirdparty/libhv
 	url = https://github.com/JerryYu512/libhv
-[submodule "thirdparty/cJSON"]
-	path = thirdparty/cJSON
-	url = https://github.com/DaveGamble/cJSON

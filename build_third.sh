@@ -26,15 +26,15 @@ done
 build_libhv()
 {
 	cd libhv
-	rm -rf build
-	mkdir -p build
-	cd build
-	cmake .. -DBUILD_SHARED=OFF -DBUILD_EXAMPLES=OFF -DWITH_PROTOCOL=ON -DWITH_OPENSSL=ON -DCMAKE_INSTALL_PREFIX=${ROOT_DIR}
-	make
-	make install
-	make clean
-	cd ..
-	rm -rf build
+	# rm -rf build
+	# mkdir -p build
+	# cd build
+	# cmake .. -DBUILD_SHARED=OFF -DBUILD_EXAMPLES=OFF -DWITH_PROTOCOL=ON -DWITH_OPENSSL=ON -DCMAKE_INSTALL_PREFIX=${ROOT_DIR}
+	# make
+	# make install
+	# make clean
+	# cd ..
+	# rm -rf build
 	cd ..
 }
 
