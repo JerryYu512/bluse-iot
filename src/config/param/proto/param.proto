@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+import public "param_basic.proto";
+import public "param_system.proto";
+import public "param_module.proto";
+import public "param_product.proto";
+
+package biot;
+
+message BiotAppParam {
+	string uuid = 1;
+	string exec_id = 2;
+	uint32 version = 3;
+	string device_name = 4;
+	string device_id = 5;
+	reserved 6 to 100;
+	BiotAppBasicParam basic = 101;
+	BiotAppSystem system = 102;
+	BiotAppModule modules = 103;
+	BiotAppProduct product = 104;
+}

@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package biot;
+
+enum BiotAppDbType {
+	DB_TYPE_SQLITE3 = 0;
+	DB_TYPE_MONGODB = 1;
+	DB_TYPE_MYSQL = 2;
+	DB_TYPE_LEVELDB = 3;
+	DB_TYPE_CUSTOM = 4;
+}
+
+message BiotAppDbLocal {
+	BiotAppDbType dbtype = 1;
+}
+
+message BiotAppDb {
+	BiotAppDbLocal localdb = 1;
+}

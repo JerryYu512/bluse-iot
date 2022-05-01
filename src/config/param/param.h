@@ -17,26 +17,50 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * 
- * @file product.h
+ * @file param.h
  * @brief 
- * @author Jerry.Yu (jerry.yu512@outlook.com)
+ * @author Jerry.Yu (jerry.yu512outlook.com)
  * @version 1.0.0
- * @date 2022-04-05
+ * @date 2022-05-01
  * 
  * @copyright MIT License
  * 
  */
 #pragma once
-#include "basic/defs/reflection.h"
+#include "param_def.h"
 
 namespace biot {
 
-#include OATPP_CODEGEN_BEGIN(DTO)
+// 写锁
+#define BIOT_APP_PARAM_WLOCK
+// 读锁
+#define BIOT_APP_PARAM_RLOCK
+// 解锁
+#define BIOT_APP_PARAM_UNLOCK
+	
+/**
+ * @brief 加载参数
+ * 
+ * @param path 参数路径
+ * @param backup_path 参数备份路径
+ * @param patch_path 补丁路径
+ * @return int 结果
+ */
+int load_app_param(const char* path, const char*backup_path, const char* patch_path);
 
-class CfgParamProduct : public oatpp::DTO {
-	DTO_INIT(CfgParamProduct, DTO)
-};
+/**
+ * @brief 保存参数
+ * 
+ * @param now 立即写flash
+ * @return int 
+ */
+int save_app_param(bool now = false);
 
-#include OATPP_CODEGEN_END(DTO)
-
+/**
+ * @brief 获取参数引用
+ * 
+ * @return BiotAppParam& 
+ */
+BiotAppParam& app_param(void);
+	
 } // namespace biot

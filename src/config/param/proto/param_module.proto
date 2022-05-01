@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+import "mnetwork.proto";
+
+package biot;
+
+message BiotAppModule {
+	BiotAppNetwork network = 1;
+}

@@ -27,33 +27,9 @@
  * 
  */
 #include "version.h"
+#include "biot_configure.h"
 
 namespace biot {
-
-#ifndef SOFT_VERSION
-    #define SOFT_VERSION "0.0.0"
-#endif
-
-#ifndef BUILD_VERSION
-    #define BUILD_VERSION "202101010000"
-#endif
-
-#ifndef APP_COMPILE_TIME
-    #define APP_COMPILE_TIME "Monday 2021-01-01 00:00:00 +0800"
-#endif
-
-#ifndef APP_UUID
-    #define APP_UUID "00000000-0000-0000-0000-000000000000"
-#endif
-
-// 主版本号
-// static uint32_t major_verson = 1;
-// 次版本号
-// static uint32_t minor_verson = 0;
-// 发布版本号
-// static uint32_t release_verson = 0;
-// 发布版本日期，该日期为该版本的开始开发日期
-static uint32_t base_version_date = 22020402;
 
 /**
  * @brief 应用版本
@@ -61,21 +37,21 @@ static uint32_t base_version_date = 22020402;
  * @return const std::string& 
  */
 const std::string app_version(void) {
-    return SOFT_VERSION;
+    return BIOT_VERSION;
 }
 
 uint32_t app_base_version_date(void) {
-    return base_version_date;
+    return BIOT_BASE_VERSION;
 }
 
 const std::string app_build_date(void) {
-    return BUILD_VERSION;
+    return BIOT_DATE_VERSION;
 }
 
 std::string app_base_version(void) {
     char version[64] = "";
 
-    snprintf(version, sizeof(version) - 1, "%s base %d", SOFT_VERSION, base_version_date);
+    snprintf(version, sizeof(version) - 1, "%s base %d", BIOT_VERSION, BIOT_BASE_VERSION);
 
     return version;
 }
@@ -83,7 +59,7 @@ std::string app_base_version(void) {
 std::string app_std_version(void) {
     char version[64] = "";
 
-    snprintf(version, sizeof(version) - 1, "%s build %.*s", SOFT_VERSION, 8, BUILD_VERSION);
+    snprintf(version, sizeof(version) - 1, "%s build %.*s", BIOT_VERSION, 8, BIOT_DATE_VERSION);
 
     return version;
 }
@@ -94,7 +70,7 @@ std::string app_std_version(void) {
  * @return const std::string& 
  */
 const std::string app_compile_time(void) {
-    return APP_COMPILE_TIME;
+    return BIOT_COMPILE_DATETIME;
 }
 
 /**
@@ -103,15 +79,11 @@ const std::string app_compile_time(void) {
  * @return const std::string& 
  */
 const std::string app_identifier(void) {
-    return APP_UUID;
+    return BIOT_UUID;
 }
 
 const std::string app_edition(void) {
-#ifdef DEBUG
-    return "debug";
-#endif
-
-    return "release";
+    return BIOT_EDITION;
 }
 
 } // namespace biot

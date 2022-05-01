@@ -17,26 +17,29 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * 
- * @file param_storage.h
+ * @file proto_json.h
  * @brief 
- * @author Jerry.Yu (jerry.yu512@outlook.com)
+ * @author Jerry.Yu (jerry.yu512outlook.com)
  * @version 1.0.0
- * @date 2022-04-05
+ * @date 2022-05-01
  * 
  * @copyright MIT License
  * 
  */
-#pragma once
-#include "basic/defs/reflection.h"
+#include <google/protobuf/util/json_util.h>
 
 namespace biot {
 
-#include OATPP_CODEGEN_BEGIN(DTO)
+static inline bool proto_to_json(const google::protobuf::Message& message, std::string& json, bool ws = true) {
+    google::protobuf::util::JsonPrintOptions options;
+    options.add_whitespace = ws;
+    options.always_print_primitive_fields = true;
+    options.preserve_proto_field_names = true;
+    return google::protobuf::util::MessageToJsonString(message, &json, options).ok();
+}
 
-class CfgParamStorage : public oatpp::DTO {
-	DTO_INIT(CfgParamStorage, DTO)
-};
+static inline bool json_to_proto(const std::string& json, google::protobuf::Message& message) {
+    return google::protobuf::util::JsonStringToMessage(json, &message).ok();
+}
 
-#include OATPP_CODEGEN_END(DTO)
-
-} // namespace biot
+}

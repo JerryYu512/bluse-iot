@@ -26,4 +26,26 @@
  * @copyright MIT License
  * 
  */
-#include "param_def.h"
+#include "basic/base/proto_json.h"
+#include "param.h"
+
+namespace biot {
+
+// 参数
+static BiotAppParam g_biot_app_param;
+// 参数保存任务
+static void biot_app_param_dump_task(void);
+
+int load_app_param(const char* path, const char*backup_path, const char* patch_path) {
+	return 0;
+}
+
+int save_app_param(bool now) {
+	return 0;
+}
+
+BiotAppParam& app_param(void) {
+	return g_biot_app_param;
+}
+	
+} // namespace biot

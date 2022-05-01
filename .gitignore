@@ -37,3 +37,4 @@ include
 lib
 share
 source/OBSBrowserPlus-HEC-win64.zip
+biot_configure.h

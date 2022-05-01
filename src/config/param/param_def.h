@@ -28,37 +28,8 @@
  */
 #pragma once
 
-#include "basic/defs/reflection.h"
-#include "common/param_basic.h"
-#include "common/param_module.h"
-#include "common/param_sys.h"
-#include "product/product.h"
+#include "param_pb/param.pb.h"
 
 namespace biot {
-
-#include OATPP_CODEGEN_BEGIN(DTO)
-
-class DeviceParameter : public oatpp::DTO {
-	DTO_INIT(DeviceParameter, DTO)
-
-	// 设备信息
-	DTO_FIELD(String, uuid);
-	DTO_FIELD(String, exec_id);
-	// 配置参数版本号
-	DTO_FIELD(UInt32, version);
-	// 设备可配置信息
-	DTO_FIELD(String, device_name) = "biot 01";
-	DTO_FIELD(String, device_id) = "1";
-
-	// 分模块
-	DTO_FIELD(Object<CfgParamBasic>, basic);
-	DTO_FIELD(Object<CfgParamSys>, sys);
-	DTO_FIELD(Object<CfgParamModule>, module);
-	
-	// 产品参数
-	DTO_FIELD(Object<CfgParamProduct>, product);
-};
-
-#include OATPP_CODEGEN_END(DTO)
 
 } // namespace biot

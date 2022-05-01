@@ -1,0 +1,166 @@
+syntax = "proto3";
+
+package biot;
+
+enum EBiotLanType {
+	LAN_WORK_10M_HALF = 0;		// 10M半双工
+	LAN_WORK_10M_FULL = 1;		// 10全双工
+	LAN_WORK_100M_HALF = 2;		// 100M半双工
+	LAN_WORK_100M_FULL = 3;		// 100M全双工
+	LAN_WORK_AUTO = 4;			// 自适应
+	LAN_WORK_1G_FULL = 5;		// 1G全双工
+}
+
+/**
+ * @brief 网口速率
+ * 
+ */
+enum NetIfRate {
+	NET_IF_RATE_100M = 0;	///< 百兆网口
+	NET_IF_RATE_1000M = 1;	///< 千兆网口
+}
+
+enum NetCfgType {
+	NET_CFG_MANUAL = 0;		///< 手动配置
+	NET_CFG_AUTO = 1;		///< 自动获取
+}
+
+/**
+ * @brief 无线网网络接口模式
+ * 
+ */
+enum WireLessIfMode {
+	WIRELESS_IF_AUTO 	= 0;		///< 自动切换
+	WIRELESS_IF_LAN 	= 1;	///< 有线模式
+}
+
+/**
+ * @brief 无线工作模式
+ * 
+ */
+enum WireLessWorkMode {
+	WIRELESS_WORK_MANAGED 	= 0;
+	WIRELESS_WORK_AD_HOC 	= 1;
+}
+
+/**
+ * @brief 无线安全模式
+ * 
+ */
+enum WireLessSecMode {
+	WIRELESS_SEC_NONE 				= 0;		///< 不加密
+	WIRELESS_SEC_WEP 				= 1;		///< WEP
+	WIRELESS_SEC_WPA_PSK 			= 2;		///< WPA-PSK
+	WIRELESS_SEC_WPA_ENTERPRISE		= 3;		///< WPA-enterprise
+	WIRELESS_SEC_WPA2_PSK 			= 4;		///< WPA2-PSK
+}
+
+/**
+ * @brief WEP认证类型
+ * 
+ */
+enum WireLessWepAuthType {
+	WIRELESS_WEPAUTH_OPEN	= 0;		///< 开放式
+	WIRELESS_WEPAUTH_SHARE	= 1;	///< 共享式
+}
+
+/**
+ * @brief WEP密钥长度
+ * 
+ */
+enum WireLessWepKeyLen {
+	WIRELESS_WEPKEY_LEN64	= 0;		///< 64位
+	WIRELESS_WEPKEY_LEN128	= 1;	///< 128位
+	WIRELESS_WEPKEY_LEN152	= 2;	///< 152位
+}
+
+/**
+ * @brief WEP密钥类型
+ * 
+ */
+enum WireLessWepKeyType {
+	WIRELESS_WEPKEY_HEX 	= 0;		///< 16进制
+	WIRELESS_WEPKEY_ASCII 	= 1;	///< ASCII码
+}
+
+/**
+ * @brief WPA加密类型
+ * 
+ */
+enum WireLessWpaEncryptType {
+	WIRELESS_WPA_ENCRYPT_AES 	= 0;		///< AES
+	WIRELESS_WPA_ENCRYPT_TKIP 	= 1;	///< TKIP
+}
+
+// 模块间通信协议
+enum BiotAppModuleProtocl {
+	MODULE_PROTOC_MQTT = 0;			// mqtt
+	MODULE_PROTOC_NNG = 1;			// nng
+	MODULE_PROTOC_PROTOBUF = 2;		// protobuf
+}
+
+// 应用层协议类型
+enum BiotAppModulePayload {
+	MODULE_PAYLOAD_RAW = 0;			// 二进制
+	MODULE_PAYLOAD_HTTP = 1;		// http
+	MODULE_PAYLOAD_JSON = 2;		// json
+	MODULE_PAYLOAD_XML = 3;			// xml
+	MODULE_PAYLOAD_PROTOBUF = 4;	// protobuf
+}
+
+message BiotAppLanParam {
+	EBiotLanType type = 1;
+	NetCfgType cfg_type = 2;
+	string if_name = 3;
+	string mac = 4;
+	string ipv4 = 5;
+	string ipv6 = 6;
+	string submask = 7;
+	string gateway = 8;
+	uint32 mtu = 9;
+	string dns = 10;
+}
+
+message BiotAppWebServiceParam {
+	// http端口号
+	uint32 http_port = 1;
+	// https端口号
+	uint32 https_port = 2;
+	// 使能http
+	bool http = 3;
+	// 使能https
+	bool https = 4;
+	// 根路径
+	string root = 5;
+	// 最大连接数
+	uint32 connect_max = 6;
+}
+
+// oatpp开放api
+message BiotAppOatppApi {
+	uint32 port = 1;
+	uint32 ipv4 = 2;
+	// body内容:json/xml
+	BiotAppModulePayload body = 3;
+}
+
+// 命令行服务
+message BiotAppCmdApi {
+	uint32 port = 1;
+	uint32 ipv4 = 2;
+	// 通信协议
+	BiotAppModuleProtocl trans = 3;
+	// body内容:json/xml
+	BiotAppModulePayload body = 4;
+}
+
+// rtsp
+message BiotAppRtsp {
+}
+
+message BiotAppNetwork {
+	repeated BiotAppLanParam lan = 1;
+	BiotAppWebServiceParam web = 2;
+	BiotAppOatppApi openapi = 3;
+	BiotAppCmdApi cmdapi = 4;
+}

@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package biot;
+
+/// 可选运行模式
+enum EBiotAppMode {
+	APP_DEVICE_MODE		= 0;		///< 设备模式
+	APP_GATEWAY_MODE	= 1;		///< 网关模式
+	APP_DEV_GW_MODE		= 2;		///< 设备/网关模式
+}
+
+// 设备访问用户
+message BiotAppAccessUser {
+	string name = 1;
+	string passwd = 2;
+	// 有效期
+	uint64 expired = 3;
+	string permission = 4;
+	// 白名单
+	bool allowlist = 5;
+	string email = 6;
+	string phone = 7;
+	string github = 8;
+}
+
+message BiotAppUsers {
+	repeated BiotAppAccessUser access_users = 1;
+}
+
+message BiotAppBasicParam {
+	EBiotAppMode appmode = 1;		///< 运行模式
+	BiotAppUsers user = 2;
+}
