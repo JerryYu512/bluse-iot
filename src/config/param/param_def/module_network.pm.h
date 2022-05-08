@@ -4,8 +4,8 @@
 #include <string>
 #include <stdint.h>
 #include <iostream>
-#include "enums/e_network.pm.h"
 #include "module_network.pm.h"
+#include "enums/e_network.pm.h"
 
 namespace biot { 
 
@@ -25,6 +25,8 @@ struct BiotAppCmdApi_s {
 	BiotAppCmdApi_s() {
 		port = 0;
 		ipv4 = 0;
+		trans = static_cast<BiotAppModuleProtocol>(0);
+		body = static_cast<BiotAppModulePayload>(0);
 	}
 };
 
@@ -44,6 +46,8 @@ struct BiotAppLanParam_s {
 	double x2;
 	bool x3;
 	BiotAppLanParam_s() {
+		type = static_cast<NetLanType>(0);
+		cfg_type = static_cast<NetCfgType>(0);
 		if_name = "";
 		mac = "";
 		ipv4 = "";
@@ -66,6 +70,7 @@ struct BiotAppOatppApi_s {
 	BiotAppOatppApi_s() {
 		port = 0;
 		ipv4 = 0;
+		body = static_cast<BiotAppModulePayload>(0);
 	}
 };
 

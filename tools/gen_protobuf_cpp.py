@@ -406,7 +406,10 @@ class StructNode:
                 pass
         else:
             # 结构体/枚举
-            pass
+            if def_value and isinstance(eval(def_value), int):
+                self.def_value = def_value
+            else:
+                self.def_value = "0"
 
 
 class StructDef:
@@ -679,7 +682,7 @@ def gen_struct_code():
                 elif m.type in GlobalEnum.enums_set.keys():
                     code = f'{m.type} {m.name};'
                     if m.def_value:
-                        constructor_code = f'{constructor_code}\n\t\t{m.name} = {m.def_value};'
+                        constructor_code = f'{constructor_code}\n\t\t{m.name} = static_cast<{m.type}>({m.def_value});'
                     file.import_headers.add(GlobalEnum.enums_set[m.type])
                 # 结构体
                 else:
@@ -733,7 +736,7 @@ def gen_struct_code():
                     json2struct_code = f'{json2struct_code}{get_str_value_tp.substitute(key=m.name, required="false", default_value=m.def_value)} '
                 # 枚举
                 elif m.type in GlobalEnum.enums_set.keys():
-                    json2struct_code = f'{json2struct_code}{get_int_value_tp.substitute(full_type=uint64_t, key=m.name, required="false", default_value=f"static_cast<{m.type}>(0)", type=m.type)} '
+                    json2struct_code = f'{json2struct_code}{get_int_value_tp.substitute(full_type=uint64_t, key=m.name, required="false", default_value=f"static_cast<{m.type}>({m.def_value})", type=m.type)} '
                 # 数组
                 elif m.type == vector:
                     if m.sub_type in GlobalCode.int_type:
@@ -746,8 +749,6 @@ def gen_struct_code():
                         json2struct_code = f'{json2struct_code}{get_list_bool_value_tp.substitute(key=m.name, required="false")} '
                     elif m.sub_type == string:
                         json2struct_code = f'{json2struct_code}{get_list_str_value_tp.substitute(key=m.name, required="false")}'
-                    # elif m.sub_type in GlobalEnum.enums_set.keys():
-                    #     json2struct_code = f'{json2struct_code}{get_list_int_value_tp.substitute(full_type=uint64_t, key=m.name, required="false", subtype=m.sub_type)}'
                     else:
                         json2struct_code = f'{json2struct_code}{get_list_object_value_tp.substitute(key=m.name, required="false", subtype=m.sub_type)}'
                 # 结构体

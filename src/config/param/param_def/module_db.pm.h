@@ -15,6 +15,7 @@ typedef struct BiotAppDb_s BiotAppDb;
 struct BiotAppDbLocal_s {
 	BiotAppDbType dbtype;
 	BiotAppDbLocal_s() {
+		dbtype = static_cast<BiotAppDbType>(0);
 	}
 };
 

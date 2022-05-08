@@ -4,8 +4,8 @@
 #include <string>
 #include <stdint.h>
 #include <iostream>
-#include "param_basic.pm.h"
 #include "enums/e_basic.pm.h"
+#include "param_basic.pm.h"
 
 namespace biot { 
 
@@ -47,6 +47,7 @@ struct BiotAppBasicParam_s {
 	EBiotAppMode appmode;                                           ///< 运行模式
 	BiotAppUsers user;                                              ///< 用户
 	BiotAppBasicParam_s() {
+		appmode = static_cast<EBiotAppMode>(0);
 	}
 };
 
