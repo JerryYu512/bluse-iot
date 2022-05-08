@@ -180,7 +180,7 @@ class BiotAppParam final :
 
   enum : int {
     kUuidFieldNumber = 1,
-    kExecIdFieldNumber = 2,
+    kExecUuidFieldNumber = 2,
     kDeviceNameFieldNumber = 4,
     kDeviceIdFieldNumber = 5,
     kBasicFieldNumber = 101,
@@ -203,18 +203,18 @@ class BiotAppParam final :
   std::string* _internal_mutable_uuid();
   public:
 
-  // string exec_id = 2;
-  void clear_exec_id();
-  const std::string& exec_id() const;
+  // string exec_uuid = 2;
+  void clear_exec_uuid();
+  const std::string& exec_uuid() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_exec_id(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_exec_id();
-  PROTOBUF_NODISCARD std::string* release_exec_id();
-  void set_allocated_exec_id(std::string* exec_id);
+  void set_exec_uuid(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_exec_uuid();
+  PROTOBUF_NODISCARD std::string* release_exec_uuid();
+  void set_allocated_exec_uuid(std::string* exec_uuid);
   private:
-  const std::string& _internal_exec_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_exec_id(const std::string& value);
-  std::string* _internal_mutable_exec_id();
+  const std::string& _internal_exec_uuid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_exec_uuid(const std::string& value);
+  std::string* _internal_mutable_exec_uuid();
   public:
 
   // string device_name = 4;
@@ -335,7 +335,7 @@ class BiotAppParam final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr uuid_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr exec_id_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr exec_uuid_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr device_name_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr device_id_;
     ::biot::BiotAppBasicParam* basic_;
@@ -409,54 +409,54 @@ inline void BiotAppParam::set_allocated_uuid(std::string* uuid) {
   // @@protoc_insertion_point(field_set_allocated:biot.BiotAppParam.uuid)
 }
 
-// string exec_id = 2;
-inline void BiotAppParam::clear_exec_id() {
-  _impl_.exec_id_.ClearToEmpty();
+// string exec_uuid = 2;
+inline void BiotAppParam::clear_exec_uuid() {
+  _impl_.exec_uuid_.ClearToEmpty();
 }
-inline const std::string& BiotAppParam::exec_id() const {
-  // @@protoc_insertion_point(field_get:biot.BiotAppParam.exec_id)
-  return _internal_exec_id();
+inline const std::string& BiotAppParam::exec_uuid() const {
+  // @@protoc_insertion_point(field_get:biot.BiotAppParam.exec_uuid)
+  return _internal_exec_uuid();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void BiotAppParam::set_exec_id(ArgT0&& arg0, ArgT... args) {
+void BiotAppParam::set_exec_uuid(ArgT0&& arg0, ArgT... args) {
  
- _impl_.exec_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:biot.BiotAppParam.exec_id)
+ _impl_.exec_uuid_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:biot.BiotAppParam.exec_uuid)
 }
-inline std::string* BiotAppParam::mutable_exec_id() {
-  std::string* _s = _internal_mutable_exec_id();
-  // @@protoc_insertion_point(field_mutable:biot.BiotAppParam.exec_id)
+inline std::string* BiotAppParam::mutable_exec_uuid() {
+  std::string* _s = _internal_mutable_exec_uuid();
+  // @@protoc_insertion_point(field_mutable:biot.BiotAppParam.exec_uuid)
   return _s;
 }
-inline const std::string& BiotAppParam::_internal_exec_id() const {
-  return _impl_.exec_id_.Get();
+inline const std::string& BiotAppParam::_internal_exec_uuid() const {
+  return _impl_.exec_uuid_.Get();
 }
-inline void BiotAppParam::_internal_set_exec_id(const std::string& value) {
+inline void BiotAppParam::_internal_set_exec_uuid(const std::string& value) {
   
-  _impl_.exec_id_.Set(value, GetArenaForAllocation());
+  _impl_.exec_uuid_.Set(value, GetArenaForAllocation());
 }
-inline std::string* BiotAppParam::_internal_mutable_exec_id() {
+inline std::string* BiotAppParam::_internal_mutable_exec_uuid() {
   
-  return _impl_.exec_id_.Mutable(GetArenaForAllocation());
+  return _impl_.exec_uuid_.Mutable(GetArenaForAllocation());
 }
-inline std::string* BiotAppParam::release_exec_id() {
-  // @@protoc_insertion_point(field_release:biot.BiotAppParam.exec_id)
-  return _impl_.exec_id_.Release();
+inline std::string* BiotAppParam::release_exec_uuid() {
+  // @@protoc_insertion_point(field_release:biot.BiotAppParam.exec_uuid)
+  return _impl_.exec_uuid_.Release();
 }
-inline void BiotAppParam::set_allocated_exec_id(std::string* exec_id) {
-  if (exec_id != nullptr) {
+inline void BiotAppParam::set_allocated_exec_uuid(std::string* exec_uuid) {
+  if (exec_uuid != nullptr) {
     
   } else {
     
   }
-  _impl_.exec_id_.SetAllocated(exec_id, GetArenaForAllocation());
+  _impl_.exec_uuid_.SetAllocated(exec_uuid, GetArenaForAllocation());
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.exec_id_.IsDefault()) {
-    _impl_.exec_id_.Set("", GetArenaForAllocation());
+  if (_impl_.exec_uuid_.IsDefault()) {
+    _impl_.exec_uuid_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:biot.BiotAppParam.exec_id)
+  // @@protoc_insertion_point(field_set_allocated:biot.BiotAppParam.exec_uuid)
 }
 
 // uint32 version = 3;

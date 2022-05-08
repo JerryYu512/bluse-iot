@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.13.2/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.13.2"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.13.2/dist/index.umd.min.js"></script><script>(r => {
+                setTimeout(r);
+              })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root, jsonOptions) => {
+        const markmap = getMarkmap();
+        window.mm = markmap.Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(markmap, jsonOptions), root);
+      })(() => window.markmap,(markmap, jsonOptions) => markmap.deriveOptions(jsonOptions),{"type":"heading","depth":1,"payload":{"lines":[0,1]},"content":"src","children":[{"type":"heading","depth":2,"payload":{"lines":[2,3]},"content":"boot 启动项"},{"type":"heading","depth":2,"payload":{"lines":[4,5]},"content":"config 配置参数管理"},{"type":"heading","depth":2,"payload":{"lines":[6,7]},"content":"basic 基础设施，通用部分","children":[{"type":"heading","depth":3,"payload":{"lines":[8,9]},"content":"Log 日志"},{"type":"heading","depth":3,"payload":{"lines":[10,11]},"content":"基础库"},{"type":"heading","depth":3,"payload":{"lines":[12,13]},"content":"通用定义"},{"type":"heading","depth":3,"payload":{"lines":[14,15]},"content":"工具接口"}]},{"type":"heading","depth":2,"payload":{"lines":[16,17]},"content":"system 系统模块，软件本身运行与维护，无外界交互功能"},{"type":"heading","depth":2,"payload":{"lines":[18,19]},"content":"apps 应用，具体的业务实现，一般是综合型的需求实现"},{"type":"heading","depth":2,"payload":{"lines":[20,21]},"content":"module","children":[{"type":"heading","depth":3,"payload":{"lines":[22,23]},"content":"hardware 硬件设备，操作设备"},{"type":"heading","depth":3,"payload":{"lines":[24,25]},"content":"device 设备的组合使用，一般是应用层协议实现"},{"type":"heading","depth":3,"payload":{"lines":[26,27]},"content":"subsys 子系统，独立完成特定的复杂功能"},{"type":"heading","depth":3,"payload":{"lines":[28,29]},"content":"storage 存储"},{"type":"heading","depth":3,"payload":{"lines":[30,31]},"content":"database 数据库"},{"type":"heading","depth":3,"payload":{"lines":[32,33]},"content":"network 网络","children":[{"type":"heading","depth":4,"payload":{"lines":[34,35]},"content":"netapp 网络应用，表现为外界交互"},{"type":"heading","depth":4,"payload":{"lines":[36,37]},"content":"netbasic 网络基础设施，一般用于连接网络"}]},{"type":"heading","depth":3,"payload":{"lines":[38,39]},"content":"media 媒体资源，音视频，文件，图片等"},{"type":"heading","depth":3,"payload":{"lines":[40,41]},"content":"algo 算法"}]}]},{})</script>
+</body>
+</html>

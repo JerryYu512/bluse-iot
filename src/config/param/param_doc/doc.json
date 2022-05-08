@@ -1,0 +1,1757 @@
+{
+  "files": [
+    {
+      "name": "module_db.proto",
+      "description": "",
+      "package": "biot",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": false,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "BiotAppDb",
+          "longName": "BiotAppDb",
+          "fullName": "biot.BiotAppDb",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "localdb",
+              "description": "",
+              "label": "",
+              "type": "BiotAppDbLocal",
+              "longType": "BiotAppDbLocal",
+              "fullType": "biot.BiotAppDbLocal",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "BiotAppDbLocal",
+          "longName": "BiotAppDbLocal",
+          "fullName": "biot.BiotAppDbLocal",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "dbtype",
+              "description": "",
+              "label": "",
+              "type": "BiotAppDbType",
+              "longType": "BiotAppDbType",
+              "fullType": "biot.BiotAppDbType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": []
+    },
+    {
+      "name": "module_device.proto",
+      "description": "",
+      "package": "biot",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": false,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "BiotAppDevice",
+          "longName": "BiotAppDevice",
+          "fullName": "biot.BiotAppDevice",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
+        }
+      ],
+      "services": []
+    },
+    {
+      "name": "module_hw.proto",
+      "description": "",
+      "package": "biot",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": false,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "BiotAppHardware",
+          "longName": "BiotAppHardware",
+          "fullName": "biot.BiotAppHardware",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
+        }
+      ],
+      "services": []
+    },
+    {
+      "name": "module_media.proto",
+      "description": "",
+      "package": "biot",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": false,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "BiotAppMedia",
+          "longName": "BiotAppMedia",
+          "fullName": "biot.BiotAppMedia",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
+        }
+      ],
+      "services": []
+    },
+    {
+      "name": "module_network.proto",
+      "description": "",
+      "package": "biot",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": false,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "BiotAppCmdApi",
+          "longName": "BiotAppCmdApi",
+          "fullName": "biot.BiotAppCmdApi",
+          "description": "命令行服务",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "port",
+              "description": "",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "ipv4",
+              "description": "",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "trans",
+              "description": "通信协议",
+              "label": "",
+              "type": "BiotAppModuleProtocol",
+              "longType": "BiotAppModuleProtocol",
+              "fullType": "biot.BiotAppModuleProtocol",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "body",
+              "description": "body内容:json/xml",
+              "label": "",
+              "type": "BiotAppModulePayload",
+              "longType": "BiotAppModulePayload",
+              "fullType": "biot.BiotAppModulePayload",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "BiotAppLanParam",
+          "longName": "BiotAppLanParam",
+          "fullName": "biot.BiotAppLanParam",
+          "description": "有线网参数",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "type",
+              "description": "",
+              "label": "",
+              "type": "NetLanType",
+              "longType": "NetLanType",
+              "fullType": "biot.NetLanType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "cfg_type",
+              "description": "",
+              "label": "",
+              "type": "NetCfgType",
+              "longType": "NetCfgType",
+              "fullType": "biot.NetCfgType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "if_name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "mac",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "ipv4",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "ipv6",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "submask",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "gateway",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "mtu",
+              "description": "mtu值[eg:1500][range:536\u003c==\u003e1500][type:uint32]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "dns",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "x1",
+              "description": "",
+              "label": "",
+              "type": "float",
+              "longType": "float",
+              "fullType": "float",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "x2",
+              "description": "",
+              "label": "",
+              "type": "double",
+              "longType": "double",
+              "fullType": "double",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "x3",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "BiotAppNetwork",
+          "longName": "BiotAppNetwork",
+          "fullName": "biot.BiotAppNetwork",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "lan",
+              "description": "",
+              "label": "repeated",
+              "type": "BiotAppLanParam",
+              "longType": "BiotAppLanParam",
+              "fullType": "biot.BiotAppLanParam",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "web",
+              "description": "",
+              "label": "",
+              "type": "BiotAppWebServiceParam",
+              "longType": "BiotAppWebServiceParam",
+              "fullType": "biot.BiotAppWebServiceParam",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "openapi",
+              "description": "",
+              "label": "",
+              "type": "BiotAppOatppApi",
+              "longType": "BiotAppOatppApi",
+              "fullType": "biot.BiotAppOatppApi",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "cmdapi",
+              "description": "",
+              "label": "",
+              "type": "BiotAppCmdApi",
+              "longType": "BiotAppCmdApi",
+              "fullType": "biot.BiotAppCmdApi",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "BiotAppOatppApi",
+          "longName": "BiotAppOatppApi",
+          "fullName": "biot.BiotAppOatppApi",
+          "description": "oatpp开放api",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "port",
+              "description": "",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "ipv4",
+              "description": "",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "body",
+              "description": "body内容:json/xml",
+              "label": "",
+              "type": "BiotAppModulePayload",
+              "longType": "BiotAppModulePayload",
+              "fullType": "biot.BiotAppModulePayload",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "BiotAppRtsp",
+          "longName": "BiotAppRtsp",
+          "fullName": "biot.BiotAppRtsp",
+          "description": "rtsp",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
+        },
+        {
+          "name": "BiotAppWebServiceParam",
+          "longName": "BiotAppWebServiceParam",
+          "fullName": "biot.BiotAppWebServiceParam",
+          "description": "web服务参数",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "http_port",
+              "description": "http端口号",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "https_port",
+              "description": "https端口号",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "http",
+              "description": "使能http",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "https",
+              "description": "使能https",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "root",
+              "description": "根路径",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "connect_max",
+              "description": "最大连接数",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": []
+    },
+    {
+      "name": "module_storage.proto",
+      "description": "",
+      "package": "biot",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": false,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "BiotAppStorage",
+          "longName": "BiotAppStorage",
+          "fullName": "biot.BiotAppStorage",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
+        }
+      ],
+      "services": []
+    },
+    {
+      "name": "module_subsys.proto",
+      "description": "",
+      "package": "biot",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": false,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "BiotAppSubsys",
+          "longName": "BiotAppSubsys",
+          "fullName": "biot.BiotAppSubsys",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
+        }
+      ],
+      "services": []
+    },
+    {
+      "name": "param_basic.proto",
+      "description": "",
+      "package": "biot",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": false,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "BiotAppAccessUser",
+          "longName": "BiotAppAccessUser",
+          "fullName": "biot.BiotAppAccessUser",
+          "description": "设备访问用户",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "name",
+              "description": "用户名",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "passwd",
+              "description": "密码",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "expired",
+              "description": "有效期",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "permission",
+              "description": "权限",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "allowlist",
+              "description": "白名单",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "email",
+              "description": "邮箱",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "phone",
+              "description": "电话",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "github",
+              "description": "gihub账户",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "BiotAppBasicParam",
+          "longName": "BiotAppBasicParam",
+          "fullName": "biot.BiotAppBasicParam",
+          "description": "基础功能配置",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "appmode",
+              "description": "运行模式",
+              "label": "",
+              "type": "EBiotAppMode",
+              "longType": "EBiotAppMode",
+              "fullType": "biot.EBiotAppMode",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "user",
+              "description": "用户",
+              "label": "",
+              "type": "BiotAppUsers",
+              "longType": "BiotAppUsers",
+              "fullType": "biot.BiotAppUsers",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "BiotAppUsers",
+          "longName": "BiotAppUsers",
+          "fullName": "biot.BiotAppUsers",
+          "description": "用户列表",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "access_users",
+              "description": "外部接入访问的用户",
+              "label": "repeated",
+              "type": "BiotAppAccessUser",
+              "longType": "BiotAppAccessUser",
+              "fullType": "biot.BiotAppAccessUser",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": []
+    },
+    {
+      "name": "param_module.proto",
+      "description": "",
+      "package": "biot",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": false,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "BiotAppModule",
+          "longName": "BiotAppModule",
+          "fullName": "biot.BiotAppModule",
+          "description": "模块配置",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "hardware",
+              "description": "硬件配置",
+              "label": "",
+              "type": "BiotAppHardware",
+              "longType": "BiotAppHardware",
+              "fullType": "biot.BiotAppHardware",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "device",
+              "description": "设备配置",
+              "label": "",
+              "type": "BiotAppDevice",
+              "longType": "BiotAppDevice",
+              "fullType": "biot.BiotAppDevice",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "network",
+              "description": "网络配置",
+              "label": "",
+              "type": "BiotAppNetwork",
+              "longType": "BiotAppNetwork",
+              "fullType": "biot.BiotAppNetwork",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "database",
+              "description": "数据库配置",
+              "label": "",
+              "type": "BiotAppDb",
+              "longType": "BiotAppDb",
+              "fullType": "biot.BiotAppDb",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "storage",
+              "description": "存储配置",
+              "label": "",
+              "type": "BiotAppStorage",
+              "longType": "BiotAppStorage",
+              "fullType": "biot.BiotAppStorage",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "media",
+              "description": "媒体配置",
+              "label": "",
+              "type": "BiotAppMedia",
+              "longType": "BiotAppMedia",
+              "fullType": "biot.BiotAppMedia",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "subsys",
+              "description": "子系统配置",
+              "label": "",
+              "type": "BiotAppSubsys",
+              "longType": "BiotAppSubsys",
+              "fullType": "biot.BiotAppSubsys",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": []
+    },
+    {
+      "name": "param_product.proto",
+      "description": "",
+      "package": "biot",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": false,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "BiotAppProduct",
+          "longName": "BiotAppProduct",
+          "fullName": "biot.BiotAppProduct",
+          "description": "产品配置参数，每个产品定义自身的",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
+        }
+      ],
+      "services": []
+    },
+    {
+      "name": "param.proto",
+      "description": "配置参数根节点.",
+      "package": "biot",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": false,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "BiotAppParam",
+          "longName": "BiotAppParam",
+          "fullName": "biot.BiotAppParam",
+          "description": "BIOT应用程序配置参数",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "uuid",
+              "description": "配置参数文件唯一标识，用于校验[eg:03948b6f-9c67-4a14-a53d-2db53466a4e0]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "exec_uuid",
+              "description": "执行程序唯一标识[eg:03948b6f-9c67-4a14-a53d-2db53466a4e0]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "version",
+              "description": "配置参数版本号",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "device_name",
+              "description": "设备名称[eg:biot 01]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "device_id",
+              "description": "设备id[eg:00000000000][reg:\\d{11}]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "basic",
+              "description": "基础配置参数",
+              "label": "",
+              "type": "BiotAppBasicParam",
+              "longType": "BiotAppBasicParam",
+              "fullType": "biot.BiotAppBasicParam",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "system",
+              "description": "系统配置参数",
+              "label": "",
+              "type": "BiotAppSystem",
+              "longType": "BiotAppSystem",
+              "fullType": "biot.BiotAppSystem",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "modules",
+              "description": "功能模块配置参数",
+              "label": "",
+              "type": "BiotAppModule",
+              "longType": "BiotAppModule",
+              "fullType": "biot.BiotAppModule",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "product",
+              "description": "产品配置参数",
+              "label": "",
+              "type": "BiotAppProduct",
+              "longType": "BiotAppProduct",
+              "fullType": "biot.BiotAppProduct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": []
+    },
+    {
+      "name": "param_system.proto",
+      "description": "",
+      "package": "biot",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": false,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "BiotAppSystem",
+          "longName": "BiotAppSystem",
+          "fullName": "biot.BiotAppSystem",
+          "description": "系统配置参数，基本的系统运行参数",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
+        }
+      ],
+      "services": []
+    },
+    {
+      "name": "enums/e_basic.proto",
+      "description": "",
+      "package": "biot",
+      "hasEnums": true,
+      "hasExtensions": false,
+      "hasMessages": false,
+      "hasServices": false,
+      "enums": [
+        {
+          "name": "EBiotAppMode",
+          "longName": "EBiotAppMode",
+          "fullName": "biot.EBiotAppMode",
+          "description": "可选运行模式",
+          "values": [
+            {
+              "name": "APP_DEVICE_MODE",
+              "number": "0",
+              "description": "设备模式"
+            },
+            {
+              "name": "APP_GATEWAY_MODE",
+              "number": "1",
+              "description": "网关模式"
+            },
+            {
+              "name": "APP_DEV_GW_MODE",
+              "number": "2",
+              "description": "设备/网关模式"
+            }
+          ]
+        }
+      ],
+      "extensions": [],
+      "messages": [],
+      "services": []
+    },
+    {
+      "name": "enums/e_db.proto",
+      "description": "",
+      "package": "biot",
+      "hasEnums": true,
+      "hasExtensions": false,
+      "hasMessages": false,
+      "hasServices": false,
+      "enums": [
+        {
+          "name": "BiotAppDbType",
+          "longName": "BiotAppDbType",
+          "fullName": "biot.BiotAppDbType",
+          "description": "数据库类型",
+          "values": [
+            {
+              "name": "DB_TYPE_SQLITE3",
+              "number": "0",
+              "description": "sqlite3"
+            },
+            {
+              "name": "DB_TYPE_MONGODB",
+              "number": "1",
+              "description": "mongodb"
+            },
+            {
+              "name": "DB_TYPE_MYSQL",
+              "number": "2",
+              "description": "mysql"
+            },
+            {
+              "name": "DB_TYPE_LEVELDB",
+              "number": "3",
+              "description": "leveldb"
+            },
+            {
+              "name": "DB_TYPE_CUSTOM",
+              "number": "4",
+              "description": "自研"
+            }
+          ]
+        }
+      ],
+      "extensions": [],
+      "messages": [],
+      "services": []
+    },
+    {
+      "name": "enums/e_device.proto",
+      "description": "",
+      "package": "biot",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": false,
+      "hasServices": false,
+      "enums": [],
+      "extensions": [],
+      "messages": [],
+      "services": []
+    },
+    {
+      "name": "enums/e_hw.proto",
+      "description": "",
+      "package": "biot",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": false,
+      "hasServices": false,
+      "enums": [],
+      "extensions": [],
+      "messages": [],
+      "services": []
+    },
+    {
+      "name": "enums/e_media.proto",
+      "description": "",
+      "package": "biot",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": false,
+      "hasServices": false,
+      "enums": [],
+      "extensions": [],
+      "messages": [],
+      "services": []
+    },
+    {
+      "name": "enums/e_module.proto",
+      "description": "",
+      "package": "biot",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": false,
+      "hasServices": false,
+      "enums": [],
+      "extensions": [],
+      "messages": [],
+      "services": []
+    },
+    {
+      "name": "enums/e_network.proto",
+      "description": "",
+      "package": "biot",
+      "hasEnums": true,
+      "hasExtensions": false,
+      "hasMessages": false,
+      "hasServices": false,
+      "enums": [
+        {
+          "name": "BiotAppModulePayload",
+          "longName": "BiotAppModulePayload",
+          "fullName": "biot.BiotAppModulePayload",
+          "description": "应用层协议类型",
+          "values": [
+            {
+              "name": "MODULE_PAYLOAD_RAW",
+              "number": "0",
+              "description": "二进制[str:raw]"
+            },
+            {
+              "name": "MODULE_PAYLOAD_HTTP",
+              "number": "1",
+              "description": "http[str:http]"
+            },
+            {
+              "name": "MODULE_PAYLOAD_JSON",
+              "number": "2",
+              "description": "json[str:json]"
+            },
+            {
+              "name": "MODULE_PAYLOAD_XML",
+              "number": "3",
+              "description": "xml[str:xml]"
+            },
+            {
+              "name": "MODULE_PAYLOAD_PROTOBUF",
+              "number": "4",
+              "description": "protobuf[str:protobuf]"
+            }
+          ]
+        },
+        {
+          "name": "BiotAppModuleProtocol",
+          "longName": "BiotAppModuleProtocol",
+          "fullName": "biot.BiotAppModuleProtocol",
+          "description": "模块间通信协议",
+          "values": [
+            {
+              "name": "MODULE_PROTOC_MQTT",
+              "number": "0",
+              "description": "mqtt[str:mqtt]"
+            },
+            {
+              "name": "MODULE_PROTOC_NNG",
+              "number": "1",
+              "description": "nng[str:nng]"
+            },
+            {
+              "name": "MODULE_PROTOC_PROTOBUF",
+              "number": "2",
+              "description": "protobuf[str:protobuf]"
+            }
+          ]
+        },
+        {
+          "name": "NetCfgType",
+          "longName": "NetCfgType",
+          "fullName": "biot.NetCfgType",
+          "description": "网络配置方式",
+          "values": [
+            {
+              "name": "NET_CFG_MANUAL",
+              "number": "0",
+              "description": "手动配置"
+            },
+            {
+              "name": "NET_CFG_AUTO",
+              "number": "1",
+              "description": "自动获取"
+            }
+          ]
+        },
+        {
+          "name": "NetIfRate",
+          "longName": "NetIfRate",
+          "fullName": "biot.NetIfRate",
+          "description": "网口速率",
+          "values": [
+            {
+              "name": "NET_IF_RATE_100M",
+              "number": "0",
+              "description": "百兆网口"
+            },
+            {
+              "name": "NET_IF_RATE_1000M",
+              "number": "1",
+              "description": "千兆网口"
+            }
+          ]
+        },
+        {
+          "name": "NetLanType",
+          "longName": "NetLanType",
+          "fullName": "biot.NetLanType",
+          "description": "有线网类型",
+          "values": [
+            {
+              "name": "LAN_WORK_10M_HALF",
+              "number": "0",
+              "description": "10M半双工[str:10M-half]"
+            },
+            {
+              "name": "LAN_WORK_10M_FULL",
+              "number": "1",
+              "description": "10全双工[str:10M-full]"
+            },
+            {
+              "name": "LAN_WORK_100M_HALF",
+              "number": "2",
+              "description": "100M半双工[str:100M-half]"
+            },
+            {
+              "name": "LAN_WORK_100M_FULL",
+              "number": "3",
+              "description": "100M全双工[str:100M-full]"
+            },
+            {
+              "name": "LAN_WORK_AUTO",
+              "number": "4",
+              "description": "自适应[str:auto]"
+            },
+            {
+              "name": "LAN_WORK_1G_FULL",
+              "number": "5",
+              "description": "1G全双工[str:1G-full]"
+            }
+          ]
+        },
+        {
+          "name": "WireLessIfMode",
+          "longName": "WireLessIfMode",
+          "fullName": "biot.WireLessIfMode",
+          "description": "无线网网络接口模式",
+          "values": [
+            {
+              "name": "WIRELESS_IF_AUTO",
+              "number": "0",
+              "description": "自动切换"
+            },
+            {
+              "name": "WIRELESS_IF_LAN",
+              "number": "1",
+              "description": "有线模式"
+            }
+          ]
+        },
+        {
+          "name": "WireLessSecMode",
+          "longName": "WireLessSecMode",
+          "fullName": "biot.WireLessSecMode",
+          "description": "无线安全模式",
+          "values": [
+            {
+              "name": "WIRELESS_SEC_NONE",
+              "number": "0",
+              "description": "不加密"
+            },
+            {
+              "name": "WIRELESS_SEC_WEP",
+              "number": "1",
+              "description": "WEP"
+            },
+            {
+              "name": "WIRELESS_SEC_WPA_PSK",
+              "number": "2",
+              "description": "WPA-PSK"
+            },
+            {
+              "name": "WIRELESS_SEC_WPA_ENTERPRISE",
+              "number": "3",
+              "description": "WPA-enterprise"
+            },
+            {
+              "name": "WIRELESS_SEC_WPA2_PSK",
+              "number": "4",
+              "description": "WPA2-PSK"
+            }
+          ]
+        },
+        {
+          "name": "WireLessWepAuthType",
+          "longName": "WireLessWepAuthType",
+          "fullName": "biot.WireLessWepAuthType",
+          "description": "WEP认证类型",
+          "values": [
+            {
+              "name": "WIRELESS_WEPAUTH_OPEN",
+              "number": "0",
+              "description": "开放式"
+            },
+            {
+              "name": "WIRELESS_WEPAUTH_SHARE",
+              "number": "1",
+              "description": "共享式"
+            }
+          ]
+        },
+        {
+          "name": "WireLessWepKeyLen",
+          "longName": "WireLessWepKeyLen",
+          "fullName": "biot.WireLessWepKeyLen",
+          "description": "WEP密钥长度",
+          "values": [
+            {
+              "name": "WIRELESS_WEPKEY_LEN64",
+              "number": "0",
+              "description": "64位"
+            },
+            {
+              "name": "WIRELESS_WEPKEY_LEN128",
+              "number": "1",
+              "description": "128位"
+            },
+            {
+              "name": "WIRELESS_WEPKEY_LEN152",
+              "number": "2",
+              "description": "152位"
+            }
+          ]
+        },
+        {
+          "name": "WireLessWepKeyType",
+          "longName": "WireLessWepKeyType",
+          "fullName": "biot.WireLessWepKeyType",
+          "description": "WEP密钥类型",
+          "values": [
+            {
+              "name": "WIRELESS_WEPKEY_HEX",
+              "number": "0",
+              "description": "16进制"
+            },
+            {
+              "name": "WIRELESS_WEPKEY_ASCII",
+              "number": "1",
+              "description": "ASCII码"
+            }
+          ]
+        },
+        {
+          "name": "WireLessWorkMode",
+          "longName": "WireLessWorkMode",
+          "fullName": "biot.WireLessWorkMode",
+          "description": "无线工作模式",
+          "values": [
+            {
+              "name": "WIRELESS_WORK_MANAGED",
+              "number": "0",
+              "description": "managed"
+            },
+            {
+              "name": "WIRELESS_WORK_AD_HOC",
+              "number": "1",
+              "description": "ad hoc"
+            }
+          ]
+        },
+        {
+          "name": "WireLessWpaEncryptType",
+          "longName": "WireLessWpaEncryptType",
+          "fullName": "biot.WireLessWpaEncryptType",
+          "description": "WPA加密类型",
+          "values": [
+            {
+              "name": "WIRELESS_WPA_ENCRYPT_AES",
+              "number": "0",
+              "description": "AES"
+            },
+            {
+              "name": "WIRELESS_WPA_ENCRYPT_TKIP",
+              "number": "1",
+              "description": "TKIP"
+            }
+          ]
+        }
+      ],
+      "extensions": [],
+      "messages": [],
+      "services": []
+    },
+    {
+      "name": "enums/e_product.proto",
+      "description": "",
+      "package": "biot",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": false,
+      "hasServices": false,
+      "enums": [],
+      "extensions": [],
+      "messages": [],
+      "services": []
+    },
+    {
+      "name": "enums/e_storage.proto",
+      "description": "",
+      "package": "biot",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": false,
+      "hasServices": false,
+      "enums": [],
+      "extensions": [],
+      "messages": [],
+      "services": []
+    },
+    {
+      "name": "enums/e_subsys.proto",
+      "description": "",
+      "package": "biot",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": false,
+      "hasServices": false,
+      "enums": [],
+      "extensions": [],
+      "messages": [],
+      "services": []
+    },
+    {
+      "name": "enums/e_system.proto",
+      "description": "",
+      "package": "biot",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": false,
+      "hasServices": false,
+      "enums": [],
+      "extensions": [],
+      "messages": [],
+      "services": []
+    }
+  ],
+  "scalarValueTypes": [
+    {
+      "protoType": "double",
+      "notes": "",
+      "cppType": "double",
+      "csType": "double",
+      "goType": "float64",
+      "javaType": "double",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "float",
+      "notes": "",
+      "cppType": "float",
+      "csType": "float",
+      "goType": "float32",
+      "javaType": "float",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "int32",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "int64",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "uint32",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "uint64",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint32",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint64",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "fixed32",
+      "notes": "Always four bytes. More efficient than uint32 if values are often greater than 2^28.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "fixed64",
+      "notes": "Always eight bytes. More efficient than uint64 if values are often greater than 2^56.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "sfixed32",
+      "notes": "Always four bytes.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sfixed64",
+      "notes": "Always eight bytes.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "bool",
+      "notes": "",
+      "cppType": "bool",
+      "csType": "bool",
+      "goType": "bool",
+      "javaType": "boolean",
+      "phpType": "boolean",
+      "pythonType": "boolean",
+      "rubyType": "TrueClass/FalseClass"
+    },
+    {
+      "protoType": "string",
+      "notes": "A string must always contain UTF-8 encoded or 7-bit ASCII text.",
+      "cppType": "string",
+      "csType": "string",
+      "goType": "string",
+      "javaType": "String",
+      "phpType": "string",
+      "pythonType": "str/unicode",
+      "rubyType": "String (UTF-8)"
+    },
+    {
+      "protoType": "bytes",
+      "notes": "May contain any arbitrary sequence of bytes.",
+      "cppType": "string",
+      "csType": "ByteString",
+      "goType": "[]byte",
+      "javaType": "ByteString",
+      "phpType": "string",
+      "pythonType": "str",
+      "rubyType": "String (ASCII-8BIT)"
+    }
+  ]
+}

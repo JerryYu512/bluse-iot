@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+import "enums/e_device.proto";
+package biot;
+
+message BiotAppDevice {
+}

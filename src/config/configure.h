@@ -30,6 +30,10 @@
 
 namespace biot {
 
+/////////////////////////////////////////////////////////////
+/// !!! 系统基础配置
+/////////////////////////////////////////////////////////////
+
 // 运行时目录
 #ifndef BIOT_RT_ROOT_PATH
     #define BIOT_RT_ROOT_PATH "bluse-iot-rt"
@@ -58,5 +62,11 @@ namespace biot {
 #define BIOT_CONFIG_PATCH_FILENAME BIOT_RT_ROOT_PATH "/etc/biot_parameter_patch.json"
 // pid路径
 #define BIOT_PID_FILENAME "/var/run/bluse-iot.pid"
+
+/////////////////////////////////////////////////////////////
+/// !!! 模块配置
+/////////////////////////////////////////////////////////////
+
+/// !!! 网络
 
 } // namespace biot

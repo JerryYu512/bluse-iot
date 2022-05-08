@@ -29,8 +29,8 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
-#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
+#include "enums/e_basic.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_param_5fbasic_2eproto
@@ -63,32 +63,6 @@ template<> ::biot::BiotAppUsers* Arena::CreateMaybeMessage<::biot::BiotAppUsers>
 PROTOBUF_NAMESPACE_CLOSE
 namespace biot {
 
-enum EBiotAppMode : int {
-  APP_DEVICE_MODE = 0,
-  APP_GATEWAY_MODE = 1,
-  APP_DEV_GW_MODE = 2,
-  EBiotAppMode_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
-  EBiotAppMode_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
-};
-bool EBiotAppMode_IsValid(int value);
-constexpr EBiotAppMode EBiotAppMode_MIN = APP_DEVICE_MODE;
-constexpr EBiotAppMode EBiotAppMode_MAX = APP_DEV_GW_MODE;
-constexpr int EBiotAppMode_ARRAYSIZE = EBiotAppMode_MAX + 1;
-
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* EBiotAppMode_descriptor();
-template<typename T>
-inline const std::string& EBiotAppMode_Name(T enum_t_value) {
-  static_assert(::std::is_same<T, EBiotAppMode>::value ||
-    ::std::is_integral<T>::value,
-    "Incorrect type passed to function EBiotAppMode_Name.");
-  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
-    EBiotAppMode_descriptor(), enum_t_value);
-}
-inline bool EBiotAppMode_Parse(
-    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, EBiotAppMode* value) {
-  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<EBiotAppMode>(
-    EBiotAppMode_descriptor(), name, value);
-}
 // ===================================================================
 
 class BiotAppAccessUser final :
@@ -1183,16 +1157,6 @@ inline void BiotAppBasicParam::set_allocated_user(::biot::BiotAppUsers* user) {
 // @@protoc_insertion_point(namespace_scope)
 
 }  // namespace biot
-
-PROTOBUF_NAMESPACE_OPEN
-
-template <> struct is_proto_enum< ::biot::EBiotAppMode> : ::std::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::biot::EBiotAppMode>() {
-  return ::biot::EBiotAppMode_descriptor();
-}
-
-PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(global_scope)
 

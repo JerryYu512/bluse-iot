@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+import "enums/e_network.proto";
+package biot;
+
+// 有线网参数
+message BiotAppLanParam {
+	NetLanType type = 1;
+	NetCfgType cfg_type = 2;
+	string if_name = 3;
+	string mac = 4;
+	string ipv4 = 5;
+	string ipv6 = 6;
+	string submask = 7;
+	string gateway = 8;
+	uint32 mtu = 9;					/// mtu值[eg:1500][range:536<==>1500][type:uint32]
+	string dns = 10;
+	float x1 = 11;
+	double x2 = 12;
+	bool x3 = 13;
+}
+
+// web服务参数
+message BiotAppWebServiceParam {
+	/// http端口号
+	uint32 http_port = 1;
+	/// https端口号
+	uint32 https_port = 2;
+	/// 使能http
+	bool http = 3;
+	/// 使能https
+	bool https = 4;
+	/// 根路径
+	string root = 5;
+	/// 最大连接数
+	uint32 connect_max = 6;
+}
+
+// oatpp开放api
+message BiotAppOatppApi {
+	uint32 port = 1;
+	uint32 ipv4 = 2;
+	// body内容:json/xml
+	BiotAppModulePayload body = 3;
+}
+
+// 命令行服务
+message BiotAppCmdApi {
+	uint32 port = 1;
+	uint32 ipv4 = 2;
+	// 通信协议
+	BiotAppModuleProtocol trans = 3;
+	// body内容:json/xml
+	BiotAppModulePayload body = 4;
+}
+
+// rtsp
+message BiotAppRtsp {
+}
+
+message BiotAppNetwork {
+	repeated BiotAppLanParam lan = 1;
+	BiotAppWebServiceParam web = 2;
+	BiotAppOatppApi openapi = 3;
+	BiotAppCmdApi cmdapi = 4;
+}

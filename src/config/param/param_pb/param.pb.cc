@@ -24,7 +24,7 @@ namespace biot {
 PROTOBUF_CONSTEXPR BiotAppParam::BiotAppParam(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.uuid_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.exec_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.exec_uuid_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.device_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.device_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.basic_)*/nullptr
@@ -55,7 +55,7 @@ const uint32_t TableStruct_param_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(pr
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::biot::BiotAppParam, _impl_.uuid_),
-  PROTOBUF_FIELD_OFFSET(::biot::BiotAppParam, _impl_.exec_id_),
+  PROTOBUF_FIELD_OFFSET(::biot::BiotAppParam, _impl_.exec_uuid_),
   PROTOBUF_FIELD_OFFSET(::biot::BiotAppParam, _impl_.version_),
   PROTOBUF_FIELD_OFFSET(::biot::BiotAppParam, _impl_.device_name_),
   PROTOBUF_FIELD_OFFSET(::biot::BiotAppParam, _impl_.device_id_),
@@ -75,14 +75,14 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_param_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\013param.proto\022\004biot\032\021param_basic.proto\032\022"
   "param_system.proto\032\022param_module.proto\032\023"
-  "param_product.proto\"\206\002\n\014BiotAppParam\022\014\n\004"
-  "uuid\030\001 \001(\t\022\017\n\007exec_id\030\002 \001(\t\022\017\n\007version\030\003"
-  " \001(\r\022\023\n\013device_name\030\004 \001(\t\022\021\n\tdevice_id\030\005"
-  " \001(\t\022&\n\005basic\030e \001(\0132\027.biot.BiotAppBasicP"
-  "aram\022#\n\006system\030f \001(\0132\023.biot.BiotAppSyste"
-  "m\022$\n\007modules\030g \001(\0132\023.biot.BiotAppModule\022"
-  "%\n\007product\030h \001(\0132\024.biot.BiotAppProductJ\004"
-  "\010\006\020eP\000P\001P\002P\003b\006proto3"
+  "param_product.proto\"\210\002\n\014BiotAppParam\022\014\n\004"
+  "uuid\030\001 \001(\t\022\021\n\texec_uuid\030\002 \001(\t\022\017\n\007version"
+  "\030\003 \001(\r\022\023\n\013device_name\030\004 \001(\t\022\021\n\tdevice_id"
+  "\030\005 \001(\t\022&\n\005basic\030e \001(\0132\027.biot.BiotAppBasi"
+  "cParam\022#\n\006system\030f \001(\0132\023.biot.BiotAppSys"
+  "tem\022$\n\007modules\030g \001(\0132\023.biot.BiotAppModul"
+  "e\022%\n\007product\030h \001(\0132\024.biot.BiotAppProduct"
+  "J\004\010\006\020eP\000P\001P\002P\003b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_param_2eproto_deps[4] = {
   &::descriptor_table_param_5fbasic_2eproto,
@@ -92,7 +92,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_param_2eproto_deps[
 };
 static ::_pbi::once_flag descriptor_table_param_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_param_2eproto = {
-    false, false, 380, descriptor_table_protodef_param_2eproto,
+    false, false, 382, descriptor_table_protodef_param_2eproto,
     "param.proto",
     &descriptor_table_param_2eproto_once, descriptor_table_param_2eproto_deps, 4, 1,
     schemas, file_default_instances, TableStruct_param_2eproto::offsets,
@@ -167,7 +167,7 @@ BiotAppParam::BiotAppParam(const BiotAppParam& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   new (&_impl_) Impl_{
       decltype(_impl_.uuid_){}
-    , decltype(_impl_.exec_id_){}
+    , decltype(_impl_.exec_uuid_){}
     , decltype(_impl_.device_name_){}
     , decltype(_impl_.device_id_){}
     , decltype(_impl_.basic_){nullptr}
@@ -186,12 +186,12 @@ BiotAppParam::BiotAppParam(const BiotAppParam& from)
     _impl_.uuid_.Set(from._internal_uuid(), 
       GetArenaForAllocation());
   }
-  _impl_.exec_id_.InitDefault();
+  _impl_.exec_uuid_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.exec_id_.Set("", GetArenaForAllocation());
+    _impl_.exec_uuid_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_exec_id().empty()) {
-    _impl_.exec_id_.Set(from._internal_exec_id(), 
+  if (!from._internal_exec_uuid().empty()) {
+    _impl_.exec_uuid_.Set(from._internal_exec_uuid(), 
       GetArenaForAllocation());
   }
   _impl_.device_name_.InitDefault();
@@ -232,7 +232,7 @@ inline void BiotAppParam::SharedCtor(
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_.uuid_){}
-    , decltype(_impl_.exec_id_){}
+    , decltype(_impl_.exec_uuid_){}
     , decltype(_impl_.device_name_){}
     , decltype(_impl_.device_id_){}
     , decltype(_impl_.basic_){nullptr}
@@ -246,9 +246,9 @@ inline void BiotAppParam::SharedCtor(
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
     _impl_.uuid_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.exec_id_.InitDefault();
+  _impl_.exec_uuid_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.exec_id_.Set("", GetArenaForAllocation());
+    _impl_.exec_uuid_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   _impl_.device_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -272,7 +272,7 @@ BiotAppParam::~BiotAppParam() {
 inline void BiotAppParam::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   _impl_.uuid_.Destroy();
-  _impl_.exec_id_.Destroy();
+  _impl_.exec_uuid_.Destroy();
   _impl_.device_name_.Destroy();
   _impl_.device_id_.Destroy();
   if (this != internal_default_instance()) delete _impl_.basic_;
@@ -292,7 +292,7 @@ void BiotAppParam::Clear() {
   (void) cached_has_bits;
 
   _impl_.uuid_.ClearToEmpty();
-  _impl_.exec_id_.ClearToEmpty();
+  _impl_.exec_uuid_.ClearToEmpty();
   _impl_.device_name_.ClearToEmpty();
   _impl_.device_id_.ClearToEmpty();
   if (GetArenaForAllocation() == nullptr && _impl_.basic_ != nullptr) {
@@ -331,13 +331,13 @@ const char* BiotAppParam::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
         } else
           goto handle_unusual;
         continue;
-      // string exec_id = 2;
+      // string exec_uuid = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          auto str = _internal_mutable_exec_id();
+          auto str = _internal_mutable_exec_uuid();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "biot.BiotAppParam.exec_id"));
+          CHK_(::_pbi::VerifyUTF8(str, "biot.BiotAppParam.exec_uuid"));
         } else
           goto handle_unusual;
         continue;
@@ -440,14 +440,14 @@ uint8_t* BiotAppParam::_InternalSerialize(
         1, this->_internal_uuid(), target);
   }
 
-  // string exec_id = 2;
-  if (!this->_internal_exec_id().empty()) {
+  // string exec_uuid = 2;
+  if (!this->_internal_exec_uuid().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_exec_id().data(), static_cast<int>(this->_internal_exec_id().length()),
+      this->_internal_exec_uuid().data(), static_cast<int>(this->_internal_exec_uuid().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "biot.BiotAppParam.exec_id");
+      "biot.BiotAppParam.exec_uuid");
     target = stream->WriteStringMaybeAliased(
-        2, this->_internal_exec_id(), target);
+        2, this->_internal_exec_uuid(), target);
   }
 
   // uint32 version = 3;
@@ -527,11 +527,11 @@ size_t BiotAppParam::ByteSizeLong() const {
         this->_internal_uuid());
   }
 
-  // string exec_id = 2;
-  if (!this->_internal_exec_id().empty()) {
+  // string exec_uuid = 2;
+  if (!this->_internal_exec_uuid().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_exec_id());
+        this->_internal_exec_uuid());
   }
 
   // string device_name = 4;
@@ -606,8 +606,8 @@ void BiotAppParam::MergeFrom(const BiotAppParam& from) {
   if (!from._internal_uuid().empty()) {
     _internal_set_uuid(from._internal_uuid());
   }
-  if (!from._internal_exec_id().empty()) {
-    _internal_set_exec_id(from._internal_exec_id());
+  if (!from._internal_exec_uuid().empty()) {
+    _internal_set_exec_uuid(from._internal_exec_uuid());
   }
   if (!from._internal_device_name().empty()) {
     _internal_set_device_name(from._internal_device_name());
@@ -654,8 +654,8 @@ void BiotAppParam::InternalSwap(BiotAppParam* other) {
       &other->_impl_.uuid_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.exec_id_, lhs_arena,
-      &other->_impl_.exec_id_, rhs_arena
+      &_impl_.exec_uuid_, lhs_arena,
+      &other->_impl_.exec_uuid_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &_impl_.device_name_, lhs_arena,

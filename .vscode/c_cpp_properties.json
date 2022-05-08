@@ -5,14 +5,17 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/src",
+                "${workspaceFolder}/src/basic",
                 "${workspaceFolder}/include",
-                "${workspaceFolder}/include/oatpp-1.3.0/oatpp"
+                "${workspaceFolder}/include/oatpp-1.3.0/oatpp",
+                "${workspaceFolder}/src"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c11",
             "cppStandard": "c++14",
-            "intelliSenseMode": "linux-clang-x64"
+            "intelliSenseMode": "linux-clang-x64",
+            "configurationProvider": "ms-vscode.cmake-tools"
         }
     ],
     "version": 4

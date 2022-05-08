@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+import "enums/e_db.proto";
+
+package biot;
+
+message BiotAppDbLocal {
+	BiotAppDbType dbtype = 1;
+}
+
+message BiotAppDb {
+	BiotAppDbLocal localdb = 1;
+}

@@ -26,34 +26,32 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 message(STATUS "CMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}")
 
 if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
-    set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -W -Wall -O0 -g")
-    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -W -Wall -O0 -g")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -W -Wall -O0 -g")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -W -Wall -O0 -g")
 	set(BIOT_EDITION "debug")
     add_definitions(-DDEBUG)
 else()
-    set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -W -Wall -O3")
-    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -W -Wall -O3")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -W -Wall -O3")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -W -Wall -O3")
 	set(BIOT_EDITION "release")
+    message(STATUS "release version")
     add_definitions(-DNDEBUG)
 endif()
 
 # 编译选项
-set(BIOT_FLAGS " -pipe -fPIC \
-				-Wno-unused-parameter \
-				-Wno-builtin-macro-redefined \
-				-fno-omit-frame-pointer \
-				-Wno-implicit-fallthrough \
-				-fstack-protector-all \
-				-Wno-deprecated-declarations \
-				-Wno-class-memaccess \
-				-Wno-unused-result \
-				-Wno-maybe-uninitialized")
+set(BIOT_FLAGS " -pipe")
+set(BIOT_FLAGS "${BIOT_FLAGS} -fPIC")
+set(BIOT_FLAGS "${BIOT_FLAGS} -Wno-unused-parameter")
+set(BIOT_FLAGS "${BIOT_FLAGS} -Wno-builtin-macro-redefined")
+set(BIOT_FLAGS "${BIOT_FLAGS} -fno-omit-frame-pointer")
+set(BIOT_FLAGS "${BIOT_FLAGS} -Wno-implicit-fallthrough")
+set(BIOT_FLAGS "${BIOT_FLAGS} -fstack-protector-all")
+set(BIOT_FLAGS "${BIOT_FLAGS} -Wno-deprecated-declarations")
+set(BIOT_FLAGS "${BIOT_FLAGS} -Wno-class-memaccess")
+set(BIOT_FLAGS "${BIOT_FLAGS} -Wno-maybe-uninitialized")
 
-set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} ${BIOT_FLAGS}")
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${BIOT_FLAGS}")
-
-set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} ${BIOT_FLAGS}")
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${BIOT_FLAGS}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${BIOT_FLAGS}")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${BIOT_FLAGS}")
 
 # 编译宏
 add_definitions(-D__const__=__unused__ -DLANGUAGE_ZH -DWITH_OPENSSL -DWITH_ZLIB -DJM_CIRCULAR_BUFFER_CXX_14)
@@ -80,6 +78,7 @@ set(BINDIR bin)
 set(BIOT_LIBS -lhv_static)
 set(BIOT_LIBS ${BIOT_LIBS} -lhw-iot-dev-access)
 set(BIOT_LIBS ${BIOT_LIBS} -lspdlog)
+set(BIOT_LIBS ${BIOT_LIBS} -lsimdjson)
 set(BIOT_LIBS ${BIOT_LIBS} -lpaho-mqtt3a -lpaho-mqtt3as -lpaho-mqtt3c -lpaho-mqtt3cs)
 set(BIOT_LIBS ${BIOT_LIBS} -loatpp)
 set(BIOT_LIBS ${BIOT_LIBS} -lprotobuf)
@@ -146,7 +145,9 @@ set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config/capa)
 set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config/capa/common)
 set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config/capa/product)
 set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config/param)
-set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config/param/param_pb)
+# set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config/param/param_pb)
+set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config/param/param_def)
+set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config/param/param_def/enums)
 
 # 查找源码
 list_source_directories(BIOT_SRCS ${BIOT_SRCDIRS})
@@ -159,3 +160,8 @@ target_link_libraries(${TARGET} ${BIOT_LIBS})
 
 # 替换__FILE__为相对路径
 redefine_file_macro(${TARGET})
+
+# TODO:打包
+
+# 查看完整的编译选项
+# cmake --build . -- VERBOSE=1

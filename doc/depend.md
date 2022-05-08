@@ -1,6 +1,6 @@
 # 依赖库
 
-- 基础库，[brsdk]()
+- 基础库，[libhv]()
 - json，[simdjson]()
 - iot接入，[huawei-iot]
 - web服务，映射, [oatpp]()
@@ -17,3 +17,4 @@
 - rtsp[rtsp](https://github.com/PHZ76/RtspServer)
 - srt
 - 内存[tcmalloc]()
+- 序列化，[protobuf]，文档生成[protoc-gen-doc](https://github.com/pseudomuto/protoc-gen-doc)，先执行`go env -w GOPROXY=https://goproxy.cn,direct`，否则安装会有异常

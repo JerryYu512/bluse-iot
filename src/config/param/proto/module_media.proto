@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+import "enums/e_media.proto";
+package biot;
+
+message BiotAppMedia {
+}

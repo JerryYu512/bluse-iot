@@ -70,7 +70,7 @@ struct BiotAppBasicParamDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 BiotAppBasicParamDefaultTypeInternal _BiotAppBasicParam_default_instance_;
 }  // namespace biot
 static ::_pb::Metadata file_level_metadata_param_5fbasic_2eproto[3];
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_param_5fbasic_2eproto[1];
+static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_param_5fbasic_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_param_5fbasic_2eproto = nullptr;
 
 const uint32_t TableStruct_param_5fbasic_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -117,23 +117,25 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 
 const char descriptor_table_protodef_param_5fbasic_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\021param_basic.proto\022\004biot\"\227\001\n\021BiotAppAcc"
-  "essUser\022\014\n\004name\030\001 \001(\t\022\016\n\006passwd\030\002 \001(\t\022\017\n"
-  "\007expired\030\003 \001(\004\022\022\n\npermission\030\004 \001(\t\022\021\n\tal"
-  "lowlist\030\005 \001(\010\022\r\n\005email\030\006 \001(\t\022\r\n\005phone\030\007 "
-  "\001(\t\022\016\n\006github\030\010 \001(\t\"=\n\014BiotAppUsers\022-\n\014a"
-  "ccess_users\030\001 \003(\0132\027.biot.BiotAppAccessUs"
-  "er\"Z\n\021BiotAppBasicParam\022#\n\007appmode\030\001 \001(\016"
-  "2\022.biot.EBiotAppMode\022 \n\004user\030\002 \001(\0132\022.bio"
-  "t.BiotAppUsers*N\n\014EBiotAppMode\022\023\n\017APP_DE"
-  "VICE_MODE\020\000\022\024\n\020APP_GATEWAY_MODE\020\001\022\023\n\017APP"
-  "_DEV_GW_MODE\020\002b\006proto3"
+  "\n\021param_basic.proto\022\004biot\032\023enums/e_basic"
+  ".proto\"\227\001\n\021BiotAppAccessUser\022\014\n\004name\030\001 \001"
+  "(\t\022\016\n\006passwd\030\002 \001(\t\022\017\n\007expired\030\003 \001(\004\022\022\n\np"
+  "ermission\030\004 \001(\t\022\021\n\tallowlist\030\005 \001(\010\022\r\n\005em"
+  "ail\030\006 \001(\t\022\r\n\005phone\030\007 \001(\t\022\016\n\006github\030\010 \001(\t"
+  "\"=\n\014BiotAppUsers\022-\n\014access_users\030\001 \003(\0132\027"
+  ".biot.BiotAppAccessUser\"Z\n\021BiotAppBasicP"
+  "aram\022#\n\007appmode\030\001 \001(\0162\022.biot.EBiotAppMod"
+  "e\022 \n\004user\030\002 \001(\0132\022.biot.BiotAppUsersb\006pro"
+  "to3"
   ;
+static const ::_pbi::DescriptorTable* const descriptor_table_param_5fbasic_2eproto_deps[1] = {
+  &::descriptor_table_enums_2fe_5fbasic_2eproto,
+};
 static ::_pbi::once_flag descriptor_table_param_5fbasic_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_param_5fbasic_2eproto = {
-    false, false, 422, descriptor_table_protodef_param_5fbasic_2eproto,
+    false, false, 363, descriptor_table_protodef_param_5fbasic_2eproto,
     "param_basic.proto",
-    &descriptor_table_param_5fbasic_2eproto_once, nullptr, 0, 3,
+    &descriptor_table_param_5fbasic_2eproto_once, descriptor_table_param_5fbasic_2eproto_deps, 1, 3,
     schemas, file_default_instances, TableStruct_param_5fbasic_2eproto::offsets,
     file_level_metadata_param_5fbasic_2eproto, file_level_enum_descriptors_param_5fbasic_2eproto,
     file_level_service_descriptors_param_5fbasic_2eproto,
@@ -145,21 +147,6 @@ PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_param_5f
 // Force running AddDescriptors() at dynamic initialization time.
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_param_5fbasic_2eproto(&descriptor_table_param_5fbasic_2eproto);
 namespace biot {
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* EBiotAppMode_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_param_5fbasic_2eproto);
-  return file_level_enum_descriptors_param_5fbasic_2eproto[0];
-}
-bool EBiotAppMode_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-      return true;
-    default:
-      return false;
-  }
-}
-
 
 // ===================================================================
 

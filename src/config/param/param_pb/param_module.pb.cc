@@ -23,7 +23,13 @@ namespace _pbi = _pb::internal;
 namespace biot {
 PROTOBUF_CONSTEXPR BiotAppModule::BiotAppModule(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.network_)*/nullptr
+    /*decltype(_impl_.hardware_)*/nullptr
+  , /*decltype(_impl_.device_)*/nullptr
+  , /*decltype(_impl_.network_)*/nullptr
+  , /*decltype(_impl_.database_)*/nullptr
+  , /*decltype(_impl_.storage_)*/nullptr
+  , /*decltype(_impl_.media_)*/nullptr
+  , /*decltype(_impl_.subsys_)*/nullptr
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct BiotAppModuleDefaultTypeInternal {
   PROTOBUF_CONSTEXPR BiotAppModuleDefaultTypeInternal()
@@ -46,7 +52,13 @@ const uint32_t TableStruct_param_5fmodule_2eproto::offsets[] PROTOBUF_SECTION_VA
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::biot::BiotAppModule, _impl_.hardware_),
+  PROTOBUF_FIELD_OFFSET(::biot::BiotAppModule, _impl_.device_),
   PROTOBUF_FIELD_OFFSET(::biot::BiotAppModule, _impl_.network_),
+  PROTOBUF_FIELD_OFFSET(::biot::BiotAppModule, _impl_.database_),
+  PROTOBUF_FIELD_OFFSET(::biot::BiotAppModule, _impl_.storage_),
+  PROTOBUF_FIELD_OFFSET(::biot::BiotAppModule, _impl_.media_),
+  PROTOBUF_FIELD_OFFSET(::biot::BiotAppModule, _impl_.subsys_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::biot::BiotAppModule)},
@@ -57,18 +69,33 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 
 const char descriptor_table_protodef_param_5fmodule_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\022param_module.proto\022\004biot\032\016mnetwork.pro"
-  "to\"6\n\rBiotAppModule\022%\n\007network\030\001 \001(\0132\024.b"
-  "iot.BiotAppNetworkb\006proto3"
+  "\n\022param_module.proto\022\004biot\032\024module_netwo"
+  "rk.proto\032\023module_device.proto\032\017module_db"
+  ".proto\032\017module_hw.proto\032\022module_media.pr"
+  "oto\032\024module_storage.proto\032\023module_subsys"
+  ".proto\"\226\002\n\rBiotAppModule\022\'\n\010hardware\030\001 \001"
+  "(\0132\025.biot.BiotAppHardware\022#\n\006device\030\002 \001("
+  "\0132\023.biot.BiotAppDevice\022%\n\007network\030\003 \001(\0132"
+  "\024.biot.BiotAppNetwork\022!\n\010database\030\004 \001(\0132"
+  "\017.biot.BiotAppDb\022%\n\007storage\030\005 \001(\0132\024.biot"
+  ".BiotAppStorage\022!\n\005media\030\006 \001(\0132\022.biot.Bi"
+  "otAppMedia\022#\n\006subsys\030\007 \001(\0132\023.biot.BiotAp"
+  "pSubsysb\006proto3"
   ;
-static const ::_pbi::DescriptorTable* const descriptor_table_param_5fmodule_2eproto_deps[1] = {
-  &::descriptor_table_mnetwork_2eproto,
+static const ::_pbi::DescriptorTable* const descriptor_table_param_5fmodule_2eproto_deps[7] = {
+  &::descriptor_table_module_5fdb_2eproto,
+  &::descriptor_table_module_5fdevice_2eproto,
+  &::descriptor_table_module_5fhw_2eproto,
+  &::descriptor_table_module_5fmedia_2eproto,
+  &::descriptor_table_module_5fnetwork_2eproto,
+  &::descriptor_table_module_5fstorage_2eproto,
+  &::descriptor_table_module_5fsubsys_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_param_5fmodule_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_param_5fmodule_2eproto = {
-    false, false, 106, descriptor_table_protodef_param_5fmodule_2eproto,
+    false, false, 455, descriptor_table_protodef_param_5fmodule_2eproto,
     "param_module.proto",
-    &descriptor_table_param_5fmodule_2eproto_once, descriptor_table_param_5fmodule_2eproto_deps, 1, 1,
+    &descriptor_table_param_5fmodule_2eproto_once, descriptor_table_param_5fmodule_2eproto_deps, 7, 1,
     schemas, file_default_instances, TableStruct_param_5fmodule_2eproto::offsets,
     file_level_metadata_param_5fmodule_2eproto, file_level_enum_descriptors_param_5fmodule_2eproto,
     file_level_service_descriptors_param_5fmodule_2eproto,
@@ -85,18 +112,84 @@ namespace biot {
 
 class BiotAppModule::_Internal {
  public:
+  static const ::biot::BiotAppHardware& hardware(const BiotAppModule* msg);
+  static const ::biot::BiotAppDevice& device(const BiotAppModule* msg);
   static const ::biot::BiotAppNetwork& network(const BiotAppModule* msg);
+  static const ::biot::BiotAppDb& database(const BiotAppModule* msg);
+  static const ::biot::BiotAppStorage& storage(const BiotAppModule* msg);
+  static const ::biot::BiotAppMedia& media(const BiotAppModule* msg);
+  static const ::biot::BiotAppSubsys& subsys(const BiotAppModule* msg);
 };
 
+const ::biot::BiotAppHardware&
+BiotAppModule::_Internal::hardware(const BiotAppModule* msg) {
+  return *msg->_impl_.hardware_;
+}
+const ::biot::BiotAppDevice&
+BiotAppModule::_Internal::device(const BiotAppModule* msg) {
+  return *msg->_impl_.device_;
+}
 const ::biot::BiotAppNetwork&
 BiotAppModule::_Internal::network(const BiotAppModule* msg) {
   return *msg->_impl_.network_;
+}
+const ::biot::BiotAppDb&
+BiotAppModule::_Internal::database(const BiotAppModule* msg) {
+  return *msg->_impl_.database_;
+}
+const ::biot::BiotAppStorage&
+BiotAppModule::_Internal::storage(const BiotAppModule* msg) {
+  return *msg->_impl_.storage_;
+}
+const ::biot::BiotAppMedia&
+BiotAppModule::_Internal::media(const BiotAppModule* msg) {
+  return *msg->_impl_.media_;
+}
+const ::biot::BiotAppSubsys&
+BiotAppModule::_Internal::subsys(const BiotAppModule* msg) {
+  return *msg->_impl_.subsys_;
+}
+void BiotAppModule::clear_hardware() {
+  if (GetArenaForAllocation() == nullptr && _impl_.hardware_ != nullptr) {
+    delete _impl_.hardware_;
+  }
+  _impl_.hardware_ = nullptr;
+}
+void BiotAppModule::clear_device() {
+  if (GetArenaForAllocation() == nullptr && _impl_.device_ != nullptr) {
+    delete _impl_.device_;
+  }
+  _impl_.device_ = nullptr;
 }
 void BiotAppModule::clear_network() {
   if (GetArenaForAllocation() == nullptr && _impl_.network_ != nullptr) {
     delete _impl_.network_;
   }
   _impl_.network_ = nullptr;
+}
+void BiotAppModule::clear_database() {
+  if (GetArenaForAllocation() == nullptr && _impl_.database_ != nullptr) {
+    delete _impl_.database_;
+  }
+  _impl_.database_ = nullptr;
+}
+void BiotAppModule::clear_storage() {
+  if (GetArenaForAllocation() == nullptr && _impl_.storage_ != nullptr) {
+    delete _impl_.storage_;
+  }
+  _impl_.storage_ = nullptr;
+}
+void BiotAppModule::clear_media() {
+  if (GetArenaForAllocation() == nullptr && _impl_.media_ != nullptr) {
+    delete _impl_.media_;
+  }
+  _impl_.media_ = nullptr;
+}
+void BiotAppModule::clear_subsys() {
+  if (GetArenaForAllocation() == nullptr && _impl_.subsys_ != nullptr) {
+    delete _impl_.subsys_;
+  }
+  _impl_.subsys_ = nullptr;
 }
 BiotAppModule::BiotAppModule(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
@@ -107,12 +200,36 @@ BiotAppModule::BiotAppModule(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 BiotAppModule::BiotAppModule(const BiotAppModule& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   new (&_impl_) Impl_{
-      decltype(_impl_.network_){nullptr}
+      decltype(_impl_.hardware_){nullptr}
+    , decltype(_impl_.device_){nullptr}
+    , decltype(_impl_.network_){nullptr}
+    , decltype(_impl_.database_){nullptr}
+    , decltype(_impl_.storage_){nullptr}
+    , decltype(_impl_.media_){nullptr}
+    , decltype(_impl_.subsys_){nullptr}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_hardware()) {
+    _impl_.hardware_ = new ::biot::BiotAppHardware(*from._impl_.hardware_);
+  }
+  if (from._internal_has_device()) {
+    _impl_.device_ = new ::biot::BiotAppDevice(*from._impl_.device_);
+  }
   if (from._internal_has_network()) {
     _impl_.network_ = new ::biot::BiotAppNetwork(*from._impl_.network_);
+  }
+  if (from._internal_has_database()) {
+    _impl_.database_ = new ::biot::BiotAppDb(*from._impl_.database_);
+  }
+  if (from._internal_has_storage()) {
+    _impl_.storage_ = new ::biot::BiotAppStorage(*from._impl_.storage_);
+  }
+  if (from._internal_has_media()) {
+    _impl_.media_ = new ::biot::BiotAppMedia(*from._impl_.media_);
+  }
+  if (from._internal_has_subsys()) {
+    _impl_.subsys_ = new ::biot::BiotAppSubsys(*from._impl_.subsys_);
   }
   // @@protoc_insertion_point(copy_constructor:biot.BiotAppModule)
 }
@@ -122,7 +239,13 @@ inline void BiotAppModule::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.network_){nullptr}
+      decltype(_impl_.hardware_){nullptr}
+    , decltype(_impl_.device_){nullptr}
+    , decltype(_impl_.network_){nullptr}
+    , decltype(_impl_.database_){nullptr}
+    , decltype(_impl_.storage_){nullptr}
+    , decltype(_impl_.media_){nullptr}
+    , decltype(_impl_.subsys_){nullptr}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -138,7 +261,13 @@ BiotAppModule::~BiotAppModule() {
 
 inline void BiotAppModule::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete _impl_.hardware_;
+  if (this != internal_default_instance()) delete _impl_.device_;
   if (this != internal_default_instance()) delete _impl_.network_;
+  if (this != internal_default_instance()) delete _impl_.database_;
+  if (this != internal_default_instance()) delete _impl_.storage_;
+  if (this != internal_default_instance()) delete _impl_.media_;
+  if (this != internal_default_instance()) delete _impl_.subsys_;
 }
 
 void BiotAppModule::SetCachedSize(int size) const {
@@ -151,10 +280,34 @@ void BiotAppModule::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  if (GetArenaForAllocation() == nullptr && _impl_.hardware_ != nullptr) {
+    delete _impl_.hardware_;
+  }
+  _impl_.hardware_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.device_ != nullptr) {
+    delete _impl_.device_;
+  }
+  _impl_.device_ = nullptr;
   if (GetArenaForAllocation() == nullptr && _impl_.network_ != nullptr) {
     delete _impl_.network_;
   }
   _impl_.network_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.database_ != nullptr) {
+    delete _impl_.database_;
+  }
+  _impl_.database_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.storage_ != nullptr) {
+    delete _impl_.storage_;
+  }
+  _impl_.storage_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.media_ != nullptr) {
+    delete _impl_.media_;
+  }
+  _impl_.media_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.subsys_ != nullptr) {
+    delete _impl_.subsys_;
+  }
+  _impl_.subsys_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -164,10 +317,58 @@ const char* BiotAppModule::_InternalParse(const char* ptr, ::_pbi::ParseContext*
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .biot.BiotAppNetwork network = 1;
+      // .biot.BiotAppHardware hardware = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_hardware(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .biot.BiotAppDevice device = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_device(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .biot.BiotAppNetwork network = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
           ptr = ctx->ParseMessage(_internal_mutable_network(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .biot.BiotAppDb database = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          ptr = ctx->ParseMessage(_internal_mutable_database(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .biot.BiotAppStorage storage = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          ptr = ctx->ParseMessage(_internal_mutable_storage(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .biot.BiotAppMedia media = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          ptr = ctx->ParseMessage(_internal_mutable_media(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .biot.BiotAppSubsys subsys = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
+          ptr = ctx->ParseMessage(_internal_mutable_subsys(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -201,11 +402,53 @@ uint8_t* BiotAppModule::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .biot.BiotAppNetwork network = 1;
+  // .biot.BiotAppHardware hardware = 1;
+  if (this->_internal_has_hardware()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::hardware(this),
+        _Internal::hardware(this).GetCachedSize(), target, stream);
+  }
+
+  // .biot.BiotAppDevice device = 2;
+  if (this->_internal_has_device()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, _Internal::device(this),
+        _Internal::device(this).GetCachedSize(), target, stream);
+  }
+
+  // .biot.BiotAppNetwork network = 3;
   if (this->_internal_has_network()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, _Internal::network(this),
+      InternalWriteMessage(3, _Internal::network(this),
         _Internal::network(this).GetCachedSize(), target, stream);
+  }
+
+  // .biot.BiotAppDb database = 4;
+  if (this->_internal_has_database()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(4, _Internal::database(this),
+        _Internal::database(this).GetCachedSize(), target, stream);
+  }
+
+  // .biot.BiotAppStorage storage = 5;
+  if (this->_internal_has_storage()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(5, _Internal::storage(this),
+        _Internal::storage(this).GetCachedSize(), target, stream);
+  }
+
+  // .biot.BiotAppMedia media = 6;
+  if (this->_internal_has_media()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(6, _Internal::media(this),
+        _Internal::media(this).GetCachedSize(), target, stream);
+  }
+
+  // .biot.BiotAppSubsys subsys = 7;
+  if (this->_internal_has_subsys()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(7, _Internal::subsys(this),
+        _Internal::subsys(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -224,11 +467,53 @@ size_t BiotAppModule::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .biot.BiotAppNetwork network = 1;
+  // .biot.BiotAppHardware hardware = 1;
+  if (this->_internal_has_hardware()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.hardware_);
+  }
+
+  // .biot.BiotAppDevice device = 2;
+  if (this->_internal_has_device()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.device_);
+  }
+
+  // .biot.BiotAppNetwork network = 3;
   if (this->_internal_has_network()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *_impl_.network_);
+  }
+
+  // .biot.BiotAppDb database = 4;
+  if (this->_internal_has_database()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.database_);
+  }
+
+  // .biot.BiotAppStorage storage = 5;
+  if (this->_internal_has_storage()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.storage_);
+  }
+
+  // .biot.BiotAppMedia media = 6;
+  if (this->_internal_has_media()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.media_);
+  }
+
+  // .biot.BiotAppSubsys subsys = 7;
+  if (this->_internal_has_subsys()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.subsys_);
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -253,8 +538,26 @@ void BiotAppModule::MergeFrom(const BiotAppModule& from) {
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from._internal_has_hardware()) {
+    _internal_mutable_hardware()->::biot::BiotAppHardware::MergeFrom(from._internal_hardware());
+  }
+  if (from._internal_has_device()) {
+    _internal_mutable_device()->::biot::BiotAppDevice::MergeFrom(from._internal_device());
+  }
   if (from._internal_has_network()) {
     _internal_mutable_network()->::biot::BiotAppNetwork::MergeFrom(from._internal_network());
+  }
+  if (from._internal_has_database()) {
+    _internal_mutable_database()->::biot::BiotAppDb::MergeFrom(from._internal_database());
+  }
+  if (from._internal_has_storage()) {
+    _internal_mutable_storage()->::biot::BiotAppStorage::MergeFrom(from._internal_storage());
+  }
+  if (from._internal_has_media()) {
+    _internal_mutable_media()->::biot::BiotAppMedia::MergeFrom(from._internal_media());
+  }
+  if (from._internal_has_subsys()) {
+    _internal_mutable_subsys()->::biot::BiotAppSubsys::MergeFrom(from._internal_subsys());
   }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -273,7 +576,12 @@ bool BiotAppModule::IsInitialized() const {
 void BiotAppModule::InternalSwap(BiotAppModule* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_.network_, other->_impl_.network_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(BiotAppModule, _impl_.subsys_)
+      + sizeof(BiotAppModule::_impl_.subsys_)
+      - PROTOBUF_FIELD_OFFSET(BiotAppModule, _impl_.hardware_)>(
+          reinterpret_cast<char*>(&_impl_.hardware_),
+          reinterpret_cast<char*>(&other->_impl_.hardware_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata BiotAppModule::GetMetadata() const {

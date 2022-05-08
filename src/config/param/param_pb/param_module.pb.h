@@ -30,7 +30,13 @@
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/unknown_field_set.h>
-#include "mnetwork.pb.h"
+#include "module_network.pb.h"
+#include "module_device.pb.h"
+#include "module_db.pb.h"
+#include "module_hw.pb.h"
+#include "module_media.pb.h"
+#include "module_storage.pb.h"
+#include "module_subsys.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_param_5fmodule_2eproto
@@ -176,9 +182,51 @@ class BiotAppModule final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kNetworkFieldNumber = 1,
+    kHardwareFieldNumber = 1,
+    kDeviceFieldNumber = 2,
+    kNetworkFieldNumber = 3,
+    kDatabaseFieldNumber = 4,
+    kStorageFieldNumber = 5,
+    kMediaFieldNumber = 6,
+    kSubsysFieldNumber = 7,
   };
-  // .biot.BiotAppNetwork network = 1;
+  // .biot.BiotAppHardware hardware = 1;
+  bool has_hardware() const;
+  private:
+  bool _internal_has_hardware() const;
+  public:
+  void clear_hardware();
+  const ::biot::BiotAppHardware& hardware() const;
+  PROTOBUF_NODISCARD ::biot::BiotAppHardware* release_hardware();
+  ::biot::BiotAppHardware* mutable_hardware();
+  void set_allocated_hardware(::biot::BiotAppHardware* hardware);
+  private:
+  const ::biot::BiotAppHardware& _internal_hardware() const;
+  ::biot::BiotAppHardware* _internal_mutable_hardware();
+  public:
+  void unsafe_arena_set_allocated_hardware(
+      ::biot::BiotAppHardware* hardware);
+  ::biot::BiotAppHardware* unsafe_arena_release_hardware();
+
+  // .biot.BiotAppDevice device = 2;
+  bool has_device() const;
+  private:
+  bool _internal_has_device() const;
+  public:
+  void clear_device();
+  const ::biot::BiotAppDevice& device() const;
+  PROTOBUF_NODISCARD ::biot::BiotAppDevice* release_device();
+  ::biot::BiotAppDevice* mutable_device();
+  void set_allocated_device(::biot::BiotAppDevice* device);
+  private:
+  const ::biot::BiotAppDevice& _internal_device() const;
+  ::biot::BiotAppDevice* _internal_mutable_device();
+  public:
+  void unsafe_arena_set_allocated_device(
+      ::biot::BiotAppDevice* device);
+  ::biot::BiotAppDevice* unsafe_arena_release_device();
+
+  // .biot.BiotAppNetwork network = 3;
   bool has_network() const;
   private:
   bool _internal_has_network() const;
@@ -196,6 +244,78 @@ class BiotAppModule final :
       ::biot::BiotAppNetwork* network);
   ::biot::BiotAppNetwork* unsafe_arena_release_network();
 
+  // .biot.BiotAppDb database = 4;
+  bool has_database() const;
+  private:
+  bool _internal_has_database() const;
+  public:
+  void clear_database();
+  const ::biot::BiotAppDb& database() const;
+  PROTOBUF_NODISCARD ::biot::BiotAppDb* release_database();
+  ::biot::BiotAppDb* mutable_database();
+  void set_allocated_database(::biot::BiotAppDb* database);
+  private:
+  const ::biot::BiotAppDb& _internal_database() const;
+  ::biot::BiotAppDb* _internal_mutable_database();
+  public:
+  void unsafe_arena_set_allocated_database(
+      ::biot::BiotAppDb* database);
+  ::biot::BiotAppDb* unsafe_arena_release_database();
+
+  // .biot.BiotAppStorage storage = 5;
+  bool has_storage() const;
+  private:
+  bool _internal_has_storage() const;
+  public:
+  void clear_storage();
+  const ::biot::BiotAppStorage& storage() const;
+  PROTOBUF_NODISCARD ::biot::BiotAppStorage* release_storage();
+  ::biot::BiotAppStorage* mutable_storage();
+  void set_allocated_storage(::biot::BiotAppStorage* storage);
+  private:
+  const ::biot::BiotAppStorage& _internal_storage() const;
+  ::biot::BiotAppStorage* _internal_mutable_storage();
+  public:
+  void unsafe_arena_set_allocated_storage(
+      ::biot::BiotAppStorage* storage);
+  ::biot::BiotAppStorage* unsafe_arena_release_storage();
+
+  // .biot.BiotAppMedia media = 6;
+  bool has_media() const;
+  private:
+  bool _internal_has_media() const;
+  public:
+  void clear_media();
+  const ::biot::BiotAppMedia& media() const;
+  PROTOBUF_NODISCARD ::biot::BiotAppMedia* release_media();
+  ::biot::BiotAppMedia* mutable_media();
+  void set_allocated_media(::biot::BiotAppMedia* media);
+  private:
+  const ::biot::BiotAppMedia& _internal_media() const;
+  ::biot::BiotAppMedia* _internal_mutable_media();
+  public:
+  void unsafe_arena_set_allocated_media(
+      ::biot::BiotAppMedia* media);
+  ::biot::BiotAppMedia* unsafe_arena_release_media();
+
+  // .biot.BiotAppSubsys subsys = 7;
+  bool has_subsys() const;
+  private:
+  bool _internal_has_subsys() const;
+  public:
+  void clear_subsys();
+  const ::biot::BiotAppSubsys& subsys() const;
+  PROTOBUF_NODISCARD ::biot::BiotAppSubsys* release_subsys();
+  ::biot::BiotAppSubsys* mutable_subsys();
+  void set_allocated_subsys(::biot::BiotAppSubsys* subsys);
+  private:
+  const ::biot::BiotAppSubsys& _internal_subsys() const;
+  ::biot::BiotAppSubsys* _internal_mutable_subsys();
+  public:
+  void unsafe_arena_set_allocated_subsys(
+      ::biot::BiotAppSubsys* subsys);
+  ::biot::BiotAppSubsys* unsafe_arena_release_subsys();
+
   // @@protoc_insertion_point(class_scope:biot.BiotAppModule)
  private:
   class _Internal;
@@ -204,7 +324,13 @@ class BiotAppModule final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+    ::biot::BiotAppHardware* hardware_;
+    ::biot::BiotAppDevice* device_;
     ::biot::BiotAppNetwork* network_;
+    ::biot::BiotAppDb* database_;
+    ::biot::BiotAppStorage* storage_;
+    ::biot::BiotAppMedia* media_;
+    ::biot::BiotAppSubsys* subsys_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -221,7 +347,177 @@ class BiotAppModule final :
 #endif  // __GNUC__
 // BiotAppModule
 
-// .biot.BiotAppNetwork network = 1;
+// .biot.BiotAppHardware hardware = 1;
+inline bool BiotAppModule::_internal_has_hardware() const {
+  return this != internal_default_instance() && _impl_.hardware_ != nullptr;
+}
+inline bool BiotAppModule::has_hardware() const {
+  return _internal_has_hardware();
+}
+inline const ::biot::BiotAppHardware& BiotAppModule::_internal_hardware() const {
+  const ::biot::BiotAppHardware* p = _impl_.hardware_;
+  return p != nullptr ? *p : reinterpret_cast<const ::biot::BiotAppHardware&>(
+      ::biot::_BiotAppHardware_default_instance_);
+}
+inline const ::biot::BiotAppHardware& BiotAppModule::hardware() const {
+  // @@protoc_insertion_point(field_get:biot.BiotAppModule.hardware)
+  return _internal_hardware();
+}
+inline void BiotAppModule::unsafe_arena_set_allocated_hardware(
+    ::biot::BiotAppHardware* hardware) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.hardware_);
+  }
+  _impl_.hardware_ = hardware;
+  if (hardware) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:biot.BiotAppModule.hardware)
+}
+inline ::biot::BiotAppHardware* BiotAppModule::release_hardware() {
+  
+  ::biot::BiotAppHardware* temp = _impl_.hardware_;
+  _impl_.hardware_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::biot::BiotAppHardware* BiotAppModule::unsafe_arena_release_hardware() {
+  // @@protoc_insertion_point(field_release:biot.BiotAppModule.hardware)
+  
+  ::biot::BiotAppHardware* temp = _impl_.hardware_;
+  _impl_.hardware_ = nullptr;
+  return temp;
+}
+inline ::biot::BiotAppHardware* BiotAppModule::_internal_mutable_hardware() {
+  
+  if (_impl_.hardware_ == nullptr) {
+    auto* p = CreateMaybeMessage<::biot::BiotAppHardware>(GetArenaForAllocation());
+    _impl_.hardware_ = p;
+  }
+  return _impl_.hardware_;
+}
+inline ::biot::BiotAppHardware* BiotAppModule::mutable_hardware() {
+  ::biot::BiotAppHardware* _msg = _internal_mutable_hardware();
+  // @@protoc_insertion_point(field_mutable:biot.BiotAppModule.hardware)
+  return _msg;
+}
+inline void BiotAppModule::set_allocated_hardware(::biot::BiotAppHardware* hardware) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.hardware_);
+  }
+  if (hardware) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(hardware));
+    if (message_arena != submessage_arena) {
+      hardware = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, hardware, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.hardware_ = hardware;
+  // @@protoc_insertion_point(field_set_allocated:biot.BiotAppModule.hardware)
+}
+
+// .biot.BiotAppDevice device = 2;
+inline bool BiotAppModule::_internal_has_device() const {
+  return this != internal_default_instance() && _impl_.device_ != nullptr;
+}
+inline bool BiotAppModule::has_device() const {
+  return _internal_has_device();
+}
+inline const ::biot::BiotAppDevice& BiotAppModule::_internal_device() const {
+  const ::biot::BiotAppDevice* p = _impl_.device_;
+  return p != nullptr ? *p : reinterpret_cast<const ::biot::BiotAppDevice&>(
+      ::biot::_BiotAppDevice_default_instance_);
+}
+inline const ::biot::BiotAppDevice& BiotAppModule::device() const {
+  // @@protoc_insertion_point(field_get:biot.BiotAppModule.device)
+  return _internal_device();
+}
+inline void BiotAppModule::unsafe_arena_set_allocated_device(
+    ::biot::BiotAppDevice* device) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.device_);
+  }
+  _impl_.device_ = device;
+  if (device) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:biot.BiotAppModule.device)
+}
+inline ::biot::BiotAppDevice* BiotAppModule::release_device() {
+  
+  ::biot::BiotAppDevice* temp = _impl_.device_;
+  _impl_.device_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::biot::BiotAppDevice* BiotAppModule::unsafe_arena_release_device() {
+  // @@protoc_insertion_point(field_release:biot.BiotAppModule.device)
+  
+  ::biot::BiotAppDevice* temp = _impl_.device_;
+  _impl_.device_ = nullptr;
+  return temp;
+}
+inline ::biot::BiotAppDevice* BiotAppModule::_internal_mutable_device() {
+  
+  if (_impl_.device_ == nullptr) {
+    auto* p = CreateMaybeMessage<::biot::BiotAppDevice>(GetArenaForAllocation());
+    _impl_.device_ = p;
+  }
+  return _impl_.device_;
+}
+inline ::biot::BiotAppDevice* BiotAppModule::mutable_device() {
+  ::biot::BiotAppDevice* _msg = _internal_mutable_device();
+  // @@protoc_insertion_point(field_mutable:biot.BiotAppModule.device)
+  return _msg;
+}
+inline void BiotAppModule::set_allocated_device(::biot::BiotAppDevice* device) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.device_);
+  }
+  if (device) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(device));
+    if (message_arena != submessage_arena) {
+      device = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, device, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.device_ = device;
+  // @@protoc_insertion_point(field_set_allocated:biot.BiotAppModule.device)
+}
+
+// .biot.BiotAppNetwork network = 3;
 inline bool BiotAppModule::_internal_has_network() const {
   return this != internal_default_instance() && _impl_.network_ != nullptr;
 }
@@ -304,6 +600,346 @@ inline void BiotAppModule::set_allocated_network(::biot::BiotAppNetwork* network
   }
   _impl_.network_ = network;
   // @@protoc_insertion_point(field_set_allocated:biot.BiotAppModule.network)
+}
+
+// .biot.BiotAppDb database = 4;
+inline bool BiotAppModule::_internal_has_database() const {
+  return this != internal_default_instance() && _impl_.database_ != nullptr;
+}
+inline bool BiotAppModule::has_database() const {
+  return _internal_has_database();
+}
+inline const ::biot::BiotAppDb& BiotAppModule::_internal_database() const {
+  const ::biot::BiotAppDb* p = _impl_.database_;
+  return p != nullptr ? *p : reinterpret_cast<const ::biot::BiotAppDb&>(
+      ::biot::_BiotAppDb_default_instance_);
+}
+inline const ::biot::BiotAppDb& BiotAppModule::database() const {
+  // @@protoc_insertion_point(field_get:biot.BiotAppModule.database)
+  return _internal_database();
+}
+inline void BiotAppModule::unsafe_arena_set_allocated_database(
+    ::biot::BiotAppDb* database) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.database_);
+  }
+  _impl_.database_ = database;
+  if (database) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:biot.BiotAppModule.database)
+}
+inline ::biot::BiotAppDb* BiotAppModule::release_database() {
+  
+  ::biot::BiotAppDb* temp = _impl_.database_;
+  _impl_.database_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::biot::BiotAppDb* BiotAppModule::unsafe_arena_release_database() {
+  // @@protoc_insertion_point(field_release:biot.BiotAppModule.database)
+  
+  ::biot::BiotAppDb* temp = _impl_.database_;
+  _impl_.database_ = nullptr;
+  return temp;
+}
+inline ::biot::BiotAppDb* BiotAppModule::_internal_mutable_database() {
+  
+  if (_impl_.database_ == nullptr) {
+    auto* p = CreateMaybeMessage<::biot::BiotAppDb>(GetArenaForAllocation());
+    _impl_.database_ = p;
+  }
+  return _impl_.database_;
+}
+inline ::biot::BiotAppDb* BiotAppModule::mutable_database() {
+  ::biot::BiotAppDb* _msg = _internal_mutable_database();
+  // @@protoc_insertion_point(field_mutable:biot.BiotAppModule.database)
+  return _msg;
+}
+inline void BiotAppModule::set_allocated_database(::biot::BiotAppDb* database) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.database_);
+  }
+  if (database) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(database));
+    if (message_arena != submessage_arena) {
+      database = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, database, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.database_ = database;
+  // @@protoc_insertion_point(field_set_allocated:biot.BiotAppModule.database)
+}
+
+// .biot.BiotAppStorage storage = 5;
+inline bool BiotAppModule::_internal_has_storage() const {
+  return this != internal_default_instance() && _impl_.storage_ != nullptr;
+}
+inline bool BiotAppModule::has_storage() const {
+  return _internal_has_storage();
+}
+inline const ::biot::BiotAppStorage& BiotAppModule::_internal_storage() const {
+  const ::biot::BiotAppStorage* p = _impl_.storage_;
+  return p != nullptr ? *p : reinterpret_cast<const ::biot::BiotAppStorage&>(
+      ::biot::_BiotAppStorage_default_instance_);
+}
+inline const ::biot::BiotAppStorage& BiotAppModule::storage() const {
+  // @@protoc_insertion_point(field_get:biot.BiotAppModule.storage)
+  return _internal_storage();
+}
+inline void BiotAppModule::unsafe_arena_set_allocated_storage(
+    ::biot::BiotAppStorage* storage) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.storage_);
+  }
+  _impl_.storage_ = storage;
+  if (storage) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:biot.BiotAppModule.storage)
+}
+inline ::biot::BiotAppStorage* BiotAppModule::release_storage() {
+  
+  ::biot::BiotAppStorage* temp = _impl_.storage_;
+  _impl_.storage_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::biot::BiotAppStorage* BiotAppModule::unsafe_arena_release_storage() {
+  // @@protoc_insertion_point(field_release:biot.BiotAppModule.storage)
+  
+  ::biot::BiotAppStorage* temp = _impl_.storage_;
+  _impl_.storage_ = nullptr;
+  return temp;
+}
+inline ::biot::BiotAppStorage* BiotAppModule::_internal_mutable_storage() {
+  
+  if (_impl_.storage_ == nullptr) {
+    auto* p = CreateMaybeMessage<::biot::BiotAppStorage>(GetArenaForAllocation());
+    _impl_.storage_ = p;
+  }
+  return _impl_.storage_;
+}
+inline ::biot::BiotAppStorage* BiotAppModule::mutable_storage() {
+  ::biot::BiotAppStorage* _msg = _internal_mutable_storage();
+  // @@protoc_insertion_point(field_mutable:biot.BiotAppModule.storage)
+  return _msg;
+}
+inline void BiotAppModule::set_allocated_storage(::biot::BiotAppStorage* storage) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.storage_);
+  }
+  if (storage) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(storage));
+    if (message_arena != submessage_arena) {
+      storage = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, storage, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.storage_ = storage;
+  // @@protoc_insertion_point(field_set_allocated:biot.BiotAppModule.storage)
+}
+
+// .biot.BiotAppMedia media = 6;
+inline bool BiotAppModule::_internal_has_media() const {
+  return this != internal_default_instance() && _impl_.media_ != nullptr;
+}
+inline bool BiotAppModule::has_media() const {
+  return _internal_has_media();
+}
+inline const ::biot::BiotAppMedia& BiotAppModule::_internal_media() const {
+  const ::biot::BiotAppMedia* p = _impl_.media_;
+  return p != nullptr ? *p : reinterpret_cast<const ::biot::BiotAppMedia&>(
+      ::biot::_BiotAppMedia_default_instance_);
+}
+inline const ::biot::BiotAppMedia& BiotAppModule::media() const {
+  // @@protoc_insertion_point(field_get:biot.BiotAppModule.media)
+  return _internal_media();
+}
+inline void BiotAppModule::unsafe_arena_set_allocated_media(
+    ::biot::BiotAppMedia* media) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.media_);
+  }
+  _impl_.media_ = media;
+  if (media) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:biot.BiotAppModule.media)
+}
+inline ::biot::BiotAppMedia* BiotAppModule::release_media() {
+  
+  ::biot::BiotAppMedia* temp = _impl_.media_;
+  _impl_.media_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::biot::BiotAppMedia* BiotAppModule::unsafe_arena_release_media() {
+  // @@protoc_insertion_point(field_release:biot.BiotAppModule.media)
+  
+  ::biot::BiotAppMedia* temp = _impl_.media_;
+  _impl_.media_ = nullptr;
+  return temp;
+}
+inline ::biot::BiotAppMedia* BiotAppModule::_internal_mutable_media() {
+  
+  if (_impl_.media_ == nullptr) {
+    auto* p = CreateMaybeMessage<::biot::BiotAppMedia>(GetArenaForAllocation());
+    _impl_.media_ = p;
+  }
+  return _impl_.media_;
+}
+inline ::biot::BiotAppMedia* BiotAppModule::mutable_media() {
+  ::biot::BiotAppMedia* _msg = _internal_mutable_media();
+  // @@protoc_insertion_point(field_mutable:biot.BiotAppModule.media)
+  return _msg;
+}
+inline void BiotAppModule::set_allocated_media(::biot::BiotAppMedia* media) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.media_);
+  }
+  if (media) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(media));
+    if (message_arena != submessage_arena) {
+      media = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, media, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.media_ = media;
+  // @@protoc_insertion_point(field_set_allocated:biot.BiotAppModule.media)
+}
+
+// .biot.BiotAppSubsys subsys = 7;
+inline bool BiotAppModule::_internal_has_subsys() const {
+  return this != internal_default_instance() && _impl_.subsys_ != nullptr;
+}
+inline bool BiotAppModule::has_subsys() const {
+  return _internal_has_subsys();
+}
+inline const ::biot::BiotAppSubsys& BiotAppModule::_internal_subsys() const {
+  const ::biot::BiotAppSubsys* p = _impl_.subsys_;
+  return p != nullptr ? *p : reinterpret_cast<const ::biot::BiotAppSubsys&>(
+      ::biot::_BiotAppSubsys_default_instance_);
+}
+inline const ::biot::BiotAppSubsys& BiotAppModule::subsys() const {
+  // @@protoc_insertion_point(field_get:biot.BiotAppModule.subsys)
+  return _internal_subsys();
+}
+inline void BiotAppModule::unsafe_arena_set_allocated_subsys(
+    ::biot::BiotAppSubsys* subsys) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.subsys_);
+  }
+  _impl_.subsys_ = subsys;
+  if (subsys) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:biot.BiotAppModule.subsys)
+}
+inline ::biot::BiotAppSubsys* BiotAppModule::release_subsys() {
+  
+  ::biot::BiotAppSubsys* temp = _impl_.subsys_;
+  _impl_.subsys_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::biot::BiotAppSubsys* BiotAppModule::unsafe_arena_release_subsys() {
+  // @@protoc_insertion_point(field_release:biot.BiotAppModule.subsys)
+  
+  ::biot::BiotAppSubsys* temp = _impl_.subsys_;
+  _impl_.subsys_ = nullptr;
+  return temp;
+}
+inline ::biot::BiotAppSubsys* BiotAppModule::_internal_mutable_subsys() {
+  
+  if (_impl_.subsys_ == nullptr) {
+    auto* p = CreateMaybeMessage<::biot::BiotAppSubsys>(GetArenaForAllocation());
+    _impl_.subsys_ = p;
+  }
+  return _impl_.subsys_;
+}
+inline ::biot::BiotAppSubsys* BiotAppModule::mutable_subsys() {
+  ::biot::BiotAppSubsys* _msg = _internal_mutable_subsys();
+  // @@protoc_insertion_point(field_mutable:biot.BiotAppModule.subsys)
+  return _msg;
+}
+inline void BiotAppModule::set_allocated_subsys(::biot::BiotAppSubsys* subsys) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.subsys_);
+  }
+  if (subsys) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(subsys));
+    if (message_arena != submessage_arena) {
+      subsys = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, subsys, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.subsys_ = subsys;
+  // @@protoc_insertion_point(field_set_allocated:biot.BiotAppModule.subsys)
 }
 
 #ifdef __GNUC__

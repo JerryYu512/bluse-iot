@@ -2,5 +2,6 @@ syntax = "proto3";
 
 package biot;
 
+/// 产品配置参数，每个产品定义自身的
 message BiotAppProduct {
 }

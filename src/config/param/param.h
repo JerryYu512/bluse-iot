@@ -27,7 +27,7 @@
  * 
  */
 #pragma once
-#include "param_def.h"
+#include "param_def/param.pm.h"
 
 namespace biot {
 

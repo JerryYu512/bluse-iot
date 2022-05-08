@@ -2,5 +2,6 @@ syntax = "proto3";
 
 package biot;
 
+/// 系统配置参数，基本的系统运行参数
 message BiotAppSystem {
 }

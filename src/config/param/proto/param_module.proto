@@ -1,9 +1,22 @@
 syntax = "proto3";
 
-import "mnetwork.proto";
+import "module_network.proto";
+import "module_device.proto";
+import "module_db.proto";
+import "module_hw.proto";
+import "module_media.proto";
+import "module_storage.proto";
+import "module_subsys.proto";
 
 package biot;
 
+/// 模块配置
 message BiotAppModule {
-	BiotAppNetwork network = 1;
+	BiotAppHardware hardware = 1;	/// 硬件配置
+	BiotAppDevice device = 2;		/// 设备配置
+	BiotAppNetwork network = 3;		/// 网络配置
+	BiotAppDb database = 4;			/// 数据库配置
+	BiotAppStorage storage = 5;		/// 存储配置
+	BiotAppMedia media = 6;			/// 媒体配置
+	BiotAppSubsys subsys = 7;		/// 子系统配置
 }
