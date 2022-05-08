@@ -88,6 +88,8 @@ message(STATUS "use libs: ${BIOT_LIBS}")
 
 # 头文件目录
 set(INCDIRS . include src include/oatpp-1.3.0/oatpp)
+set(INCDIRS ${INCDIRS} src/module/network/netapp)
+# set(INCDIRS ${INCDIRS} src/module/network/netapp/web)
 # 链接目录
 set(LIBDIRS . lib lib/oatpp-1.3.0)
 include_directories(${INCDIRS} ${SRCDIR})
@@ -148,6 +150,11 @@ set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config/param)
 # set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config/param/param_pb)
 set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config/param/param_def)
 set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config/param/param_def/enums)
+
+set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/module/network/netapp/web)
+set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/module/network/netapp/web/compoent)
+set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/module/network/netapp/web/contoller)
+set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/module/network/netapp/web/dto)
 
 # 查找源码
 list_source_directories(BIOT_SRCS ${BIOT_SRCDIRS})

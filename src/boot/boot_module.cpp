@@ -26,11 +26,32 @@
  * @copyright MIT License
  * 
  */
+#include <vector>
 #include "boot.h"
+#include "basic/log/biot_log.h"
+
+// 模块头文件
+#include "basic/defs/func_module.h"
+#include "module/module_interface.h"
 
 namespace biot {
 
+static func_module_t func_modules[] = {
+	{"webapp", "程序HTTP-API服务", FUNC_MODULE_NET_TYPE(FUNC_MODULE_SUB_NET_APP_WEB), webapp_start, webapp_state},
+};
+
 int boot_module(void) {
+	for (auto &item : func_modules) {
+		int ret = item.run();
+		if (FUNC_MODULE_START_OK == ret) {
+			BIOT_DEBUG("func module \"{}\" start ok\n", item.name);
+		} else if (FUNC_MODULE_START_FAILED == ret) {
+			BIOT_ERROR("func module \"{}\" start faild\n", item.name);
+		} else if (FUNC_MODULE_START_REBOOT == ret) {
+			BIOT_ERROR("func module \"{}\" start faild, need reboot\n", item.name);
+			return BOOT_REBOOT;
+		} else {}
+	}
 	return BOOT_OK;
 }
 
