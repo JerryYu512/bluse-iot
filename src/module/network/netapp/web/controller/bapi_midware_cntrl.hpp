@@ -17,43 +17,37 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- * @file bapi_root.hpp
+ * @file bapi_midware_cntrl.hpp
  * @brief
  * @author Jerry.Yu (jerry.yu512outlook.com)
  * @version 1.0.0
- * @date 2022-05-08
+ * @date 2022-05-11
  *
  * @copyright MIT License
  *
  */
 #pragma once
 
-#include "web/dto/result_dto.hpp"
-
+#include "config/configure.h"
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/macro/component.hpp"
+#include "oatpp/core/utils/ConversionUtils.hpp"
+#include "oatpp/parser/json/mapping/ObjectMapper.hpp"
 #include "oatpp/web/server/api/ApiController.hpp"
+#include "oatpp/web/server/interceptor/RequestInterceptor.hpp"
 
-#include OATPP_CODEGEN_BEGIN(ApiController)  //<-- Begin Codegen
-
-/**
- * Sample Api Controller.
- */
-class RootController : public oatpp::web::server::api::ApiController {
+#include OATPP_CODEGEN_BEGIN(ApiController)
+class AuthController : public oatpp::web::server::api::ApiController {
 public:
     /**
      * Constructor with object mapper.
      * @param objectMapper - default object mapper used to serialize/deserialize DTOs.
      */
-    RootController(OATPP_COMPONENT(std::shared_ptr<ObjectMapper>, objectMapper))
-        : oatpp::web::server::api::ApiController(objectMapper) {}
-
-public:
-    ENDPOINT("GET", "/", root) {
-        auto dto = ResultDto::createShared();
-        dto->statusCode = 200;
-        dto->message = "Hello World!";
-        return createDtoResponse(Status::CODE_200, dto);
+    AuthController(OATPP_COMPONENT(std::shared_ptr<ObjectMapper>, objectMapper))
+        : oatpp::web::server::api::ApiController(objectMapper) {
+        setDefaultAuthorizationHandler(
+            std::make_shared<oatpp::web::server::handler::BasicAuthorizationHandler>(
+                BIOT_WEBAPP_DEFAULT_BASIC_AUTH_REALM));
     }
 };
 

@@ -68,5 +68,13 @@ namespace biot {
 /////////////////////////////////////////////////////////////
 
 /// !!! 网络
+// web服务器
+#define BIOT_WEBAPP_NAME "BiotWebApp"
+#define BIOT_WEBAPP_DEFAULT_IP "0.0.0.0"
+#define BIOT_WEBAPP_DEFAULT_PORT 9000
+#define BIOT_WEBAPP_DEFAULT_AUTH "Basic"
+#define BIOT_WEBAPP_DEFAULT_BASIC_AUTH_REALM "BiotRealm"
+#define BIOT_WEBAPP_DEFAULT_USER_NAME "admin"
+#define BIOT_WEBAPP_DEFAULT_USER_PASSWD "abc12345"
 
 } // namespace biot

@@ -28,9 +28,10 @@
  */
 #include <iostream>
 #include "basic/defs/func_module.h"
+#include "oatpp/network/Server.hpp"
 #include "compoent/compoent.hpp"
 #include "controller/bapi_root.hpp"
-#include "oatpp/network/Server.hpp"
+#include "controller/bapi_midware_cntrl.hpp"
 
 namespace biot {
 
@@ -41,6 +42,7 @@ void run() {
     /* Get router component */
     OATPP_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, router);
 
+    router->addController(std::make_shared<AuthController>());
     /* Create RootController and add all of its endpoints to router */
     router->addController(std::make_shared<RootController>());
 

@@ -80,6 +80,7 @@ int main(int argc, char **argv) {
 		biot_boot_printi("--------------> [%s]-[%s]\n", item.name.c_str(), boot_result[item.result]);
 	}
 	biot_boot_printi("####################goto looping#####################\n");
+	biot::boot_loop();
 
 	return 0;
 }
