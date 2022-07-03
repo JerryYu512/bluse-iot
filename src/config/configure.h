@@ -55,11 +55,13 @@ namespace biot {
 // coredump生成路径
 #define BIOT_COREDUMP_PATH BIOT_RT_ROOT_PATH "/coredump/"
 
+#define BIOT_SEC_PARAM_FILENAME BIOT_RT_ROOT_PATH "/etc/biot_sec_param.bin"
 // 能力集文件路径
-#define BIOT_CAPABILITY_FILENAME BIOT_RT_ROOT_PATH "/etc/biot_capability.json"
+#define BIOT_CAPABILITY_FILENAME BIOT_RT_ROOT_PATH "/etc/biot_capability.bin"
 // 配置文件路径
-#define BIOT_CONFIG_FILENAME BIOT_RT_ROOT_PATH "/etc/biot_parameter.json"
-#define BIOT_CONFIG_PATCH_FILENAME BIOT_RT_ROOT_PATH "/etc/biot_parameter_patch.json"
+#define BIOT_CONFIG_FILENAME BIOT_RT_ROOT_PATH "/etc/biot_parameter.bin"
+#define BIOT_CONFIG_BACKUP_FILENAME BIOT_RT_ROOT_PATH "/etc/biot_parameter_backup.bin"
+#define BIOT_CONFIG_PATCH_FILENAME BIOT_RT_ROOT_PATH "/etc/biot_parameter_patch.bin"
 // pid路径
 #define BIOT_PID_FILENAME "/var/run/bluse-iot.pid"
 
@@ -68,8 +70,10 @@ namespace biot {
 /////////////////////////////////////////////////////////////
 
 /// !!! 网络
+#define BIOT_NET_PORT_START 9000
 // web服务器
 #define BIOT_WEBAPP_NAME "BiotWebApp"
+#define BIOT_WEBAPP_ROOT_PATH BIOT_RT_ROOT_PATH "/webapp/"
 #define BIOT_WEBAPP_DEFAULT_IP "0.0.0.0"
 #define BIOT_WEBAPP_DEFAULT_PORT 9000
 #define BIOT_WEBAPP_DEFAULT_AUTH "Basic"

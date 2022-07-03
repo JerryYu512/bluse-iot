@@ -34,18 +34,32 @@
 namespace biot {
 
 /**
- * @brief 应用大版本
+ * @brief 版本号
  * 
  * @return const std::string& 
  */
 const std::string app_version(void);
 
 /**
- * @brief 应用大版本变更日期
+ * @brief 基准版本变更日期
  * 
  * @return uint32_t 
  */
 uint32_t app_base_version_date(void);
+
+/**
+ * @brief 基准版本号
+ * 
+ * @return std::string 
+ */
+std::string app_base_version(void);
+
+/**
+ * @brief 标准版本号
+ * 
+ * @return std::string 
+ */
+std::string app_std_version(void);
 
 /**
  * @brief 构建日期版本
@@ -55,21 +69,7 @@ uint32_t app_base_version_date(void);
 const std::string app_build_date(void);
 
 /**
- * @brief 基准版本
- * 
- * @return std::string 
- */
-std::string app_base_version(void);
-
-/**
- * @brief 标准版本
- * 
- * @return std::string 
- */
-std::string app_std_version(void);
-
-/**
- * @brief 应用编译时间
+ * @brief 编译时间
  * 
  * @return const std::string& 
  */
@@ -89,5 +89,12 @@ const std::string app_identifier(void);
  * @return const std::string 
  */
 const std::string app_edition(void);
+
+/**
+ * @brief 软件开发阶段
+ * 
+ * @return const std::string 
+ */
+const std::string app_period(void);
 
 } // namespace biot

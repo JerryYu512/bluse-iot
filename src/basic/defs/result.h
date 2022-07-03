@@ -27,18 +27,13 @@
  * 
  */
 #pragma once
-#include <stdint.h>
 #include <string>
 #include <string.h>
+#include "error_code.h"
 
 namespace biot {
 
-#define BIOT_ID_CODE 1ull
-
 #define BIOT_ERR_PRE BEC_ADD_ID_CODE(BIOT_ID_CODE, BEC_ADD_CLASS_CODE(BEC_COMMON_APPLICATION, BEC_ADD_IDENTIFICATION_CODE(BEC_IDENTI_APPLICATION, 0)))
-
-typedef uint64_t biot_err_t;
-extern __thread biot_err_t berrno;
 
 /**
  * @brief 操作结果
@@ -46,15 +41,26 @@ extern __thread biot_err_t berrno;
  */
 class Result {
 public:
-	std::string msg;	///< 短语
+	static __thread biot_err_t berrno;	///< 错误码
+	static __thread char msg[256];		///< 短语
+
+	void result(uint64_t code, const std::string& msg, bool d = false) {
+		berrno = code;
+		memset(this->msg, 0, sizeof(this->msg));
+		memcpy(this->msg, msg.data(), msg.length());
+	}
+	void result(uint64_t code, bool d = false) {
+		berrno = code;
+		memset(this->msg, 0, sizeof(this->msg));
+	}
 
 	// 系统错误码
-	virtual int sys_errno(void) {
+	int sys_errno(void) {
 		return errno;
 	}
 
 	// 应用错误码
-	virtual biot_err_t app_errno(void) {
+	biot_err_t app_errno(void) {
 		return berrno;
 	}
 
@@ -64,29 +70,11 @@ public:
 	}
 
 	// 错误
-	virtual std::string what(void) {
+	std::string what(void) {
 		return msg;
 	}
-
-	// 设置错误短语
-	virtual void whatsup(const char* msg) {
-		this->msg = msg;
-	}
-
-	virtual void whatsup(const std::string& msg) {
-		this->msg = msg;
-	}
-
-	virtual void sys_error(biot_err_t domain_id, biot_err_t code);
-	virtual void subsys_error(biot_err_t domain_id, biot_err_t code);
-	virtual void protocol_error(biot_err_t domain_id, biot_err_t code);
-	virtual void auth_error(biot_err_t domain_id, biot_err_t code);
-	virtual void net_error(biot_err_t domain_id, biot_err_t code);
-	virtual void device_error(biot_err_t domain_id, biot_err_t code);
-	virtual void param_error(biot_err_t domain_id, biot_err_t code);
-	virtual void service_error(biot_err_t domain_id, biot_err_t code);
-	virtual void source_error(biot_err_t domain_id, biot_err_t code);
-	virtual void other_error(biot_err_t domain_id, biot_err_t code);
 };
+
+extern __thread Result bresult;
 
 } // namespace biot

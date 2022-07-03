@@ -144,7 +144,7 @@ public:
 
         // 请求中间间适配器
         connectionHandler->addRequestInterceptor(std::make_shared<AccessLogInterceptor>());
-        connectionHandler->addRequestInterceptor(std::make_shared<AuthInterceptor>());
+        // connectionHandler->addRequestInterceptor(std::make_shared<AuthInterceptor>());
 
         // 应答中间间适配器
         connectionHandler->addResponseInterceptor(std::make_shared<ResponseLogInterceptor>());

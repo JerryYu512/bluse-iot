@@ -1,0 +1,11 @@
+[package]
+name = "gen_device_id"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+requestty = "0.3.0"
+clap = "2.33.0"
+rand = "0.8.5"

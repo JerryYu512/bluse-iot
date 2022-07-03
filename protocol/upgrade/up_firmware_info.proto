@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package biot;
+
+// 升级包
+message UpgradeSinglePackage {
+	string name = 1;	// 升级包名称
+	uint32 version = 2;	// 升级包版本
+	uint32 date = 3;	// 升级包日期
+	string hash = 4;	// 升级包摘要
+	uint32 size = 5;	// 升级包大小
+}
+
+// 升级信息
+message UpFirmwareInfo {
+	uint32 base_version = 1;	// 固件版本
+	uint32 package_type = 2;	// 包类型,1为全量包,2-0xfffffffe为各模块升级包
+	uint32 device_class = 3;	// 平台类型
+	uint32 language = 4;		// 语言
+	uint32 attribute = 5;		// 属性,debug,standard,nertual
+	// 阶段版本
+	uint32 priod_version = 6;
+	// 版本号
+	uint32 version = 7;
+	// 版本日期
+	uint32 date = 8;
+}
+
+// 升级包头
+message UpgradePackageHeader {
+	// 固件信息
+	UpFirmwareInfo firmware = 1;
+	// 摘要
+	string hash = 2;
+	// 资源包个数
+	uint32 package_num = 3;
+}

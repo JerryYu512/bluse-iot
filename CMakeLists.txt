@@ -5,16 +5,35 @@ set(TARGET biot)
 set(BIOT_MAJOR_VERSION 1)
 # 次版本
 set(BIOT_MINOR_VERSION 0)
-# 发布版本
-set(BIOT_RELEASE_VERSION 0)
-set(BIOT_VERSION "${BIOT_MAJOR_VERSION}.${BIOT_MINOR_VERSION}.${BIOT_RELEASE_VERSION}")
+# 补丁版本
+set(BIOT_PATCH_VERSION 0)
+set(BIOT_VERSION "${BIOT_MAJOR_VERSION}.${BIOT_MINOR_VERSION}.${BIOT_PATCH_VERSION}")
 # 发布版本日期，该日期为该版本的开始开发日期
 set(BIOT_BASE_VERSION 22020402)
 
-message(STATUS "application version=${BIOT_VERSION}")
+# 软件阶段版本
+# base:架构版本，无实际功能
+# alpha:内部功能版本，bug很多
+# beta:无严重错误版本
+# rc:基本成熟的版本
+# release:发布版本
+if("${BIOT_PERIOD_VERSION}" STREQUAL "base")
+    set(BIOT_PERIOD_VERSION "base")
+elseif("${BIOT_PERIOD_VERSION}" STREQUAL "alpha")
+    set(BIOT_PERIOD_VERSION "alpha")
+elseif("${BIOT_PERIOD_VERSION}" STREQUAL "rc")
+    set(BIOT_PERIOD_VERSION "rc")
+elseif("${BIOT_PERIOD_VERSION}" STREQUAL "release")
+    set(BIOT_PERIOD_VERSION "release")
+else()
+    set(BIOT_PERIOD_VERSION "beta")
+endif()
+
+message(STATUS "BIOT_VERSION=${BIOT_VERSION}")
+message(STATUS "BIOT_PERIOD_VERSION=${BIOT_PERIOD_VERSION}")
 
 # 工程名
-project(${TARGET} VERSION ${BIOT_MAJOR_VERSION}.${BIOT_MINOR_VERSION}.${BIOT_RELEASE_VERSION})
+project(${TARGET} VERSION ${BIOT_MAJOR_VERSION}.${BIOT_MINOR_VERSION}.${BIOT_PATCH_VERSION})
 
 # 标准
 set(CMAKE_C_STANDARD 99)
@@ -22,7 +41,7 @@ set(CMAKE_C_STANDARD_REQUIRED True)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# 是否debug，通过-DCMAKE_BUILD_TYPE=Debug来指定，默认release
+# 是否debug，通过-DCMAKE_BUILD_TYPE=Debug来指定，默认standard
 message(STATUS "CMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}")
 
 if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
@@ -33,8 +52,8 @@ if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
 else()
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -W -Wall -O3")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -W -Wall -O3")
-	set(BIOT_EDITION "release")
-    message(STATUS "release version")
+	set(BIOT_EDITION "standard")
+    message(STATUS "standard version")
     add_definitions(-DNDEBUG)
 endif()
 
@@ -61,9 +80,9 @@ execute_process(COMMAND date +"%A %Y-%m-%d %H:%M:%S %z" TIMEOUT 5 OUTPUT_VARIABL
 execute_process(COMMAND date +"%Y%m%d%H%M" TIMEOUT 5 OUTPUT_VARIABLE BIOT_DATE_VERSION OUTPUT_STRIP_TRAILING_WHITESPACE)
 execute_process(COMMAND /usr/bin/cat /proc/sys/kernel/random/uuid TIMEOUT 5 OUTPUT_VARIABLE BIOT_UUID OUTPUT_STRIP_TRAILING_WHITESPACE)
 
-message(STATUS "compile time=${BIOT_COMPILE_DATETIME}")
-message(STATUS "compile date=${BIOT_DATE_VERSION}")
-message(STATUS "compile uuid=${BIOT_UUID}")
+message(STATUS "compile time:BIOT_COMPILE_DATETIME=${BIOT_COMPILE_DATETIME}")
+message(STATUS "compile date:BIOT_DATE_VERSION=${BIOT_DATE_VERSION}")
+message(STATUS "compile uuid:BIOT_UUID=${BIOT_UUID}")
 
 message(STATUS "gen biot_configure.h")
 # 生成配置

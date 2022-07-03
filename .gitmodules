@@ -22,3 +22,6 @@
 [submodule "thirdparty/cJSON"]
 	path = thirdparty/cJSON
 	url = https://github.com/DaveGamble/cJSON
+[submodule "thirdparty/sqlite_orm"]
+	path = thirdparty/sqlite_orm
+	url = https://github.com/fnc12/sqlite_orm

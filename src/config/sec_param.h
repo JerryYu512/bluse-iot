@@ -34,6 +34,7 @@ namespace biot {
 
 /// 加密信息最长4kb
 #define MAX_SEC_INFO_LEN (4*1024)
+#define BIOT_SEC_INFO_MAGIC 0x42534543
 
 /**
  * @brief 设备加密信息
@@ -41,18 +42,21 @@ namespace biot {
  */
 typedef struct sec_param_s {
 	bin_data_header_t header;	///< 头部
-	uint32_t devtype;			///< 设备类型
+	uint64_t device_class;		///< 产品类别，规则:高12位为组织，next12字节位为产品线，next40位为产品大类
+	uint64_t devtype;			///< 设备类型，规则:高12位为平台，next20位为主类型(硬件版本)，next32位为次类型(产品形态)
 	uint32_t language;			///< 语言
 	uint32_t sec_version;		///< 版本
-	uint32_t device_class;		///< 产品类别
 	uint32_t custom_len;		///< 扩展信息长度，为0时无扩展信息
-	uint32_t oem;				///< oem，为1时有效
+	uint32_t oem;				///< oem，高2位标识定制还是基线(01基线，10定制)
 	uint8_t product_date[16];	///< 生产日期
 	uint8_t product_update[16];	///< 产品固件更新日期，一般是维修/重新加密用
 	uint8_t product_no[16];		///< 设备序列号
 	uint8_t product_model[64];	///< 产品型号
 	uint8_t mac[16][6];			///< mac地址
-	uint8_t res[128];			///< 预留
+	uint8_t res[3848];			///< 预留
 } sec_param_t;
+
+int read_sec_param(void);
+const sec_param_t& get_sec_param(void);
 
 } // namespace biot

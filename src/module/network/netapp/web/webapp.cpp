@@ -28,6 +28,7 @@
  */
 #include <iostream>
 #include "basic/defs/func_module.h"
+#include "hv/hthread.h"
 #include "oatpp/network/Server.hpp"
 #include "compoent/compoent.hpp"
 #include "controller/bapi_root.hpp"
@@ -35,7 +36,9 @@
 
 namespace biot {
 
-void run() {
+static void* run(void* arg) {
+    oatpp::base::Environment::init();
+
     /* Register Components in scope of run() method */
     AppComponent components("0.0.0.0", 8000);
 
@@ -61,16 +64,6 @@ void run() {
 
     /* Run server */
     server.run();
-}
-
-int webapp_state(void) {
-    return FUNC_MODULE_START_OK;
-}
-
-int webapp_start(void) {
-    oatpp::base::Environment::init();
-
-    run();
 
     /* Print how much objects were created during app running, and what have left-probably leaked */
     /* Disable object counting for release builds using '-D OATPP_DISABLE_ENV_OBJECT_COUNTERS' flag
@@ -80,6 +73,17 @@ int webapp_start(void) {
     std::cout << "objectsCreated = " << oatpp::base::Environment::getObjectsCreated() << "\n\n";
 
     oatpp::base::Environment::destroy();
+
+    return nullptr;
+}
+
+int webapp_state(void) {
+    return FUNC_MODULE_START_OK;
+}
+
+int webapp_start(void) {
+
+    hthread_create((hthread_routine)run, nullptr);
 
 	return FUNC_MODULE_START_OK;
 }

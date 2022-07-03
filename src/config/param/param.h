@@ -27,26 +27,30 @@
  * 
  */
 #pragma once
+#include "hv/hmutex.h"
+#include "param_check.h"
 #include "param_def/param.pm.h"
 
 namespace biot {
 
+extern hv::RWLock gBiotAppParamLock;
 // 写锁
-#define BIOT_APP_PARAM_WLOCK
+#define BIOT_APP_PARAM_WLOCK gBiotAppParamLock.wrlock()
+#define BIOT_APP_PARAM_WUNLOCK gBiotAppParamLock.wrunlock()
 // 读锁
-#define BIOT_APP_PARAM_RLOCK
-// 解锁
-#define BIOT_APP_PARAM_UNLOCK
+#define BIOT_APP_PARAM_RLOCK gBiotAppParamLock.rdlock()
+#define BIOT_APP_PARAM_RUNLOCK gBiotAppParamLock.rdunlock()
+
+// 一般锁
+#define BIOT_APP_PARAM_LOCK gBiotAppParamLock.lock()
+#define BIOT_APP_PARAM_UNLOCK gBiotAppParamLock.unlock()
 	
 /**
- * @brief 加载参数
+ * @brief 参数初始化
  * 
- * @param path 参数路径
- * @param backup_path 参数备份路径
- * @param patch_path 补丁路径
- * @return int 结果
+ * @return int 
  */
-int load_app_param(const char* path, const char*backup_path, const char* patch_path);
+int init_app_param(void);
 
 /**
  * @brief 保存参数
@@ -55,6 +59,13 @@ int load_app_param(const char* path, const char*backup_path, const char* patch_p
  * @return int 
  */
 int save_app_param(bool now = false);
+
+/**
+ * @brief 
+ * 
+ * @return app_param_check_t& 
+ */
+app_param_check_t& app_param_header(void);
 
 /**
  * @brief 获取参数引用

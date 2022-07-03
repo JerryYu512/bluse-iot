@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ROOT_DIR=$(pwd)
-ALL_MODULES=("libhv" "mqtt" "spdlog" "cjson" "iot-access" "simdjson" "oatpp" "hedley")
+ALL_MODULES=("libhv" "mqtt" "spdlog" "cjson" "iot-access" "simdjson" "oatpp" "hedley", "sql_orm")
 SUBMODULE_NAME=""
 BUILD_ALL="false"
 
@@ -124,6 +124,21 @@ build_simdjson()
 	cd ..
 }
 
+build_sql_orm()
+{
+	cd sqlite_orm
+	rm -rf build
+	mkdir -p build
+	cd build
+	cmake .. -DCMAKE_INSTALL_PREFIX=${ROOT_DIR}
+	make
+	make install
+	make clean
+	cd ..
+	rm -rf build
+	cd ..
+}
+
 build_one()
 {
 	echo "######################### build $1 begin ###################################"
@@ -141,6 +156,8 @@ build_one()
 		build_simdjson
 	elif [ "$1" == "oatpp" ]; then
 		build_oatpp
+	elif [ "$1" == "sql_orm" ]; then
+		build_sql_orm
 	elif [ "$1" == "hedley" ]; then
 		mkdir -p ${ROOT_DIR}/include/hedley
 		cp hedley/hedley.h ${ROOT_DIR}/include/hedley/

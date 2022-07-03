@@ -32,6 +32,9 @@
 
 namespace biot {
 
+// BCFG
+#define BIOT_PARAM_FILE_MAGIC 0x42434647
+
 /**
  * @brief 参数存储方式
  * 
@@ -63,15 +66,16 @@ enum AppParamFileStorageSource {
  */
 typedef struct app_param_check_s {
 	bin_data_header_t header;	///< 头部信息
-	AppParamFileStorageType storage_type;		///< 存储格式，用于解析
-	AppParamFileStorageSource storage_source;	///< 存储来源
-	uint32_t storage_version;	///< 存储版本
-	uint32_t devtype;			///< 设备类型
+	uint32_t storage_type;		///< 存储格式，用于解析
+	uint16_t storage_source;	///< 存储来源
+	uint16_t storage_version;	///< 存储版本
+	uint64_t devtype;			///< 设备类型
 	uint8_t update_time[32];	///< 修改日期
 	uint8_t product_no[16];		///< 设备序列号，不做校验
 	uint8_t uuid[64];			///< 唯一码，和正文中的该字段做比较
 	uint8_t res[256];			///< 预留
 	uint32_t custom_len;		///< 扩展长度
+	uint32_t param_len;			///< 实际参数长度
 } app_param_check_t;
 
 } // namespace biot

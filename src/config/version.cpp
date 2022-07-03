@@ -51,7 +51,7 @@ const std::string app_build_date(void) {
 std::string app_base_version(void) {
     char version[64] = "";
 
-    snprintf(version, sizeof(version) - 1, "%s base %d", BIOT_VERSION, BIOT_BASE_VERSION);
+    snprintf(version, sizeof(version) - 1, "v%s base %d", BIOT_VERSION, BIOT_BASE_VERSION);
 
     return version;
 }
@@ -59,7 +59,7 @@ std::string app_base_version(void) {
 std::string app_std_version(void) {
     char version[64] = "";
 
-    snprintf(version, sizeof(version) - 1, "%s build %.*s", BIOT_VERSION, 8, BIOT_DATE_VERSION);
+    snprintf(version, sizeof(version) - 1, "v%s build %.*s %s", BIOT_VERSION, 8, BIOT_DATE_VERSION, BIOT_PERIOD_VERSION);
 
     return version;
 }
@@ -84,6 +84,10 @@ const std::string app_identifier(void) {
 
 const std::string app_edition(void) {
     return BIOT_EDITION;
+}
+
+const std::string app_period(void) {
+    return BIOT_PERIOD_VERSION;
 }
 
 } // namespace biot

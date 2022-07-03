@@ -45,9 +45,9 @@ public:
      */
     AuthController(OATPP_COMPONENT(std::shared_ptr<ObjectMapper>, objectMapper))
         : oatpp::web::server::api::ApiController(objectMapper) {
-        setDefaultAuthorizationHandler(
-            std::make_shared<oatpp::web::server::handler::BasicAuthorizationHandler>(
-                BIOT_WEBAPP_DEFAULT_BASIC_AUTH_REALM));
+        // setDefaultAuthorizationHandler(
+        //     std::make_shared<oatpp::web::server::handler::BasicAuthorizationHandler>(
+        //         BIOT_WEBAPP_DEFAULT_BASIC_AUTH_REALM));
     }
 };
 

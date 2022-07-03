@@ -1,20 +1,24 @@
 # 依赖库
 
-- 基础库，[libhv]()
-- json，[simdjson]()
-- iot接入，[huawei-iot]
-- web服务，映射, [oatpp]()
+- 基础库，[libhv](https://github.com/JerryYu512/libhv)
+- json，[simdjson](https://github.com/simdjson/simdjson)
+- iot接入，[huawei-iot](https://github.com/huaweicloud/huaweicloud-iot-device-sdk-c)
+- web服务，映射, [oatpp](https://github.com/oatpp/oatpp)
 - 枚举，[magic_enum](https://github.com/Neargye/magic_enum)
-- mqtt，
-- 日志，[spdlog]
+- mqtt，服务器使用[EMQX](https://github.com/emqx/emqx)，内部使用[NANOMQ](https://github.com/emqx/nanomq)
+- 日志，[spdlog](https://github.com/gabime/spdlog)
 - 编译器特性宏，[hedley](https://github.com/nemequ/hedley)
 - 二维码，[qrencoding]()
-- 事件循环[asio]()
+- 事件循环[asio](https://github.com/chriskohlhoff/asio)
 - 接口设计，[HTTP接口设计](https://github.com/JerryYu512/http-api-guide)
-- 数据库，[leveldb]
-- mqtt客户端
+- 数据库，[leveldb](https://github.com/google/leveldb)，[sqlite3](https://github.com/sqlite/sqlite)， [sqlite3pp](https://github.com/iwongu/sqlite3pp), [orm](https://github.com/fnc12/sqlite_orm)
+- mqtt客户端[mqtt](https://github.com/eclipse/paho.mqtt.c), [mqttcpp](https://github.com/eclipse/paho.mqtt.cpp)
 - openssl
 - rtsp[rtsp](https://github.com/PHZ76/RtspServer)
-- srt
-- 内存[tcmalloc]()
-- 序列化，[protobuf]，文档生成[protoc-gen-doc](https://github.com/pseudomuto/protoc-gen-doc)，先执行`go env -w GOPROXY=https://goproxy.cn,direct`，否则安装会有异常
+- srt[srt](https://github.com/Haivision/srt)
+- 内存[tcmalloc](https://github.com/google/tcmalloc)
+- 序列化，[protobuf](https://github.com/protocolbuffers/protobuf)，文档生成[protoc-gen-doc](https://github.com/pseudomuto/protoc-gen-doc)，先执行`go env -w GOPROXY=https://goproxy.cn,direct`，否则安装会有异常
+- RPC[sprc](https://github.com/sogou/srpc)，自己实现一套轻量级的
+- 压缩[snappy](https://github.com/google/snappy)，[lz4](https://github.com/lz4/lz4)
+- 抓包[pcapplusplus](https://github.com/seladb/PcapPlusPlus)
+- 表格[tabulate](https://github.com/p-ranav/tabulate)

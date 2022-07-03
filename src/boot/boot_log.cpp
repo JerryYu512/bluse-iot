@@ -30,17 +30,38 @@
 
 #include "basic/log/biot_log.h"
 #include "config/version.h"
+#include "config/args_dec.h"
 
 namespace biot {
+
+// 转换启动时，命令行输入的日志等级
+static biot::biot_log_level trans_log_level(void);
+
+static biot::biot_log_level trans_log_level(void) {
+	switch (FLG_debug_lv) {
+		case 0:
+			return biot::log_trace;
+		case 1:
+			return biot::log_debug;
+		case 2:
+			return biot::log_trace;
+		case 3:
+			return biot::log_warn;
+		case 4:
+			return biot::log_err;
+		case 5:
+			return biot::log_critical;
+		case 6:
+			return biot::log_off;
+		default:
+			return biot::log_info;
+	}
+}
 
 int boot_log(void) {
 	// 日志初始化
 	biot::init_log();
-#ifdef DEBUG
-	biot::set_log_level(BIOT_LOG_DEFAULT, biot::log_trace);
-#else
-	biot::set_log_level(BIOT_LOG_DEFAULT, biot::log_info);
-#endif
+	biot::set_log_level(BIOT_LOG_DEFAULT, trans_log_level());
 
 #ifdef DEBUG
 	// spdlog::flush_on(spdlog::level::trace);
@@ -48,7 +69,7 @@ int boot_log(void) {
 
 	BIOT_INFO("{:<30}{}{}", "[application name", 			"] ==> ", 	"bluse-iot[bluse iot app]");
 	BIOT_INFO("{:<30}{}{}", "[compile time", 				"] ==> ", 	app_compile_time());
-	BIOT_INFO("{:<30}{}{}", "[application version", 		"] ==> ", 	app_version());
+	BIOT_INFO("{:<30}{}{}", "[application version", 		"] ==> ", 	app_std_version());
 	BIOT_INFO("{:<30}{}{}", "[application edition", 		"] ==> ", 	app_edition());
 	BIOT_INFO("{:<30}{}{}", "[application identifier", 		"] ==> ", 	app_identifier());
 	BIOT_INFO("{:<30}{}{}", "[aplication author", 			"] ==> ", 	"Jerry.Yu(astralrovers@outlook.com)");
