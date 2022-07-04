@@ -130,7 +130,7 @@ build_sql_orm()
 	rm -rf build
 	mkdir -p build
 	cd build
-	cmake .. -DCMAKE_INSTALL_PREFIX=${ROOT_DIR}
+	cmake .. -DCMAKE_INSTALL_PREFIX=${ROOT_DIR} -DBUILD_EXAMPLES=OFF -DBUILD_TESTING=OFF
 	make
 	make install
 	make clean

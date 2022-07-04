@@ -38,3 +38,5 @@ lib
 share
 source/OBSBrowserPlus-HEC-win64.zip
 biot_configure.h
+*target
+tools/gen_device_id/target

@@ -43,9 +43,9 @@ typedef uint64_t biot_err_t;
 // 6字节为错误标识
 // 7-8字节为软件编号
 // 0x0001 01 01 0001 0001
-#define BIOT_MODULE_ECODE_START(id) (id) << 32
-#define BIOT_MODULE_ID_FROM_ECODE(code) (((code) >> 32) & 0xff)
-enum BaseErrorDomain {
+#define BIOT_MODULE_ECODE_START(id) (biot_err_t)(id) << 32
+#define BIOT_MODULE_ID_FROM_ECODE(code) (((biot_err_t)(code) >> 32) & 0xff)
+enum BaseErrorDomain: biot_err_t {
 	BIOT_BASE_OK = BIOT_OK,					// 成功[str:ok]
 	BIOT_BASE_ECODE_COMMON = 0x0001,		// 通用错误码起始[str:common res]
 	BIOT_BASE_ECODE_SYSTEM = BIOT_MODULE_ECODE_START(E_BIOT_MODULE_SYSTEM_ID),		// 系统错误码起始[str:system]
@@ -62,7 +62,7 @@ enum BaseErrorDomain {
 };
 
 // 通用错误码2-0xffff
-enum CommonErrorCode {
+enum CommonErrorCode: biot_err_t {
 	BIOT_COMMON_ECODE_OK = 0,
 	// 文件
 	BIOT_COMMON_ECODE_FILE_NOT_EXIST = 2,		// 文件不存在
@@ -83,7 +83,7 @@ enum CommonErrorCode {
 };
 
 // 系统错误码
-enum SystemErrorCode {
+enum SystemErrorCode: biot_err_t {
 	BIOT_SYS_ECODE_OK = 0,
 	#define BECODE_SYS(code) BIOT_BASE_ECODE_SYSTEM | (code)
 	

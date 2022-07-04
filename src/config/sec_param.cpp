@@ -26,7 +26,6 @@
  * @copyright MIT License
  * 
  */
-#pragma once
 #include "hv/hfile.h"
 #include "hv/crc.h"
 #include "configure.h"
