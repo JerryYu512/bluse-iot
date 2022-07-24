@@ -61,58 +61,102 @@ enum BaseErrorDomain: biot_err_t {
 	BIOT_BASE_UNKNOWN = 0xffffffff,			// 未知[str:unknown]
 };
 
-// 通用错误码2-0xffff
-enum CommonErrorCode: biot_err_t {
-	BIOT_COMMON_ECODE_OK = 0,
-	// 文件
-	BIOT_COMMON_ECODE_FILE_NOT_EXIST = 2,		// 文件不存在
-	BIOT_COMMON_ECODE_FILE_OPEN_FAILED,			// 文件打开失败
-	BIOT_COMMON_ECODE_FILE_WRITE_FAILED,		// 文件写入失败
-	BIOT_COMMON_ECODE_FILE_READ_FAILED,			// 文件读取失败
+#define BECODE_SYS(code) BIOT_BASE_ECODE_SYSTEM | (code)
+// 系统-配置文件错误起始码
+#define BECODE_SYS_CFGFILE(code) BECODE_SYS(0x0001 | (code))
+// 系统-升级错误起始码
+#define BECODE_SYS_UP(code) BECODE_SYS(0x10001 | (code))
 
-	// 内存
-	BIOT_COMMON_ECODE_MEM_ALLOC_FAILED,			// 内存分配失败
-	BIOT_COMMON_ECODE_MEM_INVALID,				// 内存不可用
+// 错误码
+#define BIOT_ERROR_CODE_MAP(XX) \
+	XX(BIOT_ECODE_OK = BIOT_OK, BIOT_ECODE_OK, "success", "成功") \
+	/* 通用错误码2-0xffff */ \
+	/* 文件 */ \
+	XX(BIOT_COMMON_ECODE_FILE_NOT_EXIST = 2, BIOT_COMMON_ECODE_FILE_NOT_EXIST, "file not exist", "文件不存在") \
+	XX(BIOT_COMMON_ECODE_FILE_OPEN_FAILED, BIOT_COMMON_ECODE_FILE_OPEN_FAILED, "file wopen failed", "文件打开失败") \
+	XX(BIOT_COMMON_ECODE_FILE_WRITE_FAILED, BIOT_COMMON_ECODE_FILE_WRITE_FAILED, "file write error", "文件写入异常") \
+	XX(BIOT_COMMON_ECODE_FILE_READ_FAILED, BIOT_COMMON_ECODE_FILE_READ_FAILED, "file read error", "文件读取异常") \
+	/* 内存 */ \
+	XX(BIOT_COMMON_ECODE_MEM_ALLOC_FAILED, BIOT_COMMON_ECODE_MEM_ALLOC_FAILED, "memory alloc failed", "内存分配失败") \
+	XX(BIOT_COMMON_ECODE_MEM_INVALID, BIOT_COMMON_ECODE_MEM_INVALID, "memory invalid", "内存不可用") \
+	/* 数据 */ \
+	XX(BIOT_COMMON_ECODE_DATA_JSON_FMT_ERROR, BIOT_COMMON_ECODE_DATA_JSON_FMT_ERROR, "json format error", "json格式错误") \
+	XX(BIOT_COMMON_ECODE_DATA_JSON_TO_STRUCT_ERROR, BIOT_COMMON_ECODE_DATA_JSON_TO_STRUCT_ERROR, "json trans to struct failed", "json转结构体错误") \
+	XX(BIOT_COMMON_ECODE_DATA_STRUCT_TO_JSON_ERROR, BIOT_COMMON_ECODE_DATA_STRUCT_TO_JSON_ERROR, "struct trans to json failed", "结构体转json错误") \
+	XX(BIOT_COMMON_ECODE_DATA_OVER_MAX, BIOT_COMMON_ECODE_DATA_OVER_MAX, "data over max", "数据大于最大值") \
+	XX(BIOT_COMMON_ECODE_DATA_OVER_MIN, BIOT_COMMON_ECODE_DATA_OVER_MIN, "data over min", "数据小于最小值") \
+	XX(BIOT_COMMON_ECODE_DATA_NOT_IN_RANGE, BIOT_COMMON_ECODE_DATA_NOT_IN_RANGE, "data not in range", "数据不在范围内") \
+	/* 流程 */ \
+	/* 无效值 */ \
+	XX(BIOT_COMMON_ECODE_MAX = 0xffff, BIOT_COMMON_ECODE_MAX, "invalid common code", "无效的通用错误码") \
+	/* 系统错误码0x10000-0x1ffff */ \
+	/* 配置文件 */ \
+	XX(BIOT_SYS_ECODE_CFG_FILE_NOT_EXIST = BECODE_SYS_CFGFILE(0x0001), BIOT_SYS_ECODE_CFG_FILE_NOT_EXIST, "configure file not exist", "配置文件不存在") \
+	XX(BIOT_SYS_ECODE_CFG_FILE_OPEN_FAILED, BIOT_SYS_ECODE_CFG_FILE_OPEN_FAILED, "configure file open error", "配置文件打开错误") \
+	XX(BIOT_SYS_ECODE_CFG_FILE_HEADER_ERROR, BIOT_SYS_ECODE_CFG_FILE_HEADER_ERROR, "configure file header error", "配置文件头错误") \
+	XX(BIOT_SYS_ECODE_CFG_FILE_HEADER_CHECK_FAILED, BIOT_SYS_ECODE_CFG_FILE_HEADER_CHECK_FAILED, "configure file header check error", "配置文件头校验失败") \
+	/* 升级 */ \
+	XX(BIOT_SYS_ECODE_UP_FILESIZE_MISMATCH = BECODE_SYS_UP(0x0001), BIOT_SYS_ECODE_UP_FILESIZE_MISMATCH, "Upgrade file size mismatch", "升级文件大小不匹配") \
+	XX(BIOT_SYS_ECODE_UP_FILESIZE_OVERSIZE, BIOT_SYS_ECODE_UP_FILESIZE_OVERSIZE, "The upgrade file size is too large", "升级文件大小过大") \
+	XX(BIOT_SYS_ECODE_UP_DOMAIN_RESOLUTION_FAILED, BIOT_SYS_ECODE_UP_DOMAIN_RESOLUTION_FAILED, "The download address of the upgrade file is abnormal", "升级文件下载地址异常") \
+	XX(BIOT_SYS_ECODE_UP_DOWNLOAD_TIMEOUT, BIOT_SYS_ECODE_UP_DOWNLOAD_TIMEOUT, "Upgrade file download timed out", "升级文件下载超时") \
+	XX(BIOT_SYS_ECODE_UP_HASH_MISMATCH, BIOT_SYS_ECODE_UP_HASH_MISMATCH, "Upgrade file digests do not match", "升级文件摘要不匹配") \
+	XX(BIOT_SYS_ECODE_UP_SIGNATURE_CHECK_FAILED, BIOT_SYS_ECODE_UP_SIGNATURE_CHECK_FAILED, "Upgrade file signature verification failed", "升级文件验签失败") \
+	XX(BIOT_SYS_ECODE_UP_PACKAGE_ERROR, BIOT_SYS_ECODE_UP_PACKAGE_ERROR, "The upgrade package is corrupted", "升级文件包损坏") \
+	XX(BIOT_SYS_ECODE_UP_PACKAGE_MEMORY_NOT_ENOUGH, BIOT_SYS_ECODE_UP_PACKAGE_MEMORY_NOT_ENOUGH, "Insufficient memory for upgrade", "升级内存不足") \
+	XX(BIOT_SYS_ECODE_UP_WRITE_FAILED, BIOT_SYS_ECODE_UP_WRITE_FAILED, "Burning failed", "烧录失败") \
+	XX(BIOT_SYS_ECODE_UP_USER_STOP, BIOT_SYS_ECODE_UP_USER_STOP, "User stops upgrading", "用户停止升级") \
+	XX(BIOT_SYS_ECODE_UP_DOING, BIOT_SYS_ECODE_UP_DOING, "upgrading", "正在升级") \
+	XX(BIOT_SYS_ECODE_UP_UNKNOWN, BIOT_SYS_ECODE_UP_UNKNOWN, "low-level interface error", "底层接口错误") \
+	XX(BIOT_SYS_ECODE_UP_SOFT_VERSION_NOT_PERMISSION, BIOT_SYS_ECODE_UP_SOFT_VERSION_NOT_PERMISSION, "Version not allowed to upgrade", "版本不允许升级") \
+	XX(BIOT_SYS_ECODE_UP_PLATFORM_MISMATCH, BIOT_SYS_ECODE_UP_PLATFORM_MISMATCH, "Platform mismatch", "平台不匹配") \
+	XX(BIOT_SYS_ECODE_UP_DEVICE_MISMATCH, BIOT_SYS_ECODE_UP_DEVICE_MISMATCH, "Device type mismatch", "设备类型不匹配") \
+	XX(BIOT_SYS_ECODE_UP_LANGUAGE_MISMATCH, BIOT_SYS_ECODE_UP_LANGUAGE_MISMATCH, "language mismatch", "语言不匹配") \
+	XX(BIOT_SYS_ECODE_UP_VERSION_NOT_SUPPORT, BIOT_SYS_ECODE_UP_VERSION_NOT_SUPPORT, "Upgrade protocol is not compatible", "升级协议不兼容") \
+	/* 子系统错误码0x20000-0x2ffff */ \
+	/* 第三方库错误码0x30000-0x3ffff */ \
+	/* 算法错误码0x30000-0x3ffff */ \
+	/* 数据库错误码0x30000-0x3ffff */ \
+	/* 硬件错误码0x30000-0x3ffff */ \
+	/* 设备错误码0x30000-0x3ffff */ \
+	/* 媒体错误码0x30000-0x3ffff */ \
+	/* 网络错误码0x30000-0x3ffff */ \
+	/* 存储错误码0x30000-0x3ffff */ \
 
-	// 数据
-	BIOT_COMMON_ECODE_DATA_JSON_TO_STRUCT_ERROR,	// json转结构体失败
-	BIOT_COMMON_ECODE_DATA_STRUCT_TO_JSON_ERROR,	// 结构体转json失败
 
-	// 无效值
-	BIOT_COMMON_ECODE_MAX = 0xffff,
-};
+// 错误码定义
+typedef enum BiotErrorCodeE: biot_err_t {
+#define BIOT_ERROR_CODE_MAP_TO_ENUM_DEF(expr, value, str, desc) expr,
+	BIOT_ERROR_CODE_MAP(BIOT_ERROR_CODE_MAP_TO_ENUM_DEF)
+#undef BIOT_ERROR_CODE_MAP_TO_ENUM_DEF
+} BiotErrorCode;
 
-// 系统错误码
-enum SystemErrorCode: biot_err_t {
-	BIOT_SYS_ECODE_OK = 0,
-	#define BECODE_SYS(code) BIOT_BASE_ECODE_SYSTEM | (code)
-	
-	/// 配置文件
-	#define BECODE_SYS_CFGFILE(code) BECODE_SYS(0x0001 | (code))
-	BIOT_SYS_ECODE_CFG_FILE_NOT_EXIST = BECODE_SYS_CFGFILE(0x0001),				// 配置文件不存在[str:app param config file not exist]
-	BIOT_SYS_ECODE_CFG_FILE_OPEN_FAILED = BECODE_SYS_CFGFILE(0x0002),			// 配置文件不存在[str:app param config file not exist]
-	BIOT_SYS_ECODE_CFG_FILE_HEADER_ERROR = BECODE_SYS_CFGFILE(0x0003),			// 配置文件不存在[str:app param config file not exist]
-	BIOT_SYS_ECODE_CFG_FILE_HEADER_CHECK_FAILED = BECODE_SYS_CFGFILE(0x0004),	// 配置文件不存在[str:app param config file not exist]
+/**
+ * @brief 查询错误码，中文
+ * 
+ * @param no 
+ * @return const char* 
+ */
+const char* query_error_code_zh(BiotErrorCode no);
+static const char* query_error_code_zh(biot_err_t no) {
+	return query_error_code_zh((BiotErrorCode)(no));
+}
 
-	/// 升级
-	#define BECODE_SYS_UP(code) BECODE_SYS(0x0002 | (code))
-	BIOT_SYS_ECODE_UP_FILESIZE_MISMATCH = BECODE_SYS_UP(0x0001),			// 升级文件大小不匹配
-	BIOT_SYS_ECODE_UP_FILESIZE_OVERSIZE = BECODE_SYS_UP(0x0002),			// 升级文件大小过大
-	BIOT_SYS_ECODE_UP_DOMAIN_RESOLUTION_FAILED = BECODE_SYS_UP(0x0003),		// 升级文件下载地址异常
-	BIOT_SYS_ECODE_UP_DOWNLOAD_TIMEOUT = BECODE_SYS_UP(0x0004),				// 升级文件下载超时
-	BIOT_SYS_ECODE_UP_HASH_MISMATCH = BECODE_SYS_UP(0x0005),				// 升级文件摘要不匹配
-	BIOT_SYS_ECODE_UP_SIGNATURE_CHECK_FAILED = BECODE_SYS_UP(0x0006),		// 升级文件验签失败
-	BIOT_SYS_ECODE_UP_PACKAGE_ERROR = BECODE_SYS_UP(0x0007),				// 升级包损坏
-	BIOT_SYS_ECODE_UP_PACKAGE_MEMORY_NOT_ENOUGH = BECODE_SYS_UP(0x0008),	// 内存不足
-	BIOT_SYS_ECODE_UP_WRITE_FAILED = BECODE_SYS_UP(0x0009),					// 烧录失败
-	BIOT_SYS_ECODE_UP_USER_STOP = BECODE_SYS_UP(0x000a),					// 用户停止升级
-	BIOT_SYS_ECODE_UP_DOING = BECODE_SYS_UP(0x000b),						// 正在升级
-	BIOT_SYS_ECODE_UP_UNKNOWN = BECODE_SYS_UP(0x000c),						// 底层接口错误
-	BIOT_SYS_ECODE_UP_SOFT_VERSION_NOT_PERMISSION = BECODE_SYS_UP(0x000d),	// 版本不允许升级
-	BIOT_SYS_ECODE_UP_PLATFORM_MISMATCH = BECODE_SYS_UP(0x000e),			// 平台不匹配
-	BIOT_SYS_ECODE_UP_DEVICE_MISMATCH = BECODE_SYS_UP(0x000f),				// 设备类型不匹配
-	BIOT_SYS_ECODE_UP_LANGUAGE_MISMATCH = BECODE_SYS_UP(0x0010),			// 语言不匹配
-	BIOT_SYS_ECODE_UP_VERSION_NOT_SUPPORT = BECODE_SYS_UP(0x0011),			// 升级协议不兼容
-};
+/**
+ * @brief 查询错误码，英文
+ * 
+ * @param no 
+ * @return const char* 
+ */
+const char* query_error_code_en(BiotErrorCode no);
+const char* query_error_code_en(biot_err_t no) {
+	return query_error_code_en((BiotErrorCode)(no));
+}
+
+/**
+ * @brief 展示错误码
+ * 
+ */
+void show_error_code(void);
 
 } // namespace biot

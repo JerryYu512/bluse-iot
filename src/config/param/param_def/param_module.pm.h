@@ -4,13 +4,13 @@
 #include <string>
 #include <stdint.h>
 #include <iostream>
-#include "module_storage.pm.h"
-#include "module_media.pm.h"
-#include "module_db.pm.h"
 #include "module_device.pm.h"
-#include "module_network.pm.h"
-#include "module_subsys.pm.h"
 #include "module_hw.pm.h"
+#include "module_media.pm.h"
+#include "module_subsys.pm.h"
+#include "module_db.pm.h"
+#include "module_network.pm.h"
+#include "module_storage.pm.h"
 
 namespace biot { 
 

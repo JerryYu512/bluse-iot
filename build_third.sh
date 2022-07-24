@@ -112,6 +112,8 @@ build_oatpp()
 build_simdjson()
 {
 	cd simdjson
+	# cp singleheader/simdjson.h ../../include
+	# cp singleheader/simdjson.cpp ../../src/basic/base/
 	rm -rf build
 	mkdir -p build
 	cd build

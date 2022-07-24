@@ -27,7 +27,7 @@
  * 
  */
 #pragma once
-#include "basic/defs/enum_def.h"
+#include "config/param/param_def/enums/e_basic.pm.h"
 
 namespace biot {
 
@@ -36,7 +36,7 @@ namespace biot {
  * 
  */
 typedef struct capa_workmode_s {
-	AppMode support_work_mode;		///< 支持的工作模式
+	EBiotAppMode support_work_mode;		///< 支持的工作模式
 } capa_workmode_t;
 
 } // namespace biot

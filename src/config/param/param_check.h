@@ -60,6 +60,8 @@ enum AppParamFileStorageSource {
 	APP_PARAM_FILE_STORAGE_SRC_MAX = UINT32_MAX
 };
 
+#define APP_PARAM_FILE_STOREAGE_VERSION 0x220724
+
 /**
  * @brief 参数存储校验信息
  * 

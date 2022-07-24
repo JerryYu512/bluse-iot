@@ -37,7 +37,7 @@ static struct app_param_product_patch_table product_table[] = {
 	{0x0, product_patch_example, nullptr},
 };
 
-int patch_for_product(int device_type) {
+int patch_for_product(uint32_t device_type) {
 	int ret = 0;
 	for (auto &item : product_table) {
 		bool match = false;

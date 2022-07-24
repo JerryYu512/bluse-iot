@@ -29,7 +29,8 @@
 #pragma once
 #include <stdint.h>
 #include <string>
-#include "basic/defs/enum_def.h"
+#include "config/param/param_def/enums/e_hw.pm.h"
+#include "config/param/param_def/enums/e_network.pm.h"
 
 namespace biot {
 

@@ -26,7 +26,6 @@
  * @copyright MIT License
  * 
  */
-#pragma once
 #include "netport_set.h"
 #include "basic/log/biot_log.h"
 

@@ -31,12 +31,18 @@
 
 namespace biot {
 
+typedef enum {
+	APP_WORKING_ON_DEVICE = 0,
+	APP_WORKING_ON_GATEWAY = 1,
+	APP_WORKING_ON_DEVICE_GATEWAY = 2,
+} AppWorkindMode;
+
 /**
  * @brief 程序运行时参数
  * 
  */
 typedef struct app_working_s {
-	AppMode work_mode;	///< 工作模式
+	AppWorkindMode work_mode;	///< 工作模式
 } app_working_t;
 
 } // namespace biot

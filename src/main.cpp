@@ -41,17 +41,23 @@
 static std::string get_pwd(void);
 
 // 命令行参数
+// 当前运行路径
 DEF_string(abs_rt_path, get_pwd(), "application runtime abslution path");
+// 日志文件大小
 DEF_uint64(log_filesize, BIOT_LOG_MAX_FILESIZE, "log file max size");
+// 日志文件数量
 DEF_uint32(log_filenum, BIOT_LOG_FILE_MAX_NUM, "log file max num");
+// 日志等级
 #ifdef DEBUG
 DEF_uint32(debug_lv, 0, "debug output level[0-trace,1-debug,2-info,3-warn,4-err,5-critical,6-off](default:0)");
 #else
 DEF_uint32(debug_lv, 2, "debug output level[0-trace,1-debug,2-info,3-warn,4-err,5-critical,6-off](default:2)");
 #endif
 
-// 启动项
+// 启动项结果
+// TODO:使用通用的状态
 static const char* const boot_result[] = {
+	// 成功，失败，重启，无
 	"success", "failed", "reboot", "none",
 };
 

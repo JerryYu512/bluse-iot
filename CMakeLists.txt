@@ -155,25 +155,35 @@ function(redefine_file_macro targetname)
     endforeach()
 endfunction()
 
-# 源码目录
-set(BIOT_SRCDIRS src/ src/basic)
-set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/basic/base)
-set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/basic/defs)
-set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/basic/log)
-set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/boot)
-set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config)
-set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config/capa)
-set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config/capa/common)
-set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config/capa/product)
-set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config/param)
-# set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config/param/param_pb)
-set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config/param/param_def)
-set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config/param/param_def/enums)
-
+set(BIOT_SRCDIRS src/)
+# XX 越底层库越写在后边
+# 网络
 set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/module/network/netapp/web)
 set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/module/network/netapp/web/compoent)
 set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/module/network/netapp/web/contoller)
 set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/module/network/netapp/web/dto)
+set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/module/network/netbasic)
+
+# 参数
+set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config/param/param_def/enums)
+set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config/param/param_patch)
+set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config/param/param_def)
+# protobuf生成的代码不需要
+# set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config/param/param_pb)
+
+# 源码目录
+set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config/param)
+set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config/capa/product)
+set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config/capa/common)
+set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config/capa)
+set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/config)
+set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/boot)
+
+# basic
+set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/basic/log)
+set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/basic/base)
+set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/basic/defs)
+set(BIOT_SRCDIRS ${BIOT_SRCDIRS} src/basic)
 
 # 查找源码
 list_source_directories(BIOT_SRCS ${BIOT_SRCDIRS})

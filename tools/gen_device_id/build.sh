@@ -1,0 +1,1 @@
+gcc gen_devid.cpp -o gen_devid -I../../ -I../../src -I.

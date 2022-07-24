@@ -30,27 +30,44 @@
 #include "hv/hmutex.h"
 #include "param_check.h"
 #include "param_def/param.pm.h"
+#include "basic/defs/error_code.h"
 
 namespace biot {
 
-extern hv::RWLock gBiotAppParamLock;
+class AppParamLockImpl;
+class AppParamLock {
+public:
+	AppParamLock();
+	~AppParamLock();
+	void wrlock(const char* file, const char* func, int line);
+	void wrunlock(const char* file, const char* func, int line);
+	void rdlock(const char* file, const char* func, int line);
+	void rdunlock(const char* file, const char* func, int line);
+	void lock(const char* file, const char* func, int line);
+	void unlock(const char* file, const char* func, int line);
+private:
+	AppParamLockImpl *impl;
+};
+
+extern AppParamLock gBiotAppParamLock;
+
 // 写锁
-#define BIOT_APP_PARAM_WLOCK gBiotAppParamLock.wrlock()
-#define BIOT_APP_PARAM_WUNLOCK gBiotAppParamLock.wrunlock()
+#define BIOT_APP_PARAM_WLOCK gBiotAppParamLock.wrlock(__FILE__, __func__, __LINE__)
+#define BIOT_APP_PARAM_WUNLOCK gBiotAppParamLock.wrunlock(__FILE__, __func__, __LINE__)
 // 读锁
-#define BIOT_APP_PARAM_RLOCK gBiotAppParamLock.rdlock()
-#define BIOT_APP_PARAM_RUNLOCK gBiotAppParamLock.rdunlock()
+#define BIOT_APP_PARAM_RLOCK gBiotAppParamLock.rdlock(__FILE__, __func__, __LINE__)
+#define BIOT_APP_PARAM_RUNLOCK gBiotAppParamLock.rdunlock(__FILE__, __func__, __LINE__)
 
 // 一般锁
-#define BIOT_APP_PARAM_LOCK gBiotAppParamLock.lock()
-#define BIOT_APP_PARAM_UNLOCK gBiotAppParamLock.unlock()
+#define BIOT_APP_PARAM_LOCK gBiotAppParamLock.lock(__FILE__, __func__, __LINE__)
+#define BIOT_APP_PARAM_UNLOCK gBiotAppParamLock.unlock(__FILE__, __func__, __LINE__)
 	
 /**
  * @brief 参数初始化
  * 
  * @return int 
  */
-int init_app_param(void);
+biot_err_t init_app_param(void);
 
 /**
  * @brief 保存参数
@@ -58,7 +75,7 @@ int init_app_param(void);
  * @param now 立即写flash
  * @return int 
  */
-int save_app_param(bool now = false);
+biot_err_t save_app_param(bool now = false);
 
 /**
  * @brief 

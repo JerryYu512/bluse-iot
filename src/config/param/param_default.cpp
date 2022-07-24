@@ -17,49 +17,26 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * 
- * @file param_patch.h
+ * @file param_default.cpp
  * @brief 
  * @author Jerry.Yu (jerry.yu512outlook.com)
  * @version 1.0.0
- * @date 2022-05-16
+ * @date 2022-07-24
  * 
  * @copyright MIT License
  * 
  */
-#pragma once
+#include "basic/log/biot_log.h"
+#include "basic/defs/error_code.h"
+#include "config/sec_param.h"
+#include "param_def/param.if.h"
 #include "param.h"
 
 namespace biot {
 
-typedef int (*app_param_patch_fn)(app_param_check_t &header, BiotAppParam &param);
-typedef int (*app_param_product_patch_fn)(app_param_check_t &header, BiotAppParam &param);
-// 用户自定义的匹配补丁接口
-typedef bool (*product_match_fn)(int device_type);
+biot_err_t reset_default_param(BiotAppParam &param) {
+	// TODO
+	return BIOT_ECODE_OK;
+}
 
-struct app_param_product_patch_table {
-	uint32_t device_type;					// 设备类型
-	app_param_product_patch_fn patch;	// 产品补丁接口
-	product_match_fn match;				// 产品匹配
-};
-
-struct app_param_patch_table {
-	uint32_t param_version;			// 补丁版本号
-	app_param_patch_fn patch;	// 补丁接口
-};
-
-/**
- * @brief 通用补丁
- * 
- * @return int 
- */
-int patch_common(void);
-
-/**
- * @brief 产品补丁
- * 
- * @param device_type 
- * @param match 
- */
-int patch_for_product(uint32_t device_type);
-
-} // namespace biot
+}

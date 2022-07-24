@@ -30,7 +30,7 @@
 #include <vector>
 #include <string>
 #include "basic/defs/ds.h"
-#include "basic/defs/enum_def.h"
+#include "config/param/param_def/enums/e_network.pm.h"
 
 namespace biot {
 
@@ -40,7 +40,7 @@ namespace biot {
  */
 typedef struct capa_lan_s {
 	MaxMin<uint32_t> mtu_range;		///< mtu值
-	LanWorkMode work_mode;			///< 网卡工作模式
+	NetLanType work_mode;			///< 网卡工作模式
 	bool ipv6;						///< 支持ipv6
 } capa_lan_t;
 

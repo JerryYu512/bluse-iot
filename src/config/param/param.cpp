@@ -26,11 +26,13 @@
  * @copyright MIT License
  * 
  */
+#include <time.h>
 #include "hv/hfile.h"
 #include "hv/json.hpp"
 #include "hv/crc.h"
 #include "hv/hthread.h"
 #include "hv/htime.h"
+#include "hv/uuid.h"
 #include "config/configure.h"
 #include "basic/base/proto_json.h"
 #include "basic/log/biot_log.h"
@@ -41,11 +43,117 @@
 
 namespace biot {
 
-hv::RWLock gBiotAppParamLock;
+class AppParamLockImpl {
+public:
+	void wrlock(const char* file, const char* func, int line) {
+		BIOT_TRACE("app-param wrlock--[file:%s func:%s line:%d]\n", file, func, line);
+		mtx_.wrlock();
+	}
+	void wrunlock(const char* file, const char* func, int line) {
+		BIOT_TRACE("app-param wrunlock--[file:%s func:%s line:%d]\n", file, func, line);
+		mtx_.wrunlock();
+	}
+	void rdlock(const char* file, const char* func, int line) {
+		BIOT_TRACE("app-param rdlock--[file:%s func:%s line:%d]\n", file, func, line);
+		mtx_.rdlock();
+	}
+	void rdunlock(const char* file, const char* func, int line) {
+		BIOT_TRACE("app-param rdunlock--[file:%s func:%s line:%d]\n", file, func, line);
+		mtx_.rdunlock();
+	}
+	void lock(const char* file, const char* func, int line) {
+		BIOT_TRACE("app-param lock--[file:%s func:%s line:%d]\n", file, func, line);
+		mtx_.lock();
+	}
+	void unlock(const char* file, const char* func, int line) {
+		BIOT_TRACE("app-param unlock--[file:%s func:%s line:%d]\n", file, func, line);
+		mtx_.unlock();
+	}
+private:
+	hv::RWLock mtx_;
+};
+
+class ParamChangeRecord {
+public:
+	ParamChangeRecord()
+		:change_cnt_(0), 
+		 change_cnt_once_(0), 
+		 last_change_time_(0),
+		 first_change_time_(0),
+		 last_write_time_(0) {}
+	void inc(void) {
+		if (!first_change_time_) {
+			first_change_time_ = time(nullptr);
+		}
+		last_change_time_ = time(nullptr);
+		change_cnt_++;
+		change_cnt_once_++;
+	}
+	uint64_t changed(void) {
+		return change_cnt_;
+	}
+	uint64_t changed_from_last(void) {
+		return change_cnt_once_;
+	}
+	void reset_changed(void) {
+		change_cnt_once_ = 0;
+	}
+	time_t last_time(void) {
+		return last_change_time_;
+	}
+
+public:
+	uint64_t change_cnt_;		// 变更次数
+	uint64_t change_cnt_once_;	// 上次变更次数
+	time_t last_change_time_;	// 从上次以来的变更次数
+	time_t first_change_time_;
+	time_t last_write_time_;	// 上次保存时间
+	std::mutex mtx_;
+};
+
+extern biot_err_t reset_default_param(BiotAppParam &param);
+
+// 全局锁
+AppParamLock gBiotAppParamLock;
 
 // 参数
 static app_param_check_t g_biot_app_param_check;
 static BiotAppParam g_biot_app_param;
+static ParamChangeRecord g_biot_app_param_change;
+
+static biot_err_t write_param_file(const char* path);
+
+AppParamLock::AppParamLock() {
+	impl = new AppParamLockImpl;
+}
+
+AppParamLock::~AppParamLock() {
+	delete impl;
+}
+
+void AppParamLock::wrlock(const char* file, const char* func, int line) {
+	impl->wrlock(file, func, line);
+}
+
+void AppParamLock::wrunlock(const char* file, const char* func, int line) {
+	impl->wrunlock(file, func, line);
+}
+
+void AppParamLock::rdlock(const char* file, const char* func, int line) {
+	impl->rdlock(file, func, line);
+}
+
+void AppParamLock::rdunlock(const char* file, const char* func, int line) {
+	impl->rdunlock(file, func, line);
+}
+
+void AppParamLock::lock(const char* file, const char* func, int line) {
+	impl->lock(file, func, line);
+}
+
+void AppParamLock::unlock(const char* file, const char* func, int line) {
+	impl->unlock(file, func, line);
+}
 
 // 参数保存任务
 static void* biot_app_param_dump_task(void* arg) {
@@ -53,13 +161,30 @@ static void* biot_app_param_dump_task(void* arg) {
 
 	while (1) {
 		BIOT_INFO("dump app param to file\n");
-		hv_delay(3 * 1000);
+		// 5秒写一次文件
+		hv_delay(5 * 1000);
+		g_biot_app_param_change.mtx_.lock();
+		// 检查变化
+		if (g_biot_app_param_change.changed_from_last()) {
+			BIOT_APP_PARAM_RLOCK;
+			auto ret = write_param_file(BIOT_CONFIG_FILENAME);
+			BIOT_APP_PARAM_RUNLOCK;
+			if (BIOT_ECODE_OK != ret) {
+				BIOT_ERROR("cycle write param failed[0x%x]: %s\n", ret, query_error_code_en(ret));
+			} else {
+				BIOT_TRACE("cycle write param success[total_changed=%ld, last_changed=%ld, last_time=%zu]\n",
+					g_biot_app_param_change.changed(), g_biot_app_param_change.changed_from_last(), g_biot_app_param_change.last_write_time_);
+				g_biot_app_param_change.last_write_time_ = time(nullptr);
+				g_biot_app_param_change.reset_changed();
+			}
+		}
+		g_biot_app_param_change.mtx_.unlock();
 	}
 
 	return nullptr;
 }
 
-static int read_param_file(const char* path) {
+static biot_err_t read_param_file(const char* path) {
 	if (hv_exists(path)) {
 		BIOT_ERROR("file: \"%s\" not exist\n", path);
 		return BIOT_COMMON_ECODE_FILE_NOT_EXIST;
@@ -93,8 +218,7 @@ static int read_param_file(const char* path) {
 		return BIOT_SYS_ECODE_CFG_FILE_HEADER_CHECK_FAILED;
 	}
 
-	// TODO:设备类型
-	// check.devtype;
+	// 设备类型
 	if (check.devtype != get_sec_param().devtype) {
 		BIOT_ERROR("param type: %d, sec type: %d\n", check.devtype, get_sec_param().devtype);
 		return BIOT_SYS_ECODE_CFG_FILE_HEADER_CHECK_FAILED;
@@ -108,21 +232,30 @@ static int read_param_file(const char* path) {
 		return BIOT_COMMON_ECODE_FILE_READ_FAILED;
 	}
 
-	simdjson::ondemand::parser parser;
 	simdjson::dom::element elm;
-	// TODO:错误处理
-	parser.iterate(p).get(elm);
+	simdjson::dom::parser parser;
+	simdjson::dom::document doc;
+	// json解析
+	auto err = parser.parse(p).get(elm);
+	if (err != simdjson::SUCCESS) {
+		BIOT_ERROR("json parse error: %s\n", simdjson::error_message(err));
+		return BIOT_COMMON_ECODE_DATA_JSON_FMT_ERROR;
+	}
+
+	// json转换
 	if (!json2struct(elm, param)) {
+		BIOT_ERROR("json2struct error\n");
 		return BIOT_COMMON_ECODE_DATA_STRUCT_TO_JSON_ERROR;
 	}
 
 	g_biot_app_param = param;
 	g_biot_app_param_check = check;
 
-	return BIOT_SYS_ECODE_OK;
+	BIOT_TRACE("read param file success\n");
+	return BIOT_ECODE_OK;
 }
 
-static int write_param_file(const char* path) {
+static biot_err_t write_param_file(const char* path) {
 	HFile f;
 
 	auto ret = f.open(path, "w+");
@@ -141,7 +274,15 @@ static int write_param_file(const char* path) {
 	g_biot_app_param_check.header.magic = BIOT_PARAM_FILE_MAGIC;
 	g_biot_app_param_check.header.length = sizeof(app_param_check_t) - sizeof(bin_data_header_t) + jstr.length();
 	g_biot_app_param_check.param_len = jstr.length();
-	// TODO:其他信息
+	g_biot_app_param_check.storage_type = APP_PARAM_FILE_STORAGE_JSON;
+	g_biot_app_param_check.storage_source = APP_PARAM_FILE_STORAGE_BASELINE;
+	g_biot_app_param_check.storage_version = APP_PARAM_FILE_STOREAGE_VERSION;
+	g_biot_app_param_check.devtype = get_sec_param().devtype;
+	datetime_t dt = datetime_now();
+	datetime_fmt_iso(&dt, (char*)g_biot_app_param_check.update_time);
+	memcpy(g_biot_app_param_check.product_no, get_sec_param().product_no, sizeof(g_biot_app_param_check.product_no));
+	memset(g_biot_app_param_check.uuid, 0, sizeof(g_biot_app_param_check.uuid));
+	uuid_generate((char*)g_biot_app_param_check.uuid);
 	// 计算校验码
 	uint32_t crc = 0;
 	crc = crc32(crc, (const uint8_t*)&g_biot_app_param_check.storage_type, sizeof(app_param_check_t) - sizeof(bin_data_header_t));
@@ -155,10 +296,10 @@ static int write_param_file(const char* path) {
 		return BIOT_COMMON_ECODE_FILE_WRITE_FAILED;
 	}
 
-	return BIOT_SYS_ECODE_OK;
+	return BIOT_ECODE_OK;
 }
 
-static int load_app_param(const char* path, const char*backup_path, const char* patch_path) {
+static biot_err_t load_app_param(const char* path, const char*backup_path, const char* patch_path) {
 	if (!path || !backup_path) {
 		BIOT_CRITICAL("path null\n");
 		return BIOT_COMMON_ECODE_MEM_INVALID;
@@ -171,23 +312,36 @@ static int load_app_param(const char* path, const char*backup_path, const char* 
 		return write_param_file(path);
 	}
 
-	return BIOT_SYS_ECODE_OK;
+	return BIOT_ECODE_OK;
 }
 
-int init_app_param(void) {
+biot_err_t init_app_param(void) {
 	auto ret = load_app_param(BIOT_CONFIG_FILENAME, BIOT_CONFIG_BACKUP_FILENAME, BIOT_CONFIG_PATCH_FILENAME);
-	if (BIOT_SYS_ECODE_OK == ret) {
-		hthread_create((hthread_routine)biot_app_param_dump_task, nullptr);
+	if (BIOT_ECODE_OK != ret) {
+		BIOT_ERROR("load app param failed[0x%x]: %s\n", ret, query_error_code_en(ret));
+		BIOT_WARN("reset default parameter.\n");
+		ret = reset_default_param(g_biot_app_param);
+		if (BIOT_ECODE_OK != ret) {
+			BIOT_ERROR("reset default parameter failed[0x%x], %s\n", ret, query_error_code_en(ret));
+			return ret;
+		} else {
+			save_app_param(true);
+		}
 	}
+	
+	hthread_create((hthread_routine)biot_app_param_dump_task, nullptr);
 
-	return ret;
+	return BIOT_ECODE_OK;
 }
 
-int save_app_param(bool now) {
+biot_err_t save_app_param(bool now) {
 	if (now) {
 		return write_param_file(BIOT_CONFIG_FILENAME);
 	}
-	return 0;
+	g_biot_app_param_change.mtx_.lock();
+	g_biot_app_param_change.inc();
+	g_biot_app_param_change.mtx_.unlock();
+	return BIOT_ECODE_OK;
 }
 
 app_param_check_t& app_param_header(void) {

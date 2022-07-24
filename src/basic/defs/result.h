@@ -44,12 +44,19 @@ public:
 	static __thread biot_err_t berrno;	///< 错误码
 	static __thread char msg[256];		///< 短语
 
-	void result(uint64_t code, const std::string& msg, bool d = false) {
+	void result(biot_err_t code, const std::string& msg, bool d = false) {
 		berrno = code;
 		memset(this->msg, 0, sizeof(this->msg));
-		memcpy(this->msg, msg.data(), msg.length());
+		memcpy(this->msg, msg.data(), std::min(msg.length(), sizeof(this->msg)));
 	}
-	void result(uint64_t code, bool d = false) {
+	void result(biot_err_t code, const char* msg, bool d = false) {
+		berrno = code;
+		if (msg) {
+			memset(this->msg, 0, sizeof(this->msg));
+			memcpy(this->msg, msg, std::min(strlen(msg), sizeof(this->msg)));
+		}
+	}
+	void result(biot_err_t code, bool d = false) {
 		berrno = code;
 		memset(this->msg, 0, sizeof(this->msg));
 	}
@@ -76,5 +83,10 @@ public:
 };
 
 extern __thread Result bresult;
+
+static inline biot_err_t biot_result(biot_err_t err, const char* msg) {
+	bresult.result(err, msg);
+	return err;
+}
 
 } // namespace biot
